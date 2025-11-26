@@ -2702,10 +2702,7 @@ function initializeThemeToggle() {
 // ========================================
 function initializeSpotlightEffect() {
     // Selectores de contenedores que tendrán el efecto
-    const spotlightSelectors = [
-        '.glass-card',
-        '.glass-container'
-    ];
+    const spotlightSelectors = [".glass-card", ".glass-container"];
 
     // Cachear elementos para mejor rendimiento
     let spotlightContainers = [];
@@ -2715,35 +2712,35 @@ function initializeSpotlightEffect() {
     // Función para crear el overlay del spotlight
     function createSpotlightOverlay(container) {
         // Evitar duplicados
-        if (container.querySelector('.spotlight-overlay')) return;
-        
-        const overlay = document.createElement('div');
-        overlay.className = 'spotlight-overlay';
+        if (container.querySelector(".spotlight-overlay")) return;
+
+        const overlay = document.createElement("div");
+        overlay.className = "spotlight-overlay";
         container.appendChild(overlay);
     }
 
     // Función para actualizar la lista de contenedores
     function updateContainers() {
         spotlightContainers = document.querySelectorAll(
-            spotlightSelectors.join(', ')
+            spotlightSelectors.join(", ")
         );
-        
+
         // Agregar clase y overlay para contenedores con spotlight
-        spotlightContainers.forEach(container => {
-            container.classList.add('spotlight-container');
+        spotlightContainers.forEach((container) => {
+            container.classList.add("spotlight-container");
             createSpotlightOverlay(container);
         });
     }
 
     // Verificar si el tema Obsidian está activo
     function checkTheme() {
-        isObsidianTheme = document.body.classList.contains('obsidian-theme');
-        
+        isObsidianTheme = document.body.classList.contains("obsidian-theme");
+
         if (!isObsidianTheme) {
             // Limpiar efectos cuando no es tema Obsidian
-            spotlightContainers.forEach(container => {
-                container.classList.remove('spotlight-active');
-                container.style.setProperty('--spotlight-opacity', '0');
+            spotlightContainers.forEach((container) => {
+                container.classList.remove("spotlight-active");
+                container.style.setProperty("--spotlight-opacity", "0");
             });
         }
     }
@@ -2751,45 +2748,45 @@ function initializeSpotlightEffect() {
     // Manejar movimiento del mouse
     function handleMouseMove(e) {
         if (!isObsidianTheme) return;
-        
+
         // Cancelar frame anterior
         if (rafId) {
             cancelAnimationFrame(rafId);
         }
 
         rafId = requestAnimationFrame(() => {
-            spotlightContainers.forEach(container => {
+            spotlightContainers.forEach((container) => {
                 const rect = container.getBoundingClientRect();
-                
+
                 // Verificar si el cursor está dentro del contenedor
-                const isInside = (
+                const isInside =
                     e.clientX >= rect.left &&
                     e.clientX <= rect.right &&
                     e.clientY >= rect.top &&
-                    e.clientY <= rect.bottom
-                );
+                    e.clientY <= rect.bottom;
 
                 if (isInside) {
                     // Calcular posición relativa del cursor dentro del contenedor
                     const x = e.clientX - rect.left;
                     const y = e.clientY - rect.top;
-                    
+
                     // Actualizar variables CSS para el spotlight
-                    container.style.setProperty('--spotlight-x', `${x}px`);
-                    container.style.setProperty('--spotlight-y', `${y}px`);
-                    container.style.setProperty('--spotlight-opacity', '1');
-                    container.classList.add('spotlight-active');
-                    
+                    container.style.setProperty("--spotlight-x", `${x}px`);
+                    container.style.setProperty("--spotlight-y", `${y}px`);
+                    container.style.setProperty("--spotlight-opacity", "1");
+                    container.classList.add("spotlight-active");
+
                     // También actualizar el overlay directamente
-                    const overlay = container.querySelector('.spotlight-overlay');
+                    const overlay =
+                        container.querySelector(".spotlight-overlay");
                     if (overlay) {
-                        overlay.style.setProperty('--spotlight-x', `${x}px`);
-                        overlay.style.setProperty('--spotlight-y', `${y}px`);
+                        overlay.style.setProperty("--spotlight-x", `${x}px`);
+                        overlay.style.setProperty("--spotlight-y", `${y}px`);
                     }
                 } else {
                     // Desvanecer el efecto cuando el cursor sale
-                    container.classList.remove('spotlight-active');
-                    container.style.setProperty('--spotlight-opacity', '0');
+                    container.classList.remove("spotlight-active");
+                    container.style.setProperty("--spotlight-opacity", "0");
                 }
             });
         });
@@ -2797,9 +2794,9 @@ function initializeSpotlightEffect() {
 
     // Manejar cuando el mouse sale de la ventana
     function handleMouseLeave() {
-        spotlightContainers.forEach(container => {
-            container.classList.remove('spotlight-active');
-            container.style.setProperty('--spotlight-opacity', '0');
+        spotlightContainers.forEach((container) => {
+            container.classList.remove("spotlight-active");
+            container.style.setProperty("--spotlight-opacity", "0");
         });
     }
 
@@ -2808,21 +2805,21 @@ function initializeSpotlightEffect() {
     checkTheme();
 
     // Event listeners
-    document.addEventListener('mousemove', handleMouseMove, { passive: true });
-    document.addEventListener('mouseleave', handleMouseLeave);
+    document.addEventListener("mousemove", handleMouseMove, { passive: true });
+    document.addEventListener("mouseleave", handleMouseLeave);
 
     // Observar cambios de tema
     const observer = new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {
-            if (mutation.attributeName === 'class') {
+            if (mutation.attributeName === "class") {
                 checkTheme();
             }
         });
     });
 
-    observer.observe(document.body, { 
-        attributes: true, 
-        attributeFilter: ['class'] 
+    observer.observe(document.body, {
+        attributes: true,
+        attributeFilter: ["class"],
     });
 
     // Re-escanear contenedores cuando cambie el DOM (para contenido dinámico)
@@ -2832,6 +2829,6 @@ function initializeSpotlightEffect() {
 
     domObserver.observe(document.body, {
         childList: true,
-        subtree: true
+        subtree: true,
     });
 }
