@@ -1,0 +1,3841 @@
+/* CSS Variables */
+:root {
+    /* Glass morphism effects */
+    --glass-bg: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.2) 0%,
+        rgba(255, 255, 255, 0.04) 50%,
+        rgb(255, 255, 255, 0.08) 100%
+    );
+    --glass-border: rgba(208, 208, 208, 0.3);
+
+    /* Base Colors */
+    --color-bg-dark: #0a0a0a;
+    --color-bg-medium: #1e1e1e;
+    --color-bg-light: #2c2c2c;
+
+    /* ========================================
+       OBSIDIAN THEME VARIABLES
+       Colores exactos del sitio obsidian.md
+       ======================================== */
+    /* Obsidian Background Colors */
+    --obsidian-bg-primary: #1e1e1e;
+    --obsidian-bg-secondary: #262626;
+    --obsidian-bg-tertiary: #2d2d2d;
+    --obsidian-bg-card: linear-gradient(
+        135deg,
+        #1e1e1e 0%,
+        #262626 50%,
+        #2d2d2d 100%
+    );
+
+    /* Obsidian Accent Colors */
+    --obsidian-accent-purple: #a855f7;
+    --obsidian-accent-violet: #8b5cf6;
+
+    /* Obsidian Border/Stroke */
+    --obsidian-border: rgba(255, 255, 255, 0.1);
+    --obsidian-border-hover: rgba(255, 255, 255, 0.2);
+
+    /* Obsidian Text Colors */
+    --obsidian-text-primary: #e0e0e0;
+    --obsidian-text-secondary: #a0a0a0;
+
+    /* Button gradient colors */
+    --btn-gradient-start: rgb(23, 23, 23);
+    --btn-gradient-mid: rgb(40, 40, 40);
+    --btn-gradient-end: rgb(65, 65, 65);
+    --btn-gradient-default: linear-gradient(
+        to right,
+        var(--btn-gradient-start),
+        var(--btn-gradient-mid)
+    );
+    --btn-gradient-hover: linear-gradient(
+        to right,
+        var(--btn-gradient-mid),
+        var(--btn-gradient-end)
+    );
+
+    /* Colors */
+    --text-primary: rgb(208, 208, 208);
+    --text-secondary: #a1a1a1;
+
+    /* Opacity variations for white */
+    --white-04: rgba(255, 255, 255, 0.04);
+    --white-08: rgba(255, 255, 255, 0.08);
+    --white-10: rgba(255, 255, 255, 0.1);
+    --white-15: rgba(255, 255, 255, 0.15);
+    --white-25: rgba(255, 255, 255, 0.25);
+    --white-30: rgba(255, 255, 255, 0.3);
+    --white-40: rgba(255, 255, 255, 0.4);
+    --white-50: rgba(255, 255, 255, 0.5);
+    --white-60: rgba(255, 255, 255, 0.6);
+
+    /* Opacity variations for text-primary (208, 208, 208) */
+    --text-primary-12: rgba(208, 208, 208, 0.12);
+    --text-primary-22: rgba(208, 208, 208, 0.22);
+    --text-primary-25: rgba(208, 208, 208, 0.25);
+    --text-primary-30: rgba(208, 208, 208, 0.3);
+    --text-primary-70: rgba(208, 208, 208, 0.7);
+
+    /* Unified Spacing System */
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 12px;
+    --space-lg: 16px;
+    --space-xl: 20px;
+    --space-2xl: 30px;
+
+    /* Fixed sizes */
+    --size-18: 18px;
+    --size-20: 20px;
+    --size-24: 24px;
+    --size-26: 26px;
+    --size-50: 50px;
+
+    /* Component-specific spacing */
+    --card-padding: clamp(26px, 5.5vw, 46px);
+    --card-xpad: clamp(18px, 5vw, 26px);
+
+    --container-padding: clamp(30px, 4vw, 40px) clamp(0px, 1.5vw, 12px);
+    --container-gap: clamp(20px, 4vw, 30px);
+
+    /* Glass container padding (used in multiple places) */
+    --glass-container-padding: clamp(12px, 3.5vw, 18px) clamp(20px, 5vw, 26px);
+
+    /* Project-specific spacing */
+    --projects-gap: clamp(45px, 7vw, 65px);
+
+    /* Position values (for buttons/menu) */
+    --position-top: clamp(16px, 6vw, 70px);
+    --position-right: clamp(32px, 8vw, 48px);
+
+    /* Component sizing */
+    --button-size: 50px;
+    --button-padding: 10px;
+    --button-radius-sm: 10px;
+    --button-radius-md: 15px;
+    --button-radius-lg: 25px;
+    --button-radius-xl: 30px;
+
+    /* Icon/Line sizing */
+    --line-width: 24px;
+    --line-height: 2px;
+    --line-radius: 2px;
+
+    /* Border radius scale */
+    --radius-sm: 8px;
+    --radius-md: 10px;
+    --radius-lg: 20px;
+    --radius-xl: 25px;
+    --radius-2xl: 30px;
+    --radius-pill: 50px;
+    --radius-full: 100px;
+
+    /* Z-index scale */
+    --z-base: 0;
+    --z-low: 1;
+    --z-mid: 2;
+    --z-high: 10;
+    --z-overlay: 1000;
+    --z-modal: 10000;
+    --z-modal-plus: 10001;
+
+    /* Certificate sizing */
+    --cert-logo-w: 100px;
+    --cert-external-w: 16px;
+    --cert-row-gap: var(--space-lg);
+
+    /* Interactions */
+    --hover-tint: var(--text-primary-22);
+    --focus-ring: var(--text-primary-70);
+
+    /* Performance */
+    --gpu-layer: translateZ(0);
+
+    /* Timing values */
+    --timing-160: 160ms;
+    --timing-200: 200ms;
+    --timing-300: 300ms;
+    --timing-380: 380ms;
+    --timing-400: 400ms;
+    --timing-500: 500ms;
+    --timing-800: 800ms;
+
+    /* Easing functions */
+    --ease-out: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+    /* Smooth Transitions */
+    --transition-ease-out: var(--ease-out);
+    --transition-fast: var(--timing-200) var(--ease-out);
+    --transition-medium: var(--timing-300) var(--ease-out);
+    --transition-slow: var(--timing-500) var(--ease-out);
+    --transition-smooth: var(--timing-400) var(--ease-smooth);
+    --transition-quick: var(--timing-160) ease;
+
+    /* Responsive Typography */
+    --font-size-sm: clamp(12px, 2vw, 14px);
+    --font-size-base: clamp(14px, 2.5vw, 16px);
+    --font-size-lg: clamp(16px, 3vw, 18px);
+    --font-size-xl: clamp(32px, 5vw, 40px);
+
+    /* Font weights */
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+
+    /* Opacity values */
+    --opacity-60: 0.6;
+    --opacity-70: 0.7;
+    --opacity-90: 0.9;
+
+    /* Transform values */
+    --transform-hover-lift: translateY(-2px);
+    --transform-hover-lift-sm: translateY(-1px);
+    --transform-scale-active: scale(0.95);
+    --transform-scale-hover: scale(1.1);
+    --transform-scale-hover-sm: scale(0.98);
+    --transform-scale-hover-md: scale(0.99);
+    --transform-scale-inactive: scale(0.9);
+
+    /* Border values */
+    --border-width: 1px;
+    --border-style: solid;
+    --border-radius-sm-alt: 3px;
+    --border-radius-circle: 50%;
+    --border-radius-max: 999px;
+
+    /* Gap values */
+    --gap-xs: 5px;
+    --gap-sm: 8px;
+    --gap-md: 10px;
+    --gap-md-plus: 13px;
+    --gap-lg: 18px;
+    --gap-xl: 25px;
+
+    /* Outline values */
+    --outline-width: 2px;
+    --outline-offset: var(--outline-offset);
+
+    /* Common CSS properties */
+    --object-fit-cover: cover;
+    --cursor-pointer: pointer;
+    --cursor-default: default;
+    --pointer-events-none: none;
+    --will-change-transform: transform;
+    --will-change-opacity: opacity;
+    --backface-hidden: hidden;
+
+    /* Aspect ratios */
+    --aspect-16-9: 16 / 9;
+}
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Transiciones específicas solo para elementos interactivos críticos */
+.glass-card,
+.glass-bubble,
+.glass-button,
+.glass-pill,
+.carousel-btn,
+.carousel-dot,
+.social-btn,
+.contact-btn,
+.project-link,
+.certificate-item {
+    transition: transform var(--transition-medium),
+        opacity var(--transition-medium),
+        background-color var(--transition-medium);
+}
+
+/* Excepciones para elementos que requieren transiciones específicas */
+.carousel-progress-fill {
+    transition: width var(--transition-fast), transform var(--transition-medium);
+}
+
+html {
+    scroll-behavior: smooth;
+    /* Performance optimizations for font rendering */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeSpeed;
+}
+
+body {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        Helvetica, Arial, sans-serif;
+    background: #000;
+    min-height: 100vh;
+    color: var(--text-primary);
+    overflow-x: hidden;
+    transition: color var(--transition-medium),
+        background var(--transition-medium);
+}
+
+/* Image effects */
+img[src$=".svg"],
+img[src$=".webp"],
+img[src$=".SVG"],
+img[src$=".WEBP"] {
+    /* Performance optimizations for images */
+    image-rendering: -webkit-optimize-contrast;
+    backface-visibility: var(--backface-hidden);
+}
+
+/* Scroll animation states - prevents disappearing elements on resize */
+.scroll-pending {
+    opacity: 0 !important;
+    transform: translateY(30px) !important;
+    /* Smooth cubic-bezier for professional fade-in effect */
+    transition: opacity var(--timing-800) var(--ease-out),
+        transform var(--timing-800) var(--ease-out) !important;
+}
+
+.scroll-animated {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    /* Maintain transition for smooth animation */
+    transition: opacity var(--timing-800) var(--ease-out),
+        transform var(--timing-800) var(--ease-out) !important;
+}
+
+/* Background video */
+.background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: var(--pointer-events-none);
+    overflow: hidden;
+}
+
+.background-video video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 100vh;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: var(--object-fit-cover);
+    transform: translate(-50%, -50%);
+    contain: layout;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .background-video {
+        display: none;
+    }
+}
+
+.portfolio-container {
+    width: 100%;
+    max-width: clamp(320px, 96vw, 560px);
+    margin: 0 auto;
+    padding: var(--container-padding);
+    display: flex;
+    flex-direction: column;
+    gap: var(--container-gap);
+    position: relative;
+    transition: all var(--transition-smooth), padding var(--transition-medium),
+        gap var(--transition-medium);
+}
+
+/* Menu Button - Transformable hamburger to X */
+.menu-button {
+    position: fixed;
+    top: var(--position-top);
+    right: var(--position-right);
+    /* Fondo degradado gris oscuro (igual que tags de proyectos) */
+    width: var(--button-size);
+    height: var(--button-size);
+    padding: var(--button-padding);
+    border-radius: var(--button-radius-md);
+    background: linear-gradient(to right, rgb(28, 28, 28), rgb(45, 45, 45));
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer !important;
+    z-index: calc(var(--z-overlay) + 20);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--gap-xs);
+    transition: all var(--transition-medium), width var(--transition-smooth),
+        height var(--transition-smooth);
+    /* Performance optimizations */
+    will-change: var(--will-change-transform);
+    transform: var(--gpu-layer);
+    contain: layout style;
+    backface-visibility: var(--backface-hidden);
+}
+
+.menu-button::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: var(--pointer-events-none);
+    background: radial-gradient(
+        circle at center,
+        var(--white-10) 0%,
+        transparent 70%
+    );
+    opacity: 0;
+    transform: translateY(4px) scale(0.98);
+    transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.menu-button:hover:not(.active) {
+    background: var(--btn-gradient-hover);
+    transform: var(--transform-hover-lift);
+}
+
+.menu-button:hover:not(.active)::after {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Hover cuando el botón está activo (en forma de X) */
+.menu-button.active:hover {
+    background: var(--btn-gradient-hover);
+}
+
+/* Hamburger lines */
+.menu-button-line {
+    height: var(--line-height);
+    background: var(--text-primary);
+    border-radius: var(--line-radius);
+    transition: all var(--timing-300) var(--ease-out);
+    transform-origin: center;
+    display: block;
+}
+
+.menu-button-line:nth-child(1),
+.menu-button-line:nth-child(2),
+.menu-button-line:nth-child(3) {
+    width: var(--line-width);
+    align-self: center;
+}
+
+/* Transform to X when menu is active */
+.menu-button.active .menu-button-line:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.menu-button.active .menu-button-line:nth-child(2) {
+    opacity: 0;
+    transform: translateX(10px);
+}
+
+.menu-button.active .menu-button-line:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Navigation Menu */
+.nav-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: calc(var(--z-overlay) + 10);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition-medium),
+        visibility var(--transition-medium);
+    pointer-events: var(--pointer-events-none);
+}
+
+/* ========================================
+   THEME TOGGLE BUTTON
+   Botón para cambiar entre tema Glass y Obsidian
+   ======================================== */
+.theme-toggle-button {
+    position: fixed;
+    top: var(--position-top);
+    right: calc(
+        var(--position-right) + 60px
+    ); /* A la izquierda del menú hamburguesa */
+    width: var(--button-size);
+    height: var(--button-size);
+    padding: var(--button-padding);
+    border-radius: var(--button-radius-md);
+    background: linear-gradient(to right, rgb(28, 28, 28), rgb(45, 45, 45));
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer !important;
+    z-index: calc(var(--z-overlay) + 20);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-medium);
+    will-change: var(--will-change-transform);
+    transform: var(--gpu-layer);
+    contain: layout style;
+    backface-visibility: var(--backface-hidden);
+}
+
+.theme-toggle-button::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: var(--pointer-events-none);
+    background: radial-gradient(
+        circle at center,
+        var(--white-10) 0%,
+        transparent 70%
+    );
+    opacity: 0;
+    transform: translateY(4px) scale(0.98);
+    transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.theme-toggle-button:hover {
+    background: var(--btn-gradient-hover);
+    transform: var(--transform-hover-lift);
+}
+
+.theme-toggle-button:hover::after {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.theme-toggle-button:focus-visible {
+    outline: 2px solid rgba(124, 58, 237, 0.6);
+    outline-offset: var(--outline-offset);
+}
+
+/* Theme icons */
+.theme-icon {
+    width: 24px;
+    height: 24px;
+    transition: opacity var(--transition-medium),
+        transform var(--transition-medium);
+}
+
+.theme-icon-dark {
+    display: block;
+}
+
+.theme-icon-light {
+    display: none;
+}
+
+/* Cuando está el tema Obsidian activo */
+body.obsidian-theme .theme-icon-dark {
+    display: none;
+}
+
+body.obsidian-theme .theme-icon-light {
+    display: block;
+}
+
+.nav-menu.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+}
+
+.nav-menu-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    transition: opacity var(--transition-medium);
+}
+
+.nav-menu-content {
+    position: relative;
+    width: 90%;
+    max-width: 600px;
+    max-height: 85vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: clamp(24px, 5vw, 40px);
+    transform: translateY(30px) scale(0.95);
+    transition: transform var(--transition-medium);
+}
+
+.nav-menu.active .nav-menu-content {
+    transform: translateY(0) scale(1);
+}
+
+.nav-menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(12px, 2.5vw, 16px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: calc(85vh - clamp(48px, 10vw, 80px));
+    padding-right: 16px;
+    margin-right: -8px;
+    /* Smooth scrolling */
+    scroll-behavior: smooth;
+    /* Custom scrollbar */
+    scrollbar-width: thin;
+    scrollbar-color: #a855f7 transparent;
+    /* Fade mask (identical to project descriptions) */
+    -webkit-mask-image: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 1) 0%,
+        rgba(0, 0, 0, 1) 85%,
+        rgba(0, 0, 0, 0.15) 95%,
+        rgba(0, 0, 0, 0) 100%
+    );
+    mask-image: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 1) 0%,
+        rgba(0, 0, 0, 1) 85%,
+        rgba(0, 0, 0, 0.15) 95%,
+        rgba(0, 0, 0, 0) 100%
+    );
+    /* Performance optimizations */
+    will-change: scroll-position, mask-image;
+    transform: var(--gpu-layer);
+    contain: layout;
+    -webkit-overflow-scrolling: touch;
+    transition: -webkit-mask-image 0.15s ease-out, mask-image 0.15s ease-out;
+}
+
+.nav-menu-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.nav-menu-list::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: var(--border-radius-sm-alt);
+}
+
+.nav-menu-list::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+        180deg,
+        #7c3aed 0%,
+        #a855f7 35%,
+        #d946ef 65%,
+        #ec4899 100%
+    );
+    border-radius: var(--border-radius-sm-alt);
+    transition: opacity var(--transition-fast);
+    opacity: var(--opacity-70);
+}
+
+.nav-menu-list::-webkit-scrollbar-thumb:hover {
+    opacity: var(--opacity-90);
+}
+
+.nav-menu-item {
+    display: block;
+    padding: clamp(16px, 3vw, 20px) clamp(18px, 3.5vw, 24px);
+    border-radius: var(--button-radius-lg);
+    background: linear-gradient(to right, rgb(28, 28, 28), rgb(45, 45, 45));
+    border: none;
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: all var(--transition-fast);
+    cursor: var(--cursor-pointer);
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-menu-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(124, 58, 237, 0.05),
+        rgba(236, 72, 153, 0.05)
+    );
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+    pointer-events: var(--pointer-events-none);
+}
+
+.nav-menu-item:hover {
+    background: linear-gradient(to right, rgb(45, 45, 45), rgb(65, 65, 65));
+    border: none;
+    transform: translateX(4px);
+}
+
+.nav-menu-item:hover::before {
+    opacity: 1;
+}
+
+.nav-menu-item:active {
+    transform: translateX(2px) scale(0.98);
+}
+
+/* Nav Item Content - Two rows structure */
+.nav-item-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    width: 100%;
+}
+
+/* Row 1: Title (identical to project-title) */
+.nav-item-title {
+    font-size: clamp(32px, 4.5vw, 36px);
+    font-weight: 900;
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.2;
+}
+
+/* Row 2: Meta (identical to project-meta) */
+.nav-item-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+/* Icon button (identical to project-icon) */
+.nav-item-icon {
+    width: var(--button-size);
+    height: var(--button-size);
+    padding: var(--button-padding);
+    border-radius: var(--button-radius-md);
+    background: var(--glass-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    cursor: default;
+    box-sizing: border-box;
+}
+
+.nav-item-icon img {
+    width: 26px;
+    height: 26px;
+    opacity: var(--opacity-90);
+    flex-shrink: 0;
+}
+
+/* Category text (identical to project-category) */
+.nav-item-category {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-normal);
+    color: var(--text-primary);
+    line-height: 1.4;
+    margin: 0;
+}
+
+.nav-item-category strong {
+    font-weight: 900;
+    color: var(
+        --text-primary
+    ); /* Mantener blanco para Full-Stack, UI/UX Design, etc. */
+}
+
+.nav-item-category .separator {
+    font-weight: 900;
+    margin: 0 0.35em;
+    color: var(--text-primary); /* Blanco igual que las categorías */
+}
+
+/* Focus styles for accessibility */
+.menu-button:focus-visible,
+.nav-menu-item:focus-visible {
+    outline: 2px solid rgba(124, 58, 237, 0.6);
+    outline-offset: var(--outline-offset);
+}
+
+/* Prevent body scroll when menu is open */
+body.menu-open {
+    overflow: hidden;
+}
+
+/* Smooth animations for menu items */
+.nav-menu-list li {
+    animation: fadeInUp 0.4s ease-out backwards;
+}
+
+.nav-menu-list li:nth-child(1) {
+    animation-delay: 0.05s;
+}
+.nav-menu-list li:nth-child(2) {
+    animation-delay: 0.1s;
+}
+.nav-menu-list li:nth-child(3) {
+    animation-delay: 0.15s;
+}
+.nav-menu-list li:nth-child(4) {
+    animation-delay: 0.2s;
+}
+.nav-menu-list li:nth-child(5) {
+    animation-delay: 0.25s;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    .nav-menu-content {
+        width: 95%;
+        padding: clamp(16px, 4vw, 24px);
+        max-height: 90vh;
+    }
+
+    .nav-menu-item {
+        padding: 14px 16px;
+    }
+
+    .nav-item-title {
+        font-size: clamp(28px, 4vw, 32px);
+    }
+
+    .nav-item-category {
+        font-size: clamp(11px, 1.8vw, 13px);
+    }
+
+    .nav-item-icon {
+        width: var(--button-size);
+        height: var(--button-size);
+        padding: var(--button-padding);
+    }
+
+    .nav-item-icon img {
+        width: 26px;
+        height: 26px;
+    }
+}
+
+@media (max-width: 400px) {
+    .nav-menu-content {
+        padding: clamp(12px, 3vw, 16px);
+    }
+
+    .nav-menu-item {
+        padding: 12px 14px;
+    }
+
+    .nav-item-title {
+        font-size: clamp(24px, 5vw, 28px);
+    }
+
+    .nav-item-category {
+        font-size: 10px;
+    }
+
+    .nav-item-icon {
+        width: var(--button-size);
+        height: var(--button-size);
+        padding: var(--button-padding);
+    }
+
+    .nav-item-icon img {
+        width: 26px;
+        height: 26px;
+    }
+}
+
+/* Glass Effects */
+.glass-card {
+    padding: var(--card-padding);
+    border-radius: var(--button-radius-xl);
+    background: var(--glass-bg);
+    position: relative; /* Necesario para pseudo-elemento de borde */
+    transition: padding var(--transition-smooth),
+        border-radius var(--transition-smooth),
+        transform var(--transition-medium);
+    /* Performance optimizations */
+    will-change: var(--will-change-transform);
+    transform: var(--gpu-layer);
+    contain: layout;
+    backface-visibility: var(--backface-hidden);
+}
+
+/* Borde parcial (derecha, superior e inferior) con border-radius suave usando pseudo-elemento */
+.glass-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 1px solid var(--glass-border);
+    border-left: none; /* Sin borde izquierdo */
+    border-radius: var(--button-radius-xl);
+    pointer-events: var(--pointer-events-none);
+    z-index: 1;
+}
+
+.glass-bubble {
+    padding: var(--space-md) var(--space-lg);
+    border-radius: var(--radius-pill);
+    background: var(--glass-bg);
+    border: none;
+    color: var(--text-primary);
+    cursor: var(--cursor-pointer);
+    transition: all var(--transition-medium), padding var(--transition-smooth);
+}
+
+.glass-bubble:hover {
+    background: var(--hover-tint);
+    transform: var(--transform-hover-lift);
+}
+
+.glass-container {
+    padding: var(--glass-container-padding);
+    border-radius: var(--button-radius-lg);
+    background: var(--glass-bg);
+}
+
+.glass-button {
+    width: var(--button-size);
+    height: var(--button-size);
+    padding: var(--button-padding);
+    border-radius: var(--button-radius-md);
+    background: var(--glass-bg);
+    border: none;
+    color: var(--text-primary);
+    cursor: var(--cursor-pointer);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-medium), width var(--transition-smooth),
+        height var(--transition-smooth);
+    /* Performance optimizations */
+    will-change: var(--will-change-transform);
+    transform: var(--gpu-layer);
+    contain: layout style;
+    backface-visibility: var(--backface-hidden);
+}
+
+.glass-button:hover {
+    background: var(--hover-tint);
+    transform: var(--transform-hover-lift);
+}
+
+.glass-pill {
+    padding: clamp(12px, 3.5vw, 16px) clamp(20px, 5vw, 26px);
+    border-radius: var(--radius-full);
+    background: var(--glass-bg);
+}
+
+/* Override border-radius para botones de proyecto: rectángulos con bordes redondeados en lugar de cápsulas */
+.project-link.glass-pill {
+    border-radius: var(--radius-lg); /* 15px - un poco más rectangular */
+}
+
+/* Unified hover/focus effects for interactive elements */
+.contact-btn.glass-bubble,
+.social-btn.glass-button,
+.certificate-item.glass-pill,
+.project-link.glass-pill,
+.project-icon.glass-button,
+.tech-tag {
+    position: relative;
+    transition: transform var(--transition-fast),
+        background var(--transition-fast), width var(--transition-smooth),
+        height var(--transition-smooth), padding var(--transition-smooth);
+}
+.contact-btn.glass-bubble::after,
+.social-btn.glass-button::after,
+.certificate-item.glass-pill::after,
+.project-link.glass-pill::after,
+.project-icon.glass-button::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: var(--pointer-events-none);
+    background: radial-gradient(
+        circle at center,
+        rgba(255, 255, 255, 0.1) 0%,
+        transparent 70%
+    );
+    opacity: 0;
+    transform: translateY(4px) scale(0.98);
+    transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.contact-btn.glass-bubble:hover,
+.social-btn.glass-button:hover,
+.project-icon.glass-button:hover {
+    background: var(--hover-tint);
+    transform: var(--transform-hover-lift);
+}
+
+/* Hover específico para botón GitHub */
+.project-link.glass-pill:not(.download-btn) {
+    background: #d0d0d0 !important; /* Color D0D0D0 como solicitado */
+    color: #000000 !important; /* Texto e iconos en negro */
+}
+
+.project-link.glass-pill:not(.download-btn):hover {
+    background: #b8b8b8 !important; /* Ligeramente más oscuro en hover */
+    color: #000000 !important; /* Mantener texto negro */
+    transform: var(--transform-hover-lift);
+}
+
+/* Hover más sutil para certificados */
+.certificate-item.glass-pill:hover {
+    background: var(--text-primary-12);
+    transform: var(--transform-hover-lift-sm);
+}
+
+.contact-btn.glass-bubble:hover::after,
+.social-btn.glass-button:hover::after,
+.project-icon.glass-button:hover::after {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Desactivar pseudo-elemento de hover para botón GitHub */
+.project-link.glass-pill:hover::after {
+    opacity: 0 !important;
+    display: none !important;
+}
+
+/* Pseudo-elemento más sutil para certificados */
+.certificate-item.glass-pill:hover::after {
+    opacity: var(--opacity-60);
+    transform: translateY(0) scale(1);
+}
+
+.contact-btn.glass-bubble:active,
+.social-btn.glass-button:active,
+.certificate-item.glass-pill:active,
+.project-link.glass-pill:active,
+.project-icon.glass-button:active {
+    transform: translateY(-1px) scale(0.98);
+}
+
+.contact-btn.glass-bubble:focus-visible,
+.social-btn.glass-button:focus-visible,
+.certificate-item.glass-pill:focus-visible,
+.project-link.glass-pill:focus-visible,
+.project-icon.glass-button:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: var(--outline-offset);
+}
+
+/* Profile Section */
+.profile-section {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: var(--space-2xl);
+    margin-inline: 0;
+    transition: grid-template-columns var(--transition-smooth),
+        gap var(--transition-smooth), transform var(--transition-medium);
+}
+
+.profile-section > * {
+    min-width: 0;
+}
+
+.profile-picture {
+    width: 125px;
+    height: 125px;
+    border-radius: var(--radius-xl);
+    background: var(--glass-bg);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-medium), width var(--transition-smooth),
+        height var(--transition-smooth);
+}
+
+.profile-img {
+    width: 100px;
+    height: 100px;
+    border-radius: var(--radius-pill);
+    object-fit: var(--object-fit-cover);
+    transition: all var(--transition-medium), width var(--transition-smooth),
+        height var(--transition-smooth);
+}
+
+.profile-badge {
+    position: absolute;
+    top: 0;
+    right: -12.5px;
+    width: 50px;
+    height: 50px;
+    border-radius: var(--radius-pill);
+    background: var(--glass-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    font-weight: 900;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2xl); /* consistente con profile-section */
+    width: 100%;
+}
+
+.profile-name {
+    font-size: var(--font-size-xl);
+    font-weight: 900;
+    color: var(--text-primary);
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    transition: font-size var(--transition-smooth),
+        color var(--transition-medium);
+}
+
+.profile-description {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-normal);
+    color: var(--text-primary);
+    text-align: left;
+    line-height: 1.5;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    transition: font-size var(--transition-smooth),
+        color var(--transition-medium);
+}
+
+/* Badges inside the profile description for key roles/skills */
+.profile-description .personal-badge {
+    font-weight: 900; /* same thickness as .language-key and .skills-title */
+    display: inline-block; /* keep inline flow but allow small spacing tweaks */
+    line-height: 1.5;
+}
+
+/* Languages Container (glass container wrapper) */
+.languages-container {
+    width: 100%;
+}
+
+/* Languages Block (static, responsive) */
+.languages {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl); /* separación ligeramente mayor y constante */
+    /* Alinear tamaño tipográfico al de la descripción */
+    font-size: var(--font-size-sm);
+    margin: 0;
+    padding: 0;
+}
+
+.language-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    margin: 0;
+}
+
+/* Agregar espacio después del último item para balancear visualmente con el espacio superior */
+.language-item:last-child {
+    padding-bottom: 6px; /* espacio adicional para balancear con el superior */
+}
+
+.language-label {
+    font-size: inherit; /* mismo tamaño que la descripción */
+    color: var(--text-primary);
+    opacity: var(--opacity-90);
+}
+
+/* Nombre del idioma + dos puntos con el mismo weight que el nombre principal */
+.language-label .language-key {
+    font-weight: 900;
+    color: var(
+        --text-primary
+    ); /* Mantener blanco para 💬 Spanish, 💬 English */
+}
+
+.lang-progress {
+    position: relative;
+    width: 100%;
+    height: 10px;
+    min-height: 10px;
+    max-height: 10px;
+    border-radius: var(--border-radius-max);
+    background: var(--text-primary-25);
+    overflow: hidden;
+}
+
+.lang-progress-fill {
+    height: 100%;
+    min-height: 10px;
+    max-height: 10px;
+    width: 0;
+    background: linear-gradient(
+        90deg,
+        #4c1d95 0%,
+        #8b5cf6 45%,
+        #d946ef 70%,
+        #ec4899 100%
+    );
+    border-radius: var(--border-radius-max);
+}
+
+/* Responsividad del bloque de idiomas */
+@media (min-width: 640px) {
+    .languages {
+        gap: var(--space-xl);
+    }
+    .language-label {
+        font-size: inherit;
+    }
+}
+
+/* Contact Buttons */
+.contact-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: var(--space-2xl);
+    width: 100%;
+    padding: 0;
+    transition: gap var(--transition-smooth), padding var(--transition-smooth);
+}
+
+/* Contenedor individual de contacto (botón + etiqueta) */
+.contact-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+}
+
+.contact-btn {
+    width: 60px;
+    height: 60px;
+    padding: var(
+        --space-lg
+    ); /* usar variable del sistema (16px similar a 15px) */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-sm);
+    transition: all var(--transition-medium), width var(--transition-smooth),
+        height var(--transition-smooth), padding var(--transition-smooth);
+}
+
+/* Etiqueta bajo el botón, heredando estilo de idiomas */
+.contact-label {
+    font-size: var(--font-size-sm);
+    color: var(--text-primary);
+    opacity: var(--opacity-90); /* igual a .language-label */
+    text-align: center;
+    line-height: 1.3;
+    white-space: normal;
+    overflow-wrap: anywhere;
+}
+
+/* Mantener blanco para los textos 📫 Email, ♥️ Contact me!, 👤 View */
+.contact-label .language-key {
+    color: var(--text-primary);
+}
+
+/* Social Media */
+.social-media {
+    height: 90px;
+    padding: 0 var(--space-lg); /* padding lateral consistente */
+    border-radius: var(--button-radius-lg);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-medium), height var(--transition-smooth),
+        padding var(--transition-smooth);
+}
+
+/* Skills Section (similar a Social Media, pero con tags) */
+.skills-title {
+    font-size: var(--font-size-sm); /* igual que la descripción */
+    font-weight: 900; /* igual que el nombre */
+    text-align: center; /* centrado uniforme en todas las vistas */
+    margin: 0; /* sin espacio extra debajo del título */
+}
+.skills-section {
+    height: auto;
+    padding: var(--space-lg) var(--space-lg);
+    border-radius: var(--button-radius-lg);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-medium), height var(--transition-smooth),
+        padding var(--transition-smooth);
+}
+
+.skills-lines {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    gap: clamp(var(--space-sm), 5vw, var(--space-lg));
+    row-gap: var(--space-lg);
+    transition: gap var(--transition-smooth),
+        justify-content var(--transition-medium);
+}
+
+/* Tags de Skills con esquinas redondeadas (rectángulos, no cápsulas) */
+.skills-lines .tech-tag {
+    border-radius: 10px;
+    color: var(--text-primary);
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* Efecto neón glass para cada tecnología - SOLO en skills-lines */
+.skills-lines .tech-tag[data-tech="javascript"] {
+    background: rgba(247, 223, 30, 0.15);
+    border: 1px solid rgba(247, 223, 30, 0.4);
+    box-shadow: 0 0 15px rgba(247, 223, 30, 0.3),
+        0 0 25px rgba(247, 223, 30, 0.15),
+        inset 0 0 12px rgba(247, 223, 30, 0.15);
+}
+.skills-lines .tech-tag[data-tech="javascript"]:hover {
+    box-shadow: 0 0 25px rgba(247, 223, 30, 0.5),
+        0 0 40px rgba(247, 223, 30, 0.3),
+        inset 0 0 20px rgba(247, 223, 30, 0.25);
+    border-color: rgba(247, 223, 30, 0.6);
+}
+
+.skills-lines .tech-tag[data-tech="html"] {
+    background: rgba(227, 79, 38, 0.15);
+    border: 1px solid rgba(227, 79, 38, 0.4);
+    box-shadow: 0 0 15px rgba(227, 79, 38, 0.3),
+        0 0 25px rgba(227, 79, 38, 0.15), inset 0 0 12px rgba(227, 79, 38, 0.15);
+}
+.skills-lines .tech-tag[data-tech="html"]:hover {
+    box-shadow: 0 0 25px rgba(227, 79, 38, 0.5), 0 0 40px rgba(227, 79, 38, 0.3),
+        inset 0 0 20px rgba(227, 79, 38, 0.25);
+    border-color: rgba(227, 79, 38, 0.6);
+}
+
+.skills-lines .tech-tag[data-tech="css"] {
+    background: rgba(21, 114, 182, 0.15);
+    border: 1px solid rgba(21, 114, 182, 0.4);
+    box-shadow: 0 0 15px rgba(21, 114, 182, 0.3),
+        0 0 25px rgba(21, 114, 182, 0.15),
+        inset 0 0 12px rgba(21, 114, 182, 0.15);
+}
+.skills-lines .tech-tag[data-tech="css"]:hover {
+    box-shadow: 0 0 25px rgba(21, 114, 182, 0.5),
+        0 0 40px rgba(21, 114, 182, 0.3),
+        inset 0 0 20px rgba(21, 114, 182, 0.25);
+    border-color: rgba(21, 114, 182, 0.6);
+}
+
+.skills-lines .tech-tag[data-tech="react"] {
+    background: rgba(97, 218, 251, 0.15);
+    border: 1px solid rgba(97, 218, 251, 0.4);
+    box-shadow: 0 0 15px rgba(97, 218, 251, 0.3),
+        0 0 25px rgba(97, 218, 251, 0.15),
+        inset 0 0 12px rgba(97, 218, 251, 0.15);
+}
+.skills-lines .tech-tag[data-tech="react"]:hover {
+    box-shadow: 0 0 25px rgba(97, 218, 251, 0.5),
+        0 0 40px rgba(97, 218, 251, 0.3),
+        inset 0 0 20px rgba(97, 218, 251, 0.25);
+    border-color: rgba(97, 218, 251, 0.6);
+}
+
+.skills-lines .tech-tag[data-tech="nodejs"] {
+    background: rgba(104, 160, 99, 0.15);
+    border: 1px solid rgba(104, 160, 99, 0.4);
+    box-shadow: 0 0 15px rgba(104, 160, 99, 0.3),
+        0 0 25px rgba(104, 160, 99, 0.15),
+        inset 0 0 12px rgba(104, 160, 99, 0.15);
+}
+.skills-lines .tech-tag[data-tech="nodejs"]:hover {
+    box-shadow: 0 0 25px rgba(104, 160, 99, 0.5),
+        0 0 40px rgba(104, 160, 99, 0.3),
+        inset 0 0 20px rgba(104, 160, 99, 0.25);
+    border-color: rgba(104, 160, 99, 0.6);
+}
+
+.skills-lines .tech-tag[data-tech="express"] {
+    background: var(--white-15);
+    border: 1px solid var(--white-40);
+    box-shadow: 0 0 15px var(--white-30), 0 0 25px var(--white-15),
+        inset 0 0 12px var(--white-15);
+}
+.skills-lines .tech-tag[data-tech="express"]:hover {
+    box-shadow: 0 0 25px var(--white-50), 0 0 40px var(--white-30),
+        inset 0 0 20px var(--white-25);
+    border-color: var(--white-60);
+}
+
+.skills-lines .tech-tag[data-tech="python"] {
+    background: rgba(55, 118, 171, 0.15);
+    border: 1px solid rgba(255, 212, 59, 0.4);
+    box-shadow: 0 0 15px rgba(55, 118, 171, 0.3),
+        0 0 25px rgba(255, 212, 59, 0.15),
+        inset 0 0 12px rgba(255, 212, 59, 0.15);
+}
+.skills-lines .tech-tag[data-tech="python"]:hover {
+    box-shadow: 0 0 25px rgba(55, 118, 171, 0.5),
+        0 0 40px rgba(255, 212, 59, 0.3),
+        inset 0 0 20px rgba(255, 212, 59, 0.25);
+    border-color: rgba(255, 212, 59, 0.6);
+}
+
+.skills-lines .tech-tag[data-tech="java"] {
+    background: rgba(240, 81, 57, 0.15);
+    border: 1px solid rgba(240, 81, 57, 0.4);
+    box-shadow: 0 0 15px rgba(240, 81, 57, 0.3),
+        0 0 25px rgba(240, 81, 57, 0.15), inset 0 0 12px rgba(240, 81, 57, 0.15);
+}
+.skills-lines .tech-tag[data-tech="java"]:hover {
+    box-shadow: 0 0 25px rgba(240, 81, 57, 0.5), 0 0 40px rgba(240, 81, 57, 0.3),
+        inset 0 0 20px rgba(240, 81, 57, 0.25);
+    border-color: rgba(240, 81, 57, 0.6);
+}
+
+.skills-lines .tech-tag[data-tech="postgresql"] {
+    background: rgba(51, 103, 145, 0.15);
+    border: 1px solid rgba(51, 103, 145, 0.4);
+    box-shadow: 0 0 15px rgba(51, 103, 145, 0.3),
+        0 0 25px rgba(51, 103, 145, 0.15),
+        inset 0 0 12px rgba(51, 103, 145, 0.15);
+}
+.skills-lines .tech-tag[data-tech="postgresql"]:hover {
+    box-shadow: 0 0 25px rgba(51, 103, 145, 0.5),
+        0 0 40px rgba(51, 103, 145, 0.3),
+        inset 0 0 20px rgba(51, 103, 145, 0.25);
+    border-color: rgba(51, 103, 145, 0.6);
+}
+
+.skills-lines .tech-tag[data-tech="pgadmin"] {
+    background: rgba(54, 120, 182, 0.15);
+    border: 1px solid rgba(54, 120, 182, 0.4);
+    box-shadow: 0 0 15px rgba(54, 120, 182, 0.3),
+        0 0 25px rgba(54, 120, 182, 0.15),
+        inset 0 0 12px rgba(54, 120, 182, 0.15);
+}
+.skills-lines .tech-tag[data-tech="pgadmin"]:hover {
+    box-shadow: 0 0 25px rgba(54, 120, 182, 0.5),
+        0 0 40px rgba(54, 120, 182, 0.3),
+        inset 0 0 20px rgba(54, 120, 182, 0.25);
+    border-color: rgba(54, 120, 182, 0.6);
+}
+
+.skills-lines .tech-tag[data-tech="mysql"] {
+    background: rgba(0, 117, 143, 0.15);
+    border: 1px solid rgba(0, 117, 143, 0.4);
+    box-shadow: 0 0 15px rgba(0, 117, 143, 0.3),
+        0 0 25px rgba(0, 117, 143, 0.15), inset 0 0 12px rgba(0, 117, 143, 0.15);
+}
+.skills-lines .tech-tag[data-tech="mysql"]:hover {
+    box-shadow: 0 0 25px rgba(0, 117, 143, 0.5), 0 0 40px rgba(0, 117, 143, 0.3),
+        inset 0 0 20px rgba(0, 117, 143, 0.25);
+    border-color: rgba(0, 117, 143, 0.6);
+}
+
+.skills-lines .tech-tag[data-tech="mongodb"] {
+    background: rgba(71, 162, 72, 0.15);
+    border: 1px solid rgba(71, 162, 72, 0.4);
+    box-shadow: 0 0 15px rgba(71, 162, 72, 0.3),
+        0 0 25px rgba(71, 162, 72, 0.15), inset 0 0 12px rgba(71, 162, 72, 0.15);
+}
+.skills-lines .tech-tag[data-tech="mongodb"]:hover {
+    box-shadow: 0 0 25px rgba(71, 162, 72, 0.5), 0 0 40px rgba(71, 162, 72, 0.3),
+        inset 0 0 20px rgba(71, 162, 72, 0.25);
+    border-color: rgba(71, 162, 72, 0.6);
+}
+
+.skills-lines .tech-tag[data-tech="docker"] {
+    background: rgba(33, 150, 243, 0.15);
+    border: 1px solid rgba(33, 150, 243, 0.4);
+    box-shadow: 0 0 15px rgba(33, 150, 243, 0.3),
+        0 0 25px rgba(33, 150, 243, 0.15),
+        inset 0 0 12px rgba(33, 150, 243, 0.15);
+}
+.skills-lines .tech-tag[data-tech="docker"]:hover {
+    box-shadow: 0 0 25px rgba(33, 150, 243, 0.5),
+        0 0 40px rgba(33, 150, 243, 0.3),
+        inset 0 0 20px rgba(33, 150, 243, 0.25);
+    border-color: rgba(33, 150, 243, 0.6);
+}
+
+.skills-lines .tech-tag[data-tech="git"] {
+    background: rgba(240, 80, 51, 0.15);
+    border: 1px solid rgba(240, 80, 51, 0.4);
+    box-shadow: 0 0 15px rgba(240, 80, 51, 0.3),
+        0 0 25px rgba(240, 80, 51, 0.15), inset 0 0 12px rgba(240, 80, 51, 0.15);
+}
+.skills-lines .tech-tag[data-tech="git"]:hover {
+    box-shadow: 0 0 25px rgba(240, 80, 51, 0.5), 0 0 40px rgba(240, 80, 51, 0.3),
+        inset 0 0 20px rgba(240, 80, 51, 0.25);
+    border-color: rgba(240, 80, 51, 0.6);
+}
+
+.skills-lines .tech-tag[data-tech="github"] {
+    background: var(--white-15);
+    border: 1px solid var(--white-40);
+    box-shadow: 0 0 15px var(--white-30), 0 0 25px var(--white-15),
+        inset 0 0 12px var(--white-15);
+}
+.skills-lines .tech-tag[data-tech="github"]:hover {
+    box-shadow: 0 0 25px var(--white-50), 0 0 40px var(--white-30),
+        inset 0 0 20px var(--white-25);
+    border-color: var(--white-60);
+}
+
+.skills-lines .tech-tag[data-tech="bootstrap"] {
+    background: rgba(128, 0, 255, 0.15);
+    border: 1px solid rgba(128, 0, 255, 0.4);
+    box-shadow: 0 0 15px rgba(128, 0, 255, 0.3),
+        0 0 25px rgba(128, 0, 255, 0.15), inset 0 0 12px rgba(128, 0, 255, 0.15);
+}
+.skills-lines .tech-tag[data-tech="bootstrap"]:hover {
+    box-shadow: 0 0 25px rgba(128, 0, 255, 0.5), 0 0 40px rgba(128, 0, 255, 0.3),
+        inset 0 0 20px rgba(128, 0, 255, 0.25);
+    border-color: rgba(128, 0, 255, 0.6);
+}
+
+.skills-lines .tech-tag[data-tech="sass"] {
+    background: rgba(207, 100, 154, 0.15);
+    border: 1px solid rgba(207, 100, 154, 0.4);
+    box-shadow: 0 0 15px rgba(207, 100, 154, 0.3),
+        0 0 25px rgba(207, 100, 154, 0.15),
+        inset 0 0 12px rgba(207, 100, 154, 0.15);
+}
+.skills-lines .tech-tag[data-tech="sass"]:hover {
+    box-shadow: 0 0 25px rgba(207, 100, 154, 0.5),
+        0 0 40px rgba(207, 100, 154, 0.3),
+        inset 0 0 20px rgba(207, 100, 154, 0.25);
+    border-color: rgba(207, 100, 154, 0.6);
+}
+
+.skills-lines .tech-tag[data-tech="postman"] {
+    background: rgba(255, 108, 55, 0.15);
+    border: 1px solid rgba(255, 108, 55, 0.4);
+    box-shadow: 0 0 15px rgba(255, 108, 55, 0.3),
+        0 0 25px rgba(255, 108, 55, 0.15),
+        inset 0 0 12px rgba(255, 108, 55, 0.15);
+}
+.skills-lines .tech-tag[data-tech="postman"]:hover {
+    box-shadow: 0 0 25px rgba(255, 108, 55, 0.5),
+        0 0 40px rgba(255, 108, 55, 0.3),
+        inset 0 0 20px rgba(255, 108, 55, 0.25);
+    border-color: rgba(255, 108, 55, 0.6);
+}
+
+.skills-lines .tech-tag[data-tech="vscode"] {
+    background: rgba(0, 122, 204, 0.15);
+    border: 1px solid rgba(0, 122, 204, 0.4);
+    box-shadow: 0 0 15px rgba(0, 122, 204, 0.3),
+        0 0 25px rgba(0, 122, 204, 0.15), inset 0 0 12px rgba(0, 122, 204, 0.15);
+}
+.skills-lines .tech-tag[data-tech="vscode"]:hover {
+    box-shadow: 0 0 25px rgba(0, 122, 204, 0.5), 0 0 40px rgba(0, 122, 204, 0.3),
+        inset 0 0 20px rgba(0, 122, 204, 0.25);
+    border-color: rgba(0, 122, 204, 0.6);
+}
+
+.skills-lines .tech-tag[data-tech="linux"] {
+    background: rgba(255, 193, 7, 0.15);
+    border: 1px solid rgba(255, 193, 7, 0.4);
+    box-shadow: 0 0 15px rgba(255, 193, 7, 0.3),
+        0 0 25px rgba(255, 193, 7, 0.15), inset 0 0 12px rgba(255, 193, 7, 0.15);
+}
+.skills-lines .tech-tag[data-tech="linux"]:hover {
+    box-shadow: 0 0 25px rgba(255, 193, 7, 0.5), 0 0 40px rgba(255, 193, 7, 0.3),
+        inset 0 0 20px rgba(255, 193, 7, 0.25);
+    border-color: rgba(255, 193, 7, 0.6);
+}
+
+.skills-lines .tech-tag[data-tech="windows"] {
+    background: rgba(0, 120, 215, 0.15);
+    border: 1px solid rgba(0, 120, 215, 0.4);
+    box-shadow: 0 0 15px rgba(0, 120, 215, 0.3),
+        0 0 25px rgba(0, 120, 215, 0.15), inset 0 0 12px rgba(0, 120, 215, 0.15);
+}
+.skills-lines .tech-tag[data-tech="windows"]:hover {
+    box-shadow: 0 0 25px rgba(0, 120, 215, 0.5), 0 0 40px rgba(0, 120, 215, 0.3),
+        inset 0 0 20px rgba(0, 120, 215, 0.25);
+    border-color: rgba(0, 120, 215, 0.6);
+}
+
+.skills-lines .tech-tag[data-tech="androidstudio"] {
+    background: rgba(61, 220, 132, 0.15);
+    border: 1px solid rgba(61, 220, 132, 0.4);
+    box-shadow: 0 0 15px rgba(61, 220, 132, 0.3),
+        0 0 25px rgba(61, 220, 132, 0.15),
+        inset 0 0 12px rgba(61, 220, 132, 0.15);
+}
+.skills-lines .tech-tag[data-tech="androidstudio"]:hover {
+    box-shadow: 0 0 25px rgba(61, 220, 132, 0.5),
+        0 0 40px rgba(61, 220, 132, 0.3),
+        inset 0 0 20px rgba(61, 220, 132, 0.25);
+    border-color: rgba(61, 220, 132, 0.6);
+}
+
+.skills-lines .tech-tag[data-tech="apache"] {
+    background: rgba(211, 45, 65, 0.15);
+    border: 1px solid rgba(211, 45, 65, 0.4);
+    box-shadow: 0 0 15px rgba(211, 45, 65, 0.3),
+        0 0 25px rgba(211, 45, 65, 0.15), inset 0 0 12px rgba(211, 45, 65, 0.15);
+}
+.skills-lines .tech-tag[data-tech="apache"]:hover {
+    box-shadow: 0 0 25px rgba(211, 45, 65, 0.5), 0 0 40px rgba(211, 45, 65, 0.3),
+        inset 0 0 20px rgba(211, 45, 65, 0.25);
+    border-color: rgba(211, 45, 65, 0.6);
+}
+
+.skills-lines .tech-tag[data-tech="aws"] {
+    background: rgba(255, 153, 0, 0.15);
+    border: 1px solid rgba(255, 153, 0, 0.4);
+    box-shadow: 0 0 15px rgba(255, 153, 0, 0.3),
+        0 0 25px rgba(255, 153, 0, 0.15), inset 0 0 12px rgba(255, 153, 0, 0.15);
+}
+.skills-lines .tech-tag[data-tech="aws"]:hover {
+    box-shadow: 0 0 25px rgba(255, 153, 0, 0.5), 0 0 40px rgba(255, 153, 0, 0.3),
+        inset 0 0 20px rgba(255, 153, 0, 0.25);
+    border-color: rgba(255, 153, 0, 0.6);
+}
+
+.skills-lines .tech-tag[data-tech="django"] {
+    background: rgba(9, 46, 32, 0.15);
+    border: 1px solid rgba(68, 170, 68, 0.4);
+    box-shadow: 0 0 15px rgba(68, 170, 68, 0.3),
+        0 0 25px rgba(68, 170, 68, 0.15), inset 0 0 12px rgba(68, 170, 68, 0.15);
+}
+.skills-lines .tech-tag[data-tech="django"]:hover {
+    box-shadow: 0 0 25px rgba(68, 170, 68, 0.5), 0 0 40px rgba(68, 170, 68, 0.3),
+        inset 0 0 20px rgba(68, 170, 68, 0.25);
+    border-color: rgba(68, 170, 68, 0.6);
+}
+
+.skills-lines .tech-tag[data-tech="electron"] {
+    background: rgba(71, 205, 222, 0.15);
+    border: 1px solid rgba(71, 205, 222, 0.4);
+    box-shadow: 0 0 15px rgba(71, 205, 222, 0.3),
+        0 0 25px rgba(71, 205, 222, 0.15),
+        inset 0 0 12px rgba(71, 205, 222, 0.15);
+}
+.skills-lines .tech-tag[data-tech="electron"]:hover {
+    box-shadow: 0 0 25px rgba(71, 205, 222, 0.5),
+        0 0 40px rgba(71, 205, 222, 0.3),
+        inset 0 0 20px rgba(71, 205, 222, 0.25);
+    border-color: rgba(71, 205, 222, 0.6);
+}
+
+.skills-lines .tech-tag[data-tech="eslint"] {
+    background: rgba(79, 54, 223, 0.15);
+    border: 1px solid rgba(79, 54, 223, 0.4);
+    box-shadow: 0 0 15px rgba(79, 54, 223, 0.3),
+        0 0 25px rgba(79, 54, 223, 0.15), inset 0 0 12px rgba(79, 54, 223, 0.15);
+}
+.skills-lines .tech-tag[data-tech="eslint"]:hover {
+    box-shadow: 0 0 25px rgba(79, 54, 223, 0.5), 0 0 40px rgba(79, 54, 223, 0.3),
+        inset 0 0 20px rgba(79, 54, 223, 0.25);
+    border-color: rgba(79, 54, 223, 0.6);
+}
+
+.skills-lines .tech-tag[data-tech="figma"] {
+    background: rgba(242, 78, 30, 0.15);
+    border: 1px solid rgba(162, 89, 255, 0.4);
+    box-shadow: 0 0 15px rgba(242, 78, 30, 0.3),
+        0 0 25px rgba(162, 89, 255, 0.15),
+        inset 0 0 12px rgba(162, 89, 255, 0.15);
+}
+.skills-lines .tech-tag[data-tech="figma"]:hover {
+    box-shadow: 0 0 25px rgba(242, 78, 30, 0.5),
+        0 0 40px rgba(162, 89, 255, 0.3),
+        inset 0 0 20px rgba(162, 89, 255, 0.25);
+    border-color: rgba(162, 89, 255, 0.6);
+}
+
+.skills-lines .tech-tag[data-tech="flask"] {
+    background: rgba(0, 0, 0, 0.15);
+    border: 1px solid var(--white-40);
+    box-shadow: 0 0 15px var(--white-30), 0 0 25px var(--white-15),
+        inset 0 0 12px var(--white-15);
+}
+.skills-lines .tech-tag[data-tech="flask"]:hover {
+    box-shadow: 0 0 25px var(--white-50), 0 0 40px var(--white-30),
+        inset 0 0 20px var(--white-25);
+    border-color: var(--white-60);
+}
+
+.skills-lines .tech-tag[data-tech="flutter"] {
+    background: rgba(2, 125, 247, 0.15);
+    border: 1px solid rgba(2, 125, 247, 0.4);
+    box-shadow: 0 0 15px rgba(2, 125, 247, 0.3),
+        0 0 25px rgba(2, 125, 247, 0.15), inset 0 0 12px rgba(2, 125, 247, 0.15);
+}
+.skills-lines .tech-tag[data-tech="flutter"]:hover {
+    box-shadow: 0 0 25px rgba(2, 125, 247, 0.5), 0 0 40px rgba(2, 125, 247, 0.3),
+        inset 0 0 20px rgba(2, 125, 247, 0.25);
+    border-color: rgba(2, 125, 247, 0.6);
+}
+
+.skills-lines .tech-tag[data-tech="npm"] {
+    background: rgba(203, 56, 55, 0.15);
+    border: 1px solid rgba(203, 56, 55, 0.4);
+    box-shadow: 0 0 15px rgba(203, 56, 55, 0.3),
+        0 0 25px rgba(203, 56, 55, 0.15), inset 0 0 12px rgba(203, 56, 55, 0.15);
+}
+.skills-lines .tech-tag[data-tech="npm"]:hover {
+    box-shadow: 0 0 25px rgba(203, 56, 55, 0.5), 0 0 40px rgba(203, 56, 55, 0.3),
+        inset 0 0 20px rgba(203, 56, 55, 0.25);
+    border-color: rgba(203, 56, 55, 0.6);
+}
+
+.skills-lines .tech-tag[data-tech="numpy"] {
+    background: rgba(77, 162, 213, 0.15);
+    border: 1px solid rgba(77, 162, 213, 0.4);
+    box-shadow: 0 0 15px rgba(77, 162, 213, 0.3),
+        0 0 25px rgba(77, 162, 213, 0.15),
+        inset 0 0 12px rgba(77, 162, 213, 0.15);
+}
+.skills-lines .tech-tag[data-tech="numpy"]:hover {
+    box-shadow: 0 0 25px rgba(77, 162, 213, 0.5),
+        0 0 40px rgba(77, 162, 213, 0.3),
+        inset 0 0 20px rgba(77, 162, 213, 0.25);
+    border-color: rgba(77, 162, 213, 0.6);
+}
+
+.skills-lines .tech-tag[data-tech="render"] {
+    background: rgba(70, 211, 207, 0.15);
+    border: 1px solid rgba(70, 211, 207, 0.4);
+    box-shadow: 0 0 15px rgba(70, 211, 207, 0.3),
+        0 0 25px rgba(70, 211, 207, 0.15),
+        inset 0 0 12px rgba(70, 211, 207, 0.15);
+}
+.skills-lines .tech-tag[data-tech="render"]:hover {
+    box-shadow: 0 0 25px rgba(70, 211, 207, 0.5),
+        0 0 40px rgba(70, 211, 207, 0.3),
+        inset 0 0 20px rgba(70, 211, 207, 0.25);
+    border-color: rgba(70, 211, 207, 0.6);
+}
+
+.skills-lines .tech-tag[data-tech="spring"] {
+    background: rgba(109, 179, 63, 0.15);
+    border: 1px solid rgba(109, 179, 63, 0.4);
+    box-shadow: 0 0 15px rgba(109, 179, 63, 0.3),
+        0 0 25px rgba(109, 179, 63, 0.15),
+        inset 0 0 12px rgba(109, 179, 63, 0.15);
+}
+.skills-lines .tech-tag[data-tech="spring"]:hover {
+    box-shadow: 0 0 25px rgba(109, 179, 63, 0.5),
+        0 0 40px rgba(109, 179, 63, 0.3),
+        inset 0 0 20px rgba(109, 179, 63, 0.25);
+    border-color: rgba(109, 179, 63, 0.6);
+}
+
+.skills-lines .tech-tag[data-tech="sqlite"] {
+    background: rgba(0, 123, 181, 0.15);
+    border: 1px solid rgba(0, 123, 181, 0.4);
+    box-shadow: 0 0 15px rgba(0, 123, 181, 0.3),
+        0 0 25px rgba(0, 123, 181, 0.15), inset 0 0 12px rgba(0, 123, 181, 0.15);
+}
+.skills-lines .tech-tag[data-tech="sqlite"]:hover {
+    box-shadow: 0 0 25px rgba(0, 123, 181, 0.5), 0 0 40px rgba(0, 123, 181, 0.3),
+        inset 0 0 20px rgba(0, 123, 181, 0.25);
+    border-color: rgba(0, 123, 181, 0.6);
+}
+
+.skills-lines .tech-tag[data-tech="cplusplus"] {
+    background: rgba(0, 89, 157, 0.15);
+    border: 1px solid rgba(0, 89, 157, 0.4);
+    box-shadow: 0 0 15px rgba(0, 89, 157, 0.3), 0 0 25px rgba(0, 89, 157, 0.15),
+        inset 0 0 12px rgba(0, 89, 157, 0.15);
+}
+.skills-lines .tech-tag[data-tech="cplusplus"]:hover {
+    box-shadow: 0 0 25px rgba(0, 89, 157, 0.5), 0 0 40px rgba(0, 89, 157, 0.3),
+        inset 0 0 20px rgba(0, 89, 157, 0.25);
+    border-color: rgba(0, 89, 157, 0.6);
+}
+
+.skills-lines .tech-tag[data-tech="jsx"] {
+    background: rgba(97, 218, 251, 0.15);
+    border: 1px solid rgba(97, 218, 251, 0.4);
+    box-shadow: 0 0 15px rgba(97, 218, 251, 0.3),
+        0 0 25px rgba(97, 218, 251, 0.15),
+        inset 0 0 12px rgba(97, 218, 251, 0.15);
+}
+.skills-lines .tech-tag[data-tech="jsx"]:hover {
+    box-shadow: 0 0 25px rgba(97, 218, 251, 0.5),
+        0 0 40px rgba(97, 218, 251, 0.3),
+        inset 0 0 20px rgba(97, 218, 251, 0.25);
+    border-color: rgba(97, 218, 251, 0.6);
+}
+
+/* Asegurar tamaño homogéneo de íconos dentro de tech-tag en Skills */
+.skills-lines .tech-tag img {
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+}
+
+.social-lines {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    gap: clamp(var(--space-sm), 5vw, var(--space-lg));
+    row-gap: var(--space-lg);
+    transition: gap var(--transition-smooth),
+        justify-content var(--transition-medium);
+}
+
+.social-btn {
+    width: 50px;
+    height: 50px;
+    flex-shrink: 0;
+    transition: all var(--transition-medium), width var(--transition-smooth),
+        height var(--transition-smooth);
+}
+
+/* Mobile responsive optimization - consolidated */
+@media (max-width: 640px) {
+    .skills-section {
+        padding: var(--space-lg); /* padding consistente en todos los lados */
+    }
+
+    .skills-lines {
+        gap: var(--space-lg);
+        row-gap: var(--space-lg);
+        justify-content: center;
+    }
+    .social-media {
+        height: auto;
+        min-height: 90px;
+        padding: var(--space-lg) var(--space-lg); /* padding consistente */
+    }
+
+    .social-lines {
+        gap: var(--space-lg); /* gap consistente */
+        row-gap: var(--space-lg); /* row-gap consistente */
+        justify-content: center;
+        display: flex;
+        flex-wrap: wrap;
+        align-content: flex-start;
+        width: 100%;
+    }
+
+    /* Project optimizations for mobile */
+    .project-meta {
+        gap: var(--space-sm);
+    }
+}
+
+/* Certificates Section */
+.certificates-section {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+    width: 100%;
+    transition: grid-template-columns var(--transition-smooth),
+        gap var(--transition-smooth), transform var(--transition-medium);
+}
+
+.certificate-item {
+    width: 100%;
+    padding-right: clamp(8px, 2.5vw, 12px);
+    display: flex;
+    align-items: center;
+    gap: var(--cert-row-gap);
+    min-height: 36px;
+}
+
+.certificate-item.glass-pill {
+    --cert-pr: var(--card-xpad);
+    height: 50px;
+    padding: 0 var(--cert-pr) 0 0;
+    cursor: var(--cursor-pointer);
+    transition: transform var(--transition-fast),
+        background var(--transition-fast), height var(--transition-smooth),
+        padding var(--transition-smooth);
+}
+
+/* Hover ya definido arriba con menor intensidad */
+
+.certificate-item.glass-pill:active {
+    transform: translateY(-1px) scale(0.99);
+}
+
+.certificate-item.glass-pill:focus-visible {
+    outline: 2px solid var(--text-primary);
+    outline-offset: var(--outline-offset);
+}
+
+.certificate-item > * {
+    min-width: 0;
+}
+
+.certificate-logo {
+    width: var(--cert-logo-w);
+    height: 50px;
+    border-radius: var(--radius-full);
+    background: var(--glass-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--gap-md-plus);
+    flex-shrink: 0;
+}
+
+.aws-logo-composite {
+    padding: 0;
+    overflow: hidden;
+}
+
+.certificate-text {
+    flex: 1;
+    font-size: 11px;
+    font-weight: var(--font-weight-normal);
+    color: var(--text-primary);
+    line-height: 1.2;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    overflow-wrap: anywhere;
+    margin-left: calc(
+        var(--cert-row-gap) * 1.5
+    ); /* Aumentado para igualar margen derecho */
+    min-width: 0;
+}
+
+.external-link {
+    width: var(--cert-external-w);
+    height: var(--cert-external-w);
+    border: none;
+    background: none;
+    cursor: var(--cursor-pointer);
+    padding: 0;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
+
+/* Responsive adjustments for certificates on small screens */
+@media (max-width: 360px) {
+    .certificate-item.glass-pill {
+        --cert-pr: calc(var(--card-xpad) - 8px);
+    }
+    :root {
+        --cert-logo-w: 88px;
+        --cert-external-w: 28px;
+        --cert-row-gap: var(--space-xs);
+    }
+    .certificate-logo {
+        gap: var(--gap-md);
+    }
+    .certificate-text {
+        font-size: 11.5px;
+        min-width: 0;
+    }
+
+    .project-meta {
+        flex-wrap: nowrap;
+        align-items: flex-start;
+    }
+
+    .project-category {
+        min-width: 0;
+        flex: 1;
+    }
+}
+
+/* Projects Section - Multiple Projects Container */
+.projects-section {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--projects-gap); /* Increased spacing between projects */
+    width: 100%;
+    margin-top: var(--projects-gap); /* Same spacing as between projects */
+    transition: grid-template-columns var(--transition-smooth),
+        gap var(--transition-smooth);
+}
+
+/* Individual Project Item */
+.project-item {
+    display: grid;
+    grid-template-areas:
+        "image"
+        "controls"
+        "header"
+        "meta"
+        "tech"
+        "desc"
+        "link";
+    gap: var(--space-xl);
+    width: 100%;
+    padding-top: 0;
+    margin-inline: 0;
+    contain: layout style;
+    will-change: var(--will-change-transform);
+    transform: var(--gpu-layer);
+    transition: all var(--transition-medium);
+}
+/* Evitar overflows de hijos en grid de proyecto */
+.project-item > * {
+    min-width: 0;
+}
+
+/* Media full-bleed 16:9 (encaja a los bordes de la tarjeta con margen de 1px) */
+.project-media {
+    grid-area: image;
+    /* expandir a los bordes laterales de la glass-card con margen de 1px en cada lado */
+    margin-left: calc(-1 * clamp(26px, 5.5vw, 46px) + 1px);
+    margin-right: calc(-1 * clamp(26px, 5.5vw, 46px) + 1px);
+    margin-top: 1px; /* 1px de margen superior */
+    width: calc(
+        100% + 2 * clamp(26px, 5.5vw, 46px) - 2px
+    ); /* -2px para compensar los márgenes laterales */
+    border-radius: var(
+        --radius-2xl
+    ); /* mismo radio que la tarjeta para que el borde parezca parte de la imagen */
+    overflow: hidden;
+    isolation: isolate; /* Crear nuevo contexto de apilamiento para evitar conflictos */
+}
+
+/* Asegurar que el carousel-viewport mantenga el border-radius */
+.project-media .carousel-viewport {
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
+}
+
+/* Controles del carrusel debajo de la imagen */
+.carousel-controls {
+    grid-area: controls;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-xs); /* Gap entre la imagen y los controles */
+    padding: 0 var(--card-xpad);
+    margin-top: -2px; /* Ligeramente negativo para acercar aún más a la imagen */
+}
+.carousel-controls-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(
+        --space-xl
+    ); /* Aumentado de var(--space-md) [12px] a var(--space-xl) [20px] */
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+/* Contenedor para el conjunto de indicadores + barra de progreso */
+.carousel-controls .carousel-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(
+        --space-sm
+    ); /* Aumentado de 6px a var(--space-sm) [8px] para más espacio entre bolitas y barra */
+    transition: gap var(--transition-smooth), transform var(--transition-medium);
+    /* Asegurar que no afecte la altura de los elementos hijos */
+    min-height: auto;
+    max-height: none;
+}
+
+/* Ocultar botones de navegación en carruseles de proyectos */
+.carousel-controls .carousel-btn {
+    display: none;
+}
+
+/* Indicadores fuera de la imagen: estáticos y centrados */
+.carousel-controls .carousel-indicators {
+    position: static;
+    bottom: auto;
+    left: auto;
+    transform: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(
+        --space-sm
+    ); /* Aumentado de var(--space-xs) [4px] a var(--space-sm) [8px] */
+    transition: gap var(--transition-smooth), transform var(--transition-medium);
+}
+
+/* Barra de progreso dentro del contenedor central con indicadores */
+.carousel-controls .carousel-progress {
+    position: static;
+    bottom: auto;
+    left: auto;
+    transform: none;
+    width: auto; /* Se ajustará dinámicamente por JS al ancho de los indicadores */
+    margin: 0;
+    height: 3px; /* Altura fija consistente - incrementada para mayor visibilidad */
+    min-height: 3px; /* Asegurar altura mínima fija */
+    max-height: 3px; /* Asegurar altura máxima fija */
+    border-radius: 1.5px; /* Ajustado proporcionalmente */
+    background: rgba(208, 208, 208, 0.4);
+    /* Centrado perfecto con los indicadores */
+    display: block;
+    flex-shrink: 0; /* Evitar que se reduzca en contenedores flex */
+    transition: width var(--transition-smooth),
+        transform var(--transition-medium);
+}
+.carousel-controls .carousel-progress-fill {
+    height: 100%; /* Asegurar que ocupe toda la altura del contenedor */
+    min-height: 3px; /* Altura mínima consistente */
+    max-height: 3px; /* Altura máxima consistente */
+    will-change: width;
+    transition: width linear; /* Mantener transición lineal para el progreso */
+}
+
+/* Carrusel accesible */
+.carousel {
+    position: relative;
+    color: var(--text-primary);
+}
+.carousel-viewport {
+    width: 100%;
+    aspect-ratio: var(--aspect-16-9);
+    overflow: hidden;
+    position: relative;
+    background: var(--color-bg-dark); /* evita flashes al cargar */
+    /* Performance optimizations */
+    transform: var(--gpu-layer);
+    will-change: var(--will-change-transform);
+    contain: layout style;
+}
+.carousel-track {
+    display: block; /* no necesitamos flex en crossfade */
+    width: 100%;
+    height: 100%;
+    will-change: var(--will-change-opacity);
+    position: relative; /* base para slides absolutas */
+    transform: var(--gpu-layer);
+    transition: none;
+    /* Performance optimizations */
+    contain: layout;
+}
+.carousel-slide {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+    opacity: 0; /* crossfade por opacidad */
+    transition: opacity var(--timing-380) var(--ease-smooth);
+    pointer-events: var(--pointer-events-none);
+    /* Performance optimizations */
+    will-change: var(--will-change-opacity);
+    transform: var(--gpu-layer);
+    contain: var(--contain-content);
+    backface-visibility: var(--backface-hidden);
+}
+.carousel-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: var(--object-fit-cover); /* nunca distorsiona */
+    opacity: var(
+        --opacity-90
+    ); /* más transparente para apreciar el fondo tipo cristal */
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-drag: none;
+    pointer-events: var(
+        --pointer-events-none
+    ); /* evita arrastres nativos y facilita el drag en el viewport */
+}
+/* Slide activa visible y clicable */
+.carousel-slide.is-active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Controles Prev/Next */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 26px;
+    height: 26px;
+    padding: 0;
+    border-radius: var(--radius-sm);
+    border: none;
+    background: var(--glass-bg);
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: var(--cursor-pointer);
+    transition: transform 160ms ease, background 160ms ease;
+    z-index: var(--z-mid);
+    box-sizing: border-box;
+    overflow: visible; /* Asegurar que las flechas sean visibles */
+}
+.carousel-btn:hover {
+    background: var(--hover-tint);
+    transform: translateY(-50%) translateY(-2px);
+}
+.carousel-btn:active {
+    transform: translateY(-50%) scale(0.95); /* Efecto activo consistente con el modal */
+}
+.carousel-btn:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: var(--outline-offset);
+}
+.carousel-btn.prev {
+    left: 10px;
+}
+.carousel-btn.next {
+    right: 10px;
+}
+.carousel-btn.prev::before,
+.carousel-btn.next::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    border-top: 3px solid currentColor;
+    border-right: 3px solid currentColor;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+.carousel-btn.prev::before {
+    left: calc(50% + 1.5px);
+    transform: translate(-50%, -50%) rotate(-135deg);
+}
+.carousel-btn.next::before {
+    left: calc(50% - 1.5px);
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+/* Botón de maximizar pantalla completa - Solo icono, sin contenedor glass */
+.carousel-fullscreen-btn {
+    position: absolute;
+    top: 16px; /* Más margen desde la esquina superior */
+    right: 16px; /* Más margen desde la esquina derecha */
+    width: 26px; /* Tamaño exacto del icono */
+    height: 26px; /* Tamaño exacto del icono */
+    padding: 0; /* Sin padding */
+    border: none;
+    background: transparent; /* Sin fondo */
+    color: #ffffff; /* Icono completamente blanco */
+    cursor: var(--cursor-pointer);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-medium);
+    z-index: 10;
+    box-sizing: border-box; /* Asegurar que width/height incluyan border y padding */
+    /* Performance optimizations */
+    will-change: var(--will-change-transform);
+    transform: var(--gpu-layer);
+    contain: layout style;
+    backface-visibility: var(--backface-hidden);
+    /* Sombra cercana y definida para mejor rendimiento */
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.6));
+}
+
+.carousel-fullscreen-btn:hover {
+    transform: var(--transform-scale-hover); /* Solo escala al hacer hover */
+    filter: drop-shadow(
+        0 2px 4px rgba(0, 0, 0, 0.7)
+    ); /* Sombra más pronunciada en hover */
+}
+
+.carousel-fullscreen-btn:active {
+    transform: var(--transform-scale-active); /* Efecto de presión */
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.6));
+}
+
+.carousel-fullscreen-btn:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: var(--outline-offset);
+}
+
+/* El icono SVG debe ocupar todo el botón */
+.carousel-fullscreen-btn svg {
+    width: 26px; /* Tamaño exacto solicitado */
+    height: 26px;
+}
+
+/* Fullscreen modal */
+.carousel-fullscreen-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-medium);
+    cursor: default !important; /* Cursor normal, NO pointer */
+}
+
+.carousel-fullscreen-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.carousel-fullscreen-content {
+    position: relative;
+    width: 90vw;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: default !important; /* Cursor normal, NO pointer */
+}
+
+.carousel-fullscreen-viewport {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: default !important; /* Cursor normal, NO pointer */
+}
+
+.carousel-fullscreen-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 10px;
+    cursor: default !important; /* Cursor normal en la imagen también */
+}
+
+.carousel-fullscreen-close {
+    position: fixed;
+    top: var(--position-top);
+    right: var(--position-right);
+    width: var(--button-size);
+    height: var(--button-size);
+    padding: var(--button-padding);
+    border-radius: var(--button-radius-md);
+    background: var(--btn-gradient-default);
+    border: none;
+    color: var(--text-primary);
+    cursor: var(--cursor-pointer);
+    z-index: var(--z-modal-plus);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--gap-xs);
+    transition: all var(--transition-medium), width var(--transition-smooth),
+        height var(--transition-smooth);
+    will-change: var(--will-change-transform);
+    transform: var(--gpu-layer);
+    contain: layout style;
+    backface-visibility: var(--backface-hidden);
+}
+
+.carousel-fullscreen-close:hover {
+    background: var(--btn-gradient-hover);
+    transform: var(--transform-hover-lift);
+}
+
+.carousel-fullscreen-close:active {
+    transform: var(--transform-scale-active);
+}
+
+.carousel-fullscreen-close:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: var(--outline-offset);
+}
+
+/* Líneas del icono X (mismo tamaño que el menú hamburguesa: 24px x 2px) */
+.carousel-fullscreen-close::before {
+    content: "";
+    position: absolute;
+    width: var(--line-width);
+    height: var(--line-height);
+    background: var(--text-primary);
+    border-radius: var(--line-radius);
+    transition: all var(--transition-medium);
+    transform: rotate(45deg);
+    z-index: 1;
+}
+
+.carousel-fullscreen-close::after {
+    content: "";
+    position: absolute;
+    width: var(--line-width);
+    height: var(--line-height);
+    background: var(--text-primary);
+    border-radius: var(--line-radius);
+    transition: all var(--transition-medium);
+    transform: rotate(-45deg);
+    z-index: 1;
+}
+
+.carousel-fullscreen-nav button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 26px;
+    height: 26px;
+    min-width: 26px;
+    min-height: 26px;
+    padding: 0;
+    border-radius: 8px;
+    border: none;
+    background: var(--glass-bg);
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: var(--cursor-pointer);
+    transition: transform var(--transition-quick),
+        background var(--transition-quick);
+    z-index: var(--z-modal-plus);
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+.carousel-fullscreen-nav button:hover {
+    background: var(--hover-tint);
+    transform: translateY(-50%) translateY(-2px);
+}
+
+.carousel-fullscreen-nav button:active {
+    transform: translateY(-50%) scale(0.95); /* Efecto activo consistente con el modal */
+}
+
+.carousel-fullscreen-nav button:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: var(--outline-offset);
+}
+
+/* Flechas de navegación */
+.carousel-fullscreen-prev::before,
+.carousel-fullscreen-next::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    border-top: 3px solid currentColor;
+    border-right: 3px solid currentColor;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+.carousel-fullscreen-prev::before {
+    left: calc(50% + 1.5px);
+    transform: translate(-50%, -50%) rotate(-135deg);
+}
+
+.carousel-fullscreen-next::before {
+    left: calc(50% - 1.5px);
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+/* Posicionamiento de botones */
+.carousel-fullscreen-prev {
+    left: 10px; /* Exactamente igual que .carousel-btn.prev */
+}
+
+.carousel-fullscreen-next {
+    right: 10px; /* Exactamente igual que .carousel-btn.next */
+}
+
+.carousel-fullscreen-counter {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: var(--font-weight-medium);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    /* Botones del carrusel normal - Mismo tamaño que los del modal */
+    .carousel-btn {
+        width: 24px; /* Mismo tamaño que los botones del modal en móvil */
+        height: 24px; /* Mismo tamaño que los botones del modal en móvil */
+    }
+
+    /* Ajustar el tamaño de las flechas del carrusel normal en móvil */
+    .carousel-btn.prev::before,
+    .carousel-btn.next::before {
+        width: 7px; /* Mismo tamaño que las flechas del modal en móvil */
+        height: 7px; /* Mismo tamaño que las flechas del modal en móvil */
+        border-top: 2px solid currentColor; /* Mismo grosor que las flechas del modal en móvil */
+        border-right: 2px solid currentColor; /* Mismo grosor que las flechas del modal en móvil */
+    }
+
+    .carousel-fullscreen-content {
+        width: 95vw;
+        height: 95vh;
+    }
+
+    .carousel-fullscreen-close {
+        top: 10px;
+        right: 10px;
+        width: 24px; /* Ligeramente más pequeño en móvil pero manteniendo proporciones */
+        height: 24px; /* Ligeramente más pequeño en móvil pero manteniendo proporciones */
+    }
+
+    /* Ajustar el tamaño del icono X en móvil */
+    .carousel-fullscreen-close::before,
+    .carousel-fullscreen-close::after {
+        width: 9px; /* Proporcional a las flechas reducidas en móvil */
+        height: 2px; /* Mismo grosor que las flechas en móvil */
+    }
+
+    .carousel-fullscreen-nav button {
+        width: 24px; /* Ligeramente más pequeño en móvil pero manteniendo proporciones */
+        height: 24px; /* Ligeramente más pequeño en móvil pero manteniendo proporciones */
+        padding: 0; /* Asegurar sin padding en móvil */
+        box-sizing: border-box; /* Consistencia en móvil */
+    }
+
+    /* Ajustar el tamaño de las flechas en móvil */
+    .carousel-fullscreen-prev::before,
+    .carousel-fullscreen-next::before {
+        width: 7px; /* Ligeramente más pequeño en móvil */
+        height: 7px; /* Ligeramente más pequeño en móvil */
+        border-top: 2px solid currentColor; /* Más delgado en móvil */
+        border-right: 2px solid currentColor; /* Más delgado en móvil */
+    }
+
+    .carousel-fullscreen-prev {
+        left: 5px; /* Aún más cerca del borde en móvil */
+    }
+
+    .carousel-fullscreen-next {
+        right: 5px; /* Aún más cerca del borde en móvil */
+    }
+
+    .carousel-fullscreen-counter {
+        bottom: 10px;
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+}
+
+/* Indicadores (bolitas) y barra de progreso */
+.carousel-indicators {
+    position: absolute;
+    bottom: 34px; /* un poco más cerca de la barra */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: var(
+        --space-sm
+    ); /* Aumentado de var(--space-xs) [4px] a var(--space-sm) [8px] para consistencia */
+    align-items: center;
+    z-index: 2;
+}
+.carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: var(--border-radius-circle);
+    background: rgba(208, 208, 208, 0.45);
+    border: none;
+    cursor: var(--cursor-pointer);
+    padding: 0;
+    opacity: var(--opacity-70);
+    transform: var(--transform-scale-inactive);
+    transition: opacity var(--transition-fast), transform var(--transition-fast),
+        background var(--transition-fast);
+}
+.carousel-dot.is-active {
+    background: var(--text-primary);
+    opacity: 1;
+    transform: var(--transform-scale-hover); /* leve realce al activarse */
+}
+
+.carousel-progress {
+    position: absolute;
+    bottom: 26px; /* mayor separación con el borde inferior de la imagen */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 3px; /* Altura fija consistente - incrementada para mayor visibilidad */
+    min-height: 3px; /* Asegurar altura mínima fija */
+    max-height: 3px; /* Asegurar altura máxima fija */
+    border-radius: 1.5px; /* Ajustado proporcionalmente */
+    background: rgba(208, 208, 208, 0.4);
+    overflow: hidden;
+    z-index: 2;
+    flex-shrink: 0; /* Evitar que se reduzca en contenedores flex */
+}
+.carousel-progress-fill {
+    width: 0%;
+    height: 100%; /* Asegurar que ocupe toda la altura del contenedor */
+    min-height: 3px; /* Altura mínima consistente */
+    max-height: 3px; /* Altura máxima consistente */
+    background: linear-gradient(
+        90deg,
+        #4c1d95 0%,
+        #8b5cf6 45%,
+        #d946ef 70%,
+        #ec4899 100%
+    );
+}
+
+/* Drag cursor hint removido: ya no hay arrastre; usar cursor por defecto limpio */
+.carousel-viewport {
+    cursor: default !important;
+}
+
+/* Descripción con scroll estilizado - Definición consolidada */
+.project-description {
+    width: 100%;
+    height: 200px;
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: var(--gap-sm);
+    margin-bottom: 0;
+}
+
+.description-content {
+    flex: 1;
+    max-height: 100%;
+    overflow: auto;
+    scroll-behavior: smooth;
+    position: relative;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-normal);
+    color: var(--text-primary);
+    line-height: 1.5;
+    padding-bottom: var(--space-md);
+    padding-right: clamp(12px, 3vw, 18px);
+    /* Máscara inicial optimizada que se actualizará dinámicamente por JavaScript */
+    -webkit-mask-image: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 1) 0%,
+        rgba(0, 0, 0, 1) 85%,
+        rgba(0, 0, 0, 0.15) 95%,
+        rgba(0, 0, 0, 0) 100%
+    );
+    mask-image: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 1) 0%,
+        rgba(0, 0, 0, 1) 85%,
+        rgba(0, 0, 0, 0.15) 95%,
+        rgba(0, 0, 0, 0) 100%
+    );
+    /* Performance optimizations for smooth scrolling */
+    will-change: scroll-position, mask-image;
+    transform: var(--gpu-layer);
+    contain: layout;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: y proximity;
+    transition: -webkit-mask-image 0.15s ease-out, mask-image 0.15s ease-out;
+}
+
+/* Ocultar scrollbar nativo para usar solo el indicador personalizado */
+.description-content::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+}
+.description-content {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge legado */
+}
+
+.description-content p {
+    margin-bottom: var(--space-sm);
+    color: var(--text-primary);
+}
+
+/* Bold para Overview, Features y nombres de características en descripciones */
+.description-content .bold-text {
+    font-weight: 900;
+}
+
+.project-header {
+    margin-bottom: 0; /* usar solo el gap del grid del contenedor */
+}
+
+.project-icon {
+    flex-shrink: 0;
+    cursor: default !important; /* Quitar cursor de manita */
+}
+
+.project-title {
+    /* Eliminar glass morphism, mantener solo el comportamiento responsivo */
+    height: auto;
+    min-height: auto;
+    width: fit-content;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.project-title h2 {
+    font-size: clamp(
+        32px,
+        4.5vw,
+        36px
+    ); /* Conservar tamaño mínimo de 32px como el profile-name */
+    font-weight: 900; /* Black en lugar de Bold (700) */
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.project-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: 0; /* usar solo el gap del grid del contenedor */
+}
+
+.project-category {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-normal);
+    color: var(--text-primary);
+}
+
+.project-category strong {
+    font-weight: 900;
+    color: var(
+        --text-primary
+    ); /* Mantener blanco para Full-Stack, UI/UX Design, etc. */
+}
+
+/* Símbolo separador en light */
+.project-category .separator {
+    font-weight: 900;
+    margin: 0 0.35em;
+    color: var(--text-primary); /* Blanco igual que las categorías */
+}
+
+/* Tech Stack */
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md) var(--space-md); /* Aumentado el espaciado vertical entre filas de var(--space-sm) a var(--space-md) */
+    margin-bottom: 0; /* usar solo el gap del grid del contenedor */
+}
+
+/* Aplana contenedores de fila para que los chips fluyan */
+.tech-row {
+    display: contents;
+}
+
+.tech-tag {
+    height: 30px;
+    padding: 0 10px;
+    border-radius: var(--radius-full);
+    background: var(--glass-bg);
+    font-size: 14px;
+    font-weight: normal; /* peso normal solicitado (Inter 400) */
+    color: var(--text-primary);
+    white-space: nowrap;
+    cursor: default; /* Quitar cursor de manita */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Stroke sutil sin afectar el layout (en lugar de border) */
+    box-shadow: inset 0 0 0 1.25px var(--text-primary-25);
+    transition: all var(--transition-fast), padding var(--transition-smooth),
+        height var(--transition-smooth);
+}
+
+/* Estilo específico para tags de proyectos: fondo gris oscuro con degradado claro a la derecha, sin borde */
+.tech-stack .tech-tag {
+    background: var(--btn-gradient-default);
+    box-shadow: none; /* Eliminar el stroke */
+    color: var(--text-primary);
+}
+
+/* Efecto hover para las etiquetas de tecnología */
+.tech-tag:hover {
+    background: var(--hover-tint);
+    transform: var(--transform-hover-lift);
+}
+
+/* Hover específico para tags de proyectos */
+.tech-stack .tech-tag:hover {
+    background: var(--btn-gradient-hover);
+    color: #c4c4c4; /* Gris ligeramente más claro en hover */
+}
+
+/* Scroll indicator para project description */
+.scroll-indicator {
+    width: 6px;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.scroll-track {
+    width: 6px;
+    height: 100%;
+    border-radius: var(--border-radius-sm-alt);
+    background: linear-gradient(
+        180deg,
+        rgba(124, 58, 237, 0.3) 0%,
+        rgba(139, 92, 246, 0.3) 35%,
+        rgba(217, 70, 239, 0.3) 70%,
+        rgba(236, 72, 153, 0.3) 100%
+    );
+    position: relative;
+    cursor: var(--cursor-pointer);
+    transition: background var(--transition-medium);
+}
+
+.scroll-track:hover {
+    background: linear-gradient(
+        180deg,
+        rgba(124, 58, 237, 0.6) 0%,
+        rgba(139, 92, 246, 0.6) 35%,
+        rgba(217, 70, 239, 0.6) 70%,
+        rgba(236, 72, 153, 0.6) 100%
+    );
+}
+
+.scroll-thumb {
+    width: 6px;
+    min-height: 20px;
+    border-radius: var(--border-radius-sm-alt);
+    background: rgba(208, 208, 208, 0.6);
+    position: absolute;
+    top: 0;
+    cursor: default;
+    transition: background var(--transition-fast),
+        width var(--transition-medium);
+    will-change: var(--will-change-transform);
+}
+
+.scroll-thumb:hover {
+    background: rgba(208, 208, 208, 0.8);
+    cursor: default;
+}
+
+.scroll-thumb:active {
+    cursor: default;
+    background: var(--text-primary);
+}
+
+/* Project Link */
+.project-link {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--gap-xl);
+    font-weight: 900; /* Black en lugar de Bold (700) para "Code on GitHub" */
+    color: var(--text-primary);
+    text-decoration: none;
+    cursor: var(--cursor-pointer);
+    transition: all var(--transition-medium), width var(--transition-smooth),
+        height var(--transition-smooth), gap var(--transition-smooth);
+    margin-bottom: 0; /* usar solo el gap del grid del contenedor */
+    border: none;
+    font-size: 14px;
+    position: relative; /* Required for pseudo-element positioning */
+    overflow: hidden; /* Ensure gradient doesn't spill outside */
+    /* Botón GitHub completamente negro */
+    background: #000000 !important;
+}
+
+/* Enhanced white gradient removed for solid black GitHub button */
+.project-link.glass-pill::before {
+    display: none; /* Gradiente deshabilitado para botón negro sólido */
+}
+
+/* Hover gradient also disabled for solid black */
+.project-link.glass-pill:hover::before {
+    display: none; /* Sin gradiente en hover para botón negro sólido */
+}
+
+/* Ensure text and icons appear above gradient */
+.project-link.glass-pill > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Íconos GitHub y External en negro para botones blancos */
+.project-link.glass-pill:not(.download-btn) img[alt="GitHub"],
+.project-link.glass-pill:not(.download-btn) img[alt="External"] {
+    filter: brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(0%)
+        hue-rotate(0deg) brightness(0%) contrast(100%);
+}
+
+/* Botón de Figma con estilo personalizado */
+.project-link.glass-pill.figma-button {
+    background: var(--color-bg-medium) !important;
+    color: #ffffff !important;
+}
+
+.project-link.glass-pill.figma-button:hover {
+    background: #2a2a2a !important;
+}
+
+.project-link.glass-pill.figma-button:active {
+    background: #141414 !important;
+}
+
+.project-link.glass-pill.figma-button span {
+    color: #ffffff !important;
+}
+
+/* Ícono external.svg en blanco para botón de Figma */
+.project-link.glass-pill.figma-button img.figma-external-icon {
+    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%)
+        hue-rotate(0deg) brightness(100%) contrast(100%) !important;
+}
+
+/* Estado activo mejorado para botón negro */
+.project-link:active {
+    background: #0d0d0d !important; /* Más oscuro al hacer click */
+    transform: translateY(-1px) scale(0.98);
+    transition: all var(--transition-fast);
+}
+
+.project-link:focus-visible {
+    outline: 2px solid var(--text-primary);
+    outline-offset: var(--outline-offset);
+}
+
+/* Project Buttons Container - Solo para Keeptive */
+.project-buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    grid-area: link;
+}
+
+.project-buttons .project-link {
+    margin-bottom: 0;
+}
+
+/* Estilo específico para los botones de descarga y visualización - Degradado dominado por morados intensos */
+.download-btn.glass-pill {
+    background: linear-gradient(
+        135deg,
+        #4c1d95 0%,
+        #5b21b6 25%,
+        #8b2adf 50%,
+        #d946ef 75%,
+        #ec4899 100%
+    ) !important; /* Morado ultra profundo al inicio (#4c1d95), transición rica hasta rosa-morado */
+    color: #ffffff !important; /* Texto e iconos en blanco */
+    border: none !important; /* Sin stroke/borde */
+    box-shadow: none !important; /* Sin sombra/stroke */
+}
+
+.download-btn.glass-pill:hover {
+    background: linear-gradient(
+        135deg,
+        #5b21b6 0%,
+        #6d28d9 15%,
+        #7c3aed 30%,
+        #8b5cf6 45%,
+        #a855f7 65%,
+        #c084fc 80%,
+        #f0abfc 100%
+    ) !important; /* Morados brillantes con profundidad en hover */
+    color: #ffffff !important; /* Texto blanco en hover */
+    transform: var(--transform-hover-lift);
+}
+
+/* Grid area mapping */
+.project-header {
+    grid-area: header;
+}
+.project-meta {
+    grid-area: meta;
+}
+.tech-stack {
+    grid-area: tech;
+}
+.project-description {
+    grid-area: desc;
+}
+.project-link {
+    grid-area: link;
+}
+
+/* Responsive Design */
+/* Móviles pequeños - márgenes mínimos */
+@media (max-width: 480px) {
+    .portfolio-container {
+        padding: clamp(40px, 8vw, 60px) 0;
+    }
+}
+
+/* Breakpoint adicional para tablets pequeñas */
+@media (min-width: 480px) and (max-width: 767px) {
+    .portfolio-container {
+        max-width: clamp(440px, 92vw, 560px);
+        padding: clamp(50px, 7vw, 70px) clamp(16px, 3.2vw, 28px);
+        transition: max-width var(--transition-smooth),
+            padding var(--transition-smooth);
+    }
+
+    .social-lines {
+        justify-content: center;
+        transition: justify-content var(--transition-medium);
+    }
+
+    .contact-buttons {
+        gap: clamp(var(--space-lg), 5vw, var(--space-2xl));
+        transition: gap var(--transition-smooth);
+    }
+}
+
+/* Breakpoint adicional para transición suave a desktop */
+@media (min-width: 900px) and (max-width: 1199px) {
+    .portfolio-container {
+        max-width: clamp(640px, 84vw, 760px);
+        padding: clamp(30px, 4vw, 40px) clamp(24px, 4.2vw, 48px);
+        transition: max-width var(--transition-smooth),
+            padding var(--transition-smooth);
+    }
+
+    .certificates-section {
+        grid-template-columns: 1fr;
+        gap: clamp(
+            15px,
+            2.5vw,
+            18px
+        ); /* Reducido para mantener consistencia con móvil */
+        transition: grid-template-columns var(--transition-smooth),
+            gap var(--transition-smooth);
+    }
+}
+
+@media (min-width: 768px) {
+    .portfolio-container {
+        max-width: clamp(560px, 86vw, 640px);
+        padding: clamp(30px, 4vw, 40px) clamp(20px, 4vw, 36px);
+        transition: max-width var(--transition-smooth),
+            padding var(--transition-smooth);
+    }
+
+    /* La sección Personal ya es grid base con 1 columna por defecto */
+    .profile-info {
+        align-items: flex-start;
+        transition: align-items var(--transition-smooth);
+    }
+    .profile-name {
+        text-align: left;
+        transition: text-align var(--transition-smooth);
+    }
+    .profile-description {
+        text-align: left;
+        transition: text-align var(--transition-smooth);
+    }
+
+    /* Proyectos siguen en una columna en tablet */
+    .projects-section {
+        grid-template-columns: 1fr;
+        gap: var(--projects-gap); /* Maintain increased project spacing */
+    }
+}
+
+@media (min-width: 1024px) {
+    .portfolio-container {
+        max-width: clamp(760px, 86vw, 880px);
+        padding: clamp(30px, 4vw, 40px) clamp(28px, 4.5vw, 56px);
+        transition: max-width var(--transition-smooth),
+            padding var(--transition-smooth);
+    }
+
+    .certificates-section {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: var(--gap-lg); /* Reducido de 28px a 18px para consistencia */
+        transition: grid-template-columns var(--transition-smooth),
+            gap var(--transition-smooth);
+    }
+
+    /* Proyectos siguen en una columna en desktop intermedio */
+    .projects-section {
+        grid-template-columns: 1fr;
+        gap: var(--projects-gap); /* Maintain increased project spacing */
+    }
+}
+
+@media (min-width: 1200px) {
+    .portfolio-container {
+        max-width: clamp(
+            980px,
+            90vw,
+            1200px
+        ); /* Aumentado significativamente para proyectos más grandes */
+        padding: clamp(30px, 4vw, 40px) clamp(28px, 4.5vw, 56px);
+        transition: max-width var(--transition-smooth),
+            padding var(--transition-smooth);
+    }
+
+    /* Disposición en 2 columnas en la sección Personal con alineación cruzada */
+    .profile-section {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); /* izquierda: info, derecha: acciones; permitir contracción */
+        align-items: start;
+        gap: var(--space-2xl); /* mantiene ritmo vertical/horizontal */
+        /* Control específico del ancho de la sección personal - ampliado para aprovechar nuevo espacio */
+        max-width: clamp(
+            900px,
+            88vw,
+            1050px
+        ); /* Aumentado significativamente para mayor amplitud en desktop */
+        margin: 0 auto; /* Centrar la sección personal */
+        transition: grid-template-columns var(--transition-smooth),
+            gap var(--transition-smooth), align-items var(--transition-smooth);
+    }
+
+    /* Permite que los hijos participen directamente en la grilla del padre */
+    .profile-info {
+        display: contents;
+        transition: display var(--transition-smooth);
+    }
+
+    /* Mapa de colocación por filas */
+    .profile-picture {
+        grid-column: 1;
+        grid-row: 1; /* fila superior izquierda */
+    }
+
+    .profile-name {
+        grid-column: 1;
+        grid-row: 2; /* alinea con contact-buttons */
+    }
+
+    .profile-description {
+        grid-column: 1;
+        grid-row: 3; /* alinea con social-media */
+    }
+
+    /* Idiomas: primera columna justo debajo de la descripción */
+    .languages-container {
+        grid-column: 1;
+        grid-row: 4;
+        /* En desktop, confiar en el gap del grid para el ritmo vertical */
+        margin-top: 0;
+        margin-bottom: 0;
+        width: 100%;
+    }
+
+    /* Evitar expansión horizontal de los ítems del grid en desktop */
+    .profile-name,
+    .profile-description,
+    .languages-container {
+        min-width: 0; /* permitir que el contenido se contraiga dentro del track */
+        max-width: 100%; /* nunca exceder el ancho de la columna */
+    }
+
+    /* Asegurar cortes de línea adecuados para textos largos en la descripción */
+    .profile-description {
+        overflow-wrap: anywhere; /* preferencia moderna */
+        word-break: break-word; /* fallback razonable */
+    }
+
+    .contact-buttons {
+        grid-column: 1;
+        grid-row: 5; /* debajo de languages */
+        align-self: start;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .social-media {
+        grid-column: 1;
+        grid-row: 6; /* debajo de contact-buttons */
+        align-self: start;
+        width: 100%;
+    }
+
+    /* Título de Skills (desktop): ubicado en la columna derecha, comenzando a la altura del nombre */
+    .skills-title {
+        grid-column: 2;
+        grid-row: 2;
+        align-self: start;
+        width: 100%;
+        margin-bottom: 0; /* sin espacio extra antes del contenedor */
+        text-align: center; /* centrado uniforme también en desktop */
+    }
+
+    /* Skills section: en columna derecha abarcando título→redes para distribuir altura y evitar huecos */
+    .skills-section {
+        grid-column: 2;
+        grid-row: 3 / 7; /* debajo del título: Descripción(3) hasta Social(6); certificados inician en 7 */
+        align-self: stretch;
+        /* Cancelar el gap de la grilla entre el título (fila 2) y esta sección (fila 3) */
+        margin-top: calc(-1.5 * var(--space-2xl));
+        width: 100%;
+        /* Mantener padding consistente en todos los lados */
+    }
+
+    /* Certificados al pie ocupando ambas columnas, con distribución interna alineada al layout padre */
+    .certificates-section {
+        grid-column: 1 / -1; /* abarcar ambas columnas del layout principal */
+        grid-row: 7; /* después de social-media (fila 6) y contact-buttons (fila 5) */
+        /* 2 columnas internas que respetan exactamente el gap de 30px del grid padre */
+        grid-template-columns: calc((100% - var(--space-2xl)) / 2) calc(
+                (100% - var(--space-2xl)) / 2
+            );
+        column-gap: var(
+            --space-2xl
+        ); /* igual que el gap de columnas del layout padre */
+        row-gap: var(--space-lg); /* consistente con mobile (16px) */
+    }
+
+    /* Proyectos en dos columnas cuando la sección personal también se divide */
+    .projects-section {
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(
+            35px,
+            5vw,
+            45px
+        ); /* Reducido ligeramente para dar más espacio a cada proyecto */
+        margin-top: clamp(
+            35px,
+            5vw,
+            45px
+        ); /* MISMO espaciado exacto que el gap entre proyectos */
+        transition: grid-template-columns var(--transition-smooth),
+            gap var(--transition-smooth);
+    }
+
+    /* Asegurar que cada proyecto item mantenga su estructura interna correcta */
+    .project-item {
+        min-width: 0; /* previene overflow */
+        width: 100%;
+        transition: all var(--transition-medium);
+    }
+
+    /* Para pantallas muy anchas, permitir 3 columnas si hay espacio suficiente */
+    @media (min-width: 1400px) {
+        .projects-section {
+            grid-template-columns: repeat(
+                auto-fit,
+                minmax(480px, 1fr)
+            ); /* Aumentado de 420px a 480px para proyectos más grandes */
+            gap: clamp(
+                40px,
+                4vw,
+                100px
+            ); /* Gap optimizado para pantallas ultra-anchas */
+            margin-top: clamp(
+                40px,
+                4vw,
+                100px
+            ); /* MISMO espaciado exacto que el gap entre proyectos */
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 0;
+            max-width: 1700px; /* Aumentado para dar más espacio a los proyectos */
+        }
+
+        .portfolio-container {
+            max-width: clamp(
+                1280px,
+                98vw,
+                1700px
+            ); /* Aumentado considerablemente */
+        }
+    }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animation classes removed - now handled by IntersectionObserver with scroll-pending/scroll-animated classes */
+
+/* Interactive states */
+button:focus-visible {
+    outline: 2px solid var(--text-primary);
+    outline-offset: var(--outline-offset);
+}
+
+.glass-bubble:active,
+.glass-button:active,
+.project-link:active {
+    transform: var(--transform-scale-active);
+}
+
+/* Loading states */
+.profile-img {
+    transition: opacity var(--transition-medium);
+}
+
+.profile-img:not([src]),
+.profile-img[src=""] {
+    opacity: 0;
+    background: rgba(208, 208, 208, 0.1);
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+    :root {
+        --transition-fast: 50ms ease;
+        --transition-medium: 100ms ease;
+        --transition-slow: 150ms ease;
+        --transition-smooth: 100ms ease;
+    }
+
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+
+    /* Mantener transiciones básicas para responsividad */
+    *,
+    *::before,
+    *::after {
+        transition: all 100ms ease;
+    }
+
+    /* Eliminar transiciones complejas */
+    .carousel-progress-fill {
+        transition: width linear !important;
+    }
+}
+
+/* Print styles */
+@media print {
+    .menu-button {
+        display: none;
+    }
+
+    .portfolio-container {
+        padding: var(--space-lg);
+        max-width: none;
+    }
+
+    .glass-card,
+    .glass-bubble,
+    .glass-container {
+        background: rgba(208, 208, 208, 0.1);
+        backdrop-filter: none;
+    }
+}
+
+/* Override final para altura consistente de barra de progreso en todos los contextos */
+.project-item .carousel-controls .carousel-progress,
+.project-item .project-media .carousel-progress {
+    height: 3px !important;
+    min-height: 3px !important;
+    max-height: 3px !important;
+}
+
+.project-item .carousel-controls .carousel-progress-fill,
+.project-item .project-media .carousel-progress-fill {
+    height: 100% !important;
+    min-height: 3px !important;
+    max-height: 3px !important;
+}
+
+/* Cursor management - optimized */
+* {
+    cursor: default !important;
+}
+
+/* Interactive elements cursor */
+button,
+input[type="button"],
+input[type="submit"],
+[role="button"],
+.external-link,
+a,
+.contact-btn,
+.social-btn,
+.project-link,
+.certificate-item,
+.carousel-btn,
+.carousel-dot,
+.carousel-fullscreen-btn,
+.carousel-fullscreen-close,
+.carousel-fullscreen-prev,
+.carousel-fullscreen-next,
+.menu-button,
+.theme-toggle-button,
+.download-btn,
+[tabindex]:not([tabindex="-1"]) {
+    cursor: pointer !important;
+}
+
+/* Asegurar cursor pointer también sobre descendientes (svg/img dentro del botón) */
+button *,
+[role="button"] *,
+.external-link *,
+a *,
+.contact-btn *,
+.social-btn *,
+.project-link *,
+.certificate-item *,
+.carousel-btn *,
+.carousel-dot *,
+.carousel-fullscreen-btn *,
+.carousel-fullscreen-close *,
+.carousel-fullscreen-prev *,
+.carousel-fullscreen-next *,
+.menu-button *,
+.theme-toggle-button *,
+.download-btn * {
+    cursor: pointer !important;
+}
+
+/* ========================================
+   OBSIDIAN THEME - Dark Mode
+   Estilo inspirado en obsidian.md
+   Colores exactos del sitio web de Obsidian
+   ======================================== */
+
+/* Tema Obsidian: Ocultar video de fondo */
+body.obsidian-theme .background-video,
+html.obsidian-theme-loading .background-video {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* Fondo sólido oscuro estilo Obsidian */
+body.obsidian-theme,
+html.obsidian-theme-loading body {
+    background: #1e1e1e; /* Color de fondo principal de Obsidian */
+    transition: background var(--transition-medium);
+}
+
+/* Todas las tarjetas glass cambian a estilo sólido Obsidian */
+body.obsidian-theme .glass-card {
+    background: linear-gradient(135deg, #262626 0%, #2d2d2d 50%, #333333 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
+body.obsidian-theme .glass-card::before {
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Glass containers convertidos a sólido Obsidian */
+body.obsidian-theme .glass-container {
+    background: linear-gradient(135deg, #2d2d2d 0%, #333333 50%, #3a3a3a 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+body.obsidian-theme .glass-bubble {
+    background: linear-gradient(135deg, #2d2d2d 0%, #363636 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.obsidian-theme .glass-button {
+    background: linear-gradient(135deg, #2d2d2d 0%, #3a3a3a 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+body.obsidian-theme .glass-pill {
+    background: linear-gradient(135deg, #2d2d2d 0%, #363636 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Menu button en tema Obsidian */
+body.obsidian-theme .menu-button {
+    background: linear-gradient(135deg, #2d2d2d 0%, #3a3a3a 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.obsidian-theme .menu-button:hover:not(.active) {
+    background: linear-gradient(135deg, #3a3a3a 0%, #454545 100%);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Theme toggle button en tema Obsidian */
+body.obsidian-theme .theme-toggle-button {
+    background: linear-gradient(135deg, #2d2d2d 0%, #3a3a3a 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.obsidian-theme .theme-toggle-button:hover {
+    background: linear-gradient(135deg, #3a3a3a 0%, #454545 100%);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Navegación en tema Obsidian */
+body.obsidian-theme .nav-menu-overlay {
+    background: rgba(0, 0, 0, 0.97);
+}
+
+body.obsidian-theme .nav-menu-content {
+    background: linear-gradient(135deg, #262626 0%, #2d2d2d 50%, #333333 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+body.obsidian-theme .nav-menu-item {
+    background: linear-gradient(135deg, #2d2d2d 0%, #3a3a3a 100%);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+body.obsidian-theme .nav-menu-item:hover {
+    background: linear-gradient(135deg, #3a3a3a 0%, #454545 100%);
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+/* Profile section en tema Obsidian */
+body.obsidian-theme .profile-picture {
+    background: linear-gradient(135deg, #2d2d2d 0%, #3a3a3a 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Social media y contact buttons en tema Obsidian */
+body.obsidian-theme .social-media {
+    background: linear-gradient(135deg, #2d2d2d 0%, #333333 50%, #3a3a3a 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+body.obsidian-theme .contact-btn {
+    background: linear-gradient(135deg, #2d2d2d 0%, #3a3a3a 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.obsidian-theme .contact-btn:hover {
+    background: linear-gradient(135deg, #3a3a3a 0%, #454545 100%);
+    border-color: rgba(
+        168,
+        85,
+        247,
+        0.3
+    ); /* Acento púrpura Obsidian en hover */
+}
+
+body.obsidian-theme .social-btn {
+    background: linear-gradient(135deg, #2d2d2d 0%, #3a3a3a 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+body.obsidian-theme .social-btn:hover {
+    background: linear-gradient(135deg, #3a3a3a 0%, #454545 100%);
+    border-color: rgba(168, 85, 247, 0.3);
+}
+
+/* Languages container en tema Obsidian */
+body.obsidian-theme .languages-container {
+    background: linear-gradient(135deg, #2d2d2d 0%, #333333 50%, #3a3a3a 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+body.obsidian-theme .lang-progress {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Skills section en tema Obsidian */
+body.obsidian-theme .skills-section {
+    background: linear-gradient(135deg, #2d2d2d 0%, #333333 50%, #3a3a3a 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Tech tags en tema Obsidian - más sutiles */
+body.obsidian-theme .skills-lines .tech-tag {
+    background: rgba(45, 45, 45, 0.8) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: none !important;
+}
+
+body.obsidian-theme .skills-lines .tech-tag:hover {
+    background: rgba(58, 58, 58, 0.9) !important;
+    border-color: rgba(168, 85, 247, 0.4) !important;
+    box-shadow: 0 0 12px rgba(168, 85, 247, 0.2) !important;
+}
+
+/* Tech tags de proyectos en tema Obsidian */
+body.obsidian-theme .tech-stack .tech-tag {
+    background: linear-gradient(135deg, #2d2d2d 0%, #3a3a3a 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+body.obsidian-theme .tech-stack .tech-tag:hover {
+    background: linear-gradient(135deg, #3a3a3a 0%, #454545 100%);
+    border-color: rgba(168, 85, 247, 0.3);
+}
+
+/* Certificates en tema Obsidian */
+body.obsidian-theme .certificate-item.glass-pill {
+    background: linear-gradient(135deg, #2d2d2d 0%, #363636 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+body.obsidian-theme .certificate-item.glass-pill:hover {
+    background: linear-gradient(135deg, #363636 0%, #424242 100%);
+    border-color: rgba(168, 85, 247, 0.3);
+}
+
+body.obsidian-theme .certificate-logo {
+    background: linear-gradient(135deg, #363636 0%, #424242 100%);
+}
+
+/* Project description en tema Obsidian */
+body.obsidian-theme .project-description {
+    background: linear-gradient(135deg, #2d2d2d 0%, #333333 50%, #3a3a3a 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Carousel controls en tema Obsidian */
+body.obsidian-theme .carousel-btn {
+    background: linear-gradient(135deg, #2d2d2d 0%, #3a3a3a 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.obsidian-theme .carousel-btn:hover {
+    background: linear-gradient(135deg, #3a3a3a 0%, #454545 100%);
+    border-color: rgba(168, 85, 247, 0.3);
+}
+
+body.obsidian-theme .carousel-progress {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* Project link buttons en tema Obsidian */
+/* Solo afecta al botón GitHub (Code On GitHub), no al botón de Figma */
+body.obsidian-theme
+    .project-link.glass-pill:not(.download-btn):not(.figma-button) {
+    background: linear-gradient(135deg, #e0e0e0 0%, #d0d0d0 100%) !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+body.obsidian-theme
+    .project-link.glass-pill:not(.download-btn):not(.figma-button):hover {
+    background: linear-gradient(135deg, #d0d0d0 0%, #c0c0c0 100%) !important;
+    border-color: rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Download button mantiene el estilo púrpura original */
+body.obsidian-theme .download-btn.glass-pill {
+    border: 1px solid rgba(168, 85, 247, 0.3) !important;
+}
+
+body.obsidian-theme .download-btn.glass-pill:hover {
+    border-color: rgba(168, 85, 247, 0.5) !important;
+}
+
+/* Project icon en tema Obsidian */
+body.obsidian-theme .project-icon.glass-button {
+    background: linear-gradient(135deg, #2d2d2d 0%, #3a3a3a 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+body.obsidian-theme .project-icon.glass-button:hover {
+    background: linear-gradient(135deg, #3a3a3a 0%, #454545 100%);
+    border-color: rgba(168, 85, 247, 0.3);
+}
+
+/* Nav item icon en tema Obsidian */
+body.obsidian-theme .nav-item-icon {
+    background: linear-gradient(135deg, #363636 0%, #424242 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Scroll indicator en tema Obsidian */
+body.obsidian-theme .scroll-track {
+    background: linear-gradient(
+        180deg,
+        rgba(168, 85, 247, 0.2) 0%,
+        rgba(139, 92, 246, 0.2) 50%,
+        rgba(168, 85, 247, 0.2) 100%
+    );
+}
+
+body.obsidian-theme .scroll-track:hover {
+    background: linear-gradient(
+        180deg,
+        rgba(168, 85, 247, 0.4) 0%,
+        rgba(139, 92, 246, 0.4) 50%,
+        rgba(168, 85, 247, 0.4) 100%
+    );
+}
+
+/* Scroll thumb: mantener colores blancos/claros originales del tema claro */
+/* body.obsidian-theme .scroll-thumb - No se modifica, usa el estilo original */
+/* body.obsidian-theme .scroll-thumb:hover - No se modifica, usa el estilo original */
+
+/* Fullscreen modal en tema Obsidian */
+body.obsidian-theme .carousel-fullscreen-modal {
+    background: rgba(20, 20, 20, 0.98);
+}
+
+body.obsidian-theme .carousel-fullscreen-close {
+    background: linear-gradient(135deg, #2d2d2d 0%, #3a3a3a 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.obsidian-theme .carousel-fullscreen-close:hover {
+    background: linear-gradient(135deg, #3a3a3a 0%, #454545 100%);
+    border-color: rgba(168, 85, 247, 0.3);
+}
+
+body.obsidian-theme .carousel-fullscreen-nav button {
+    background: linear-gradient(135deg, #2d2d2d 0%, #3a3a3a 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.obsidian-theme .carousel-fullscreen-nav button:hover {
+    background: linear-gradient(135deg, #3a3a3a 0%, #454545 100%);
+    border-color: rgba(168, 85, 247, 0.3);
+}
+
+body.obsidian-theme .carousel-fullscreen-counter {
+    background: rgba(45, 45, 45, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Ajustes de transición suave para el cambio de tema */
+body,
+.glass-card,
+.glass-container,
+.glass-bubble,
+.glass-button,
+.glass-pill,
+.menu-button,
+.theme-toggle-button,
+.nav-menu-overlay,
+.nav-menu-content,
+.nav-menu-item,
+.profile-picture,
+.social-media,
+.contact-btn,
+.social-btn,
+.languages-container,
+.skills-section,
+.certificate-item,
+.project-description,
+.carousel-btn,
+.project-link,
+.project-icon,
+.scroll-track,
+.scroll-thumb,
+.background-video {
+    transition: background var(--transition-medium),
+        border-color var(--transition-medium),
+        box-shadow var(--transition-medium), opacity var(--transition-medium),
+        visibility var(--transition-medium);
+}
+
+/* ========================================
+   OBSIDIAN SPOTLIGHT EFFECT
+   Efecto de iluminación con textura granulada
+   que sigue al cursor sobre contenedores
+   ========================================
+
+
+body.obsidian-theme .glass-card,
+body.obsidian-theme .glass-container {
+    position: relative;
+}
+
+body.obsidian-theme .spotlight-container {
+    --spotlight-x: 50%;
+    --spotlight-y: 50%;
+    --spotlight-opacity: 0;
+}
+
+body.obsidian-theme .spotlight-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 10;
+    border-radius: inherit;
+    opacity: var(--spotlight-opacity);
+    transition: opacity 0.25s ease;
+    overflow: hidden;
+}
+
+body.obsidian-theme .spotlight-overlay::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+        400px circle at var(--spotlight-x) var(--spotlight-y),
+        rgba(255, 255, 255, 0.001) 0%,
+        rgba(255, 255, 255, 0.001) 35%,
+        rgba(255, 255, 255, 0.001) 55%,
+        transparent 70%
+    );
+}
+
+body.obsidian-theme .spotlight-overlay::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+
+    background: radial-gradient(
+        380px circle at var(--spotlight-x) var(--spotlight-y),
+        rgba(150, 150, 150, 0.4) 0%,
+        rgba(125, 125, 125, 0.3) 20%,
+        rgba(100, 100, 100, 0.2) 40%,
+        rgba(75, 75, 75, 0.1) 55%,
+        transparent 65%
+    );
+
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.35' numOctaves='4' seed='25'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='3' intercept='-0.55'/%3E%3CfeFuncG type='linear' slope='3' intercept='-0.55'/%3E%3CfeFuncB type='linear' slope='3' intercept='-0.55'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.35' numOctaves='4' seed='25'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='3' intercept='-0.55'/%3E%3CfeFuncG type='linear' slope='3' intercept='-0.55'/%3E%3CfeFuncB type='linear' slope='3' intercept='-0.55'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    -webkit-mask-size: 70px 70px;
+    mask-size: 70px 70px;
+}
+
+body.obsidian-theme
+    .spotlight-container.spotlight-active
+    .spotlight-overlay::after {
+    opacity: 1;
+}
+
+body.obsidian-theme .spotlight-container.spotlight-active {
+    border-color: rgba(255, 255, 255, 0.15) !important;
+}
+*/

@@ -1,0 +1,2684 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Bryan Morales - Portfolio</title>
+        <link rel="icon" type="image/png" href="assets/favicon.png" />
+        <!-- Critical CSS inline for instant rendering -->
+        <style>
+            /* Critical above-the-fold styles */
+            body {
+                background: #000;
+                margin: 0;
+                padding: 0;
+                font-family: Inter, -apple-system, BlinkMacSystemFont,
+                    "Segoe UI", Roboto, sans-serif;
+                color: rgb(208, 208, 208);
+                overflow-x: hidden;
+            }
+            .portfolio-container {
+                width: 100%;
+                max-width: clamp(320px, 96vw, 560px);
+                margin: 0 auto;
+                padding: clamp(40px, 8vw, 60px) clamp(16px, 4vw, 24px);
+                display: flex;
+                flex-direction: column;
+                position: relative;
+            }
+            .background-video {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                z-index: -1;
+                pointer-events: none;
+                overflow: hidden;
+            }
+            .background-video video {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 100vw;
+                height: 100vh;
+                min-width: 100%;
+                min-height: 100%;
+                object-fit: cover;
+                transform: translate(-50%, -50%) translateZ(0);
+                contain: layout;
+            }
+        </style>
+        <!-- Performance optimizations - Preload critical resources -->
+        <link rel="preload" href="styles.css" as="style" />
+        <link rel="preload" href="script.js" as="script" />
+        <link
+            rel="preload"
+            href="assets/profile.webp"
+            as="image"
+            type="image/webp"
+        />
+        <link
+            rel="preload"
+            href="assets/projects/keeptive/keeptive-1.webp"
+            as="image"
+            type="image/webp"
+        />
+        <link rel="preload" href="assets/icons/mail.svg" as="image" />
+        <link rel="preload" href="assets/icons/cv.svg" as="image" />
+        <link rel="preload" href="assets/icons/linkedin.svg" as="image" />
+        <link rel="preload" href="assets/icons/github.svg" as="image" />
+        <link rel="preload" href="assets/icons/discord.svg" as="image" />
+
+        <link rel="stylesheet" href="styles.css" />
+        <!-- Aplicar tema guardado inmediatamente para evitar flash -->
+        <script>
+            (function () {
+                const theme = localStorage.getItem("portfolio-theme");
+                if (theme === "obsidian") {
+                    document.documentElement.classList.add(
+                        "obsidian-theme-loading"
+                    );
+                }
+            })();
+        </script>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <!-- Background Video -->
+        <div class="background-video" aria-hidden="true">
+            <video autoplay muted loop playsinline id="bg-video">
+                <source src="assets/back-oo.mp4" type="video/mp4" />
+            </video>
+        </div>
+        <div class="portfolio-container">
+            <!-- Theme Toggle Button -->
+            <button
+                class="theme-toggle-button"
+                aria-label="Cambiar tema"
+                title="Cambiar tema"
+            >
+                <svg
+                    class="theme-icon theme-icon-dark"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        d="M12 3V4M12 20V21M4 12H3M6.31412 6.31412L5.5 5.5M17.6859 6.31412L18.5 5.5M6.31412 17.69L5.5 18.5M17.6859 17.69L18.5 18.5M21 12H20M16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12Z"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    />
+                </svg>
+                <svg
+                    class="theme-icon theme-icon-light"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    />
+                </svg>
+            </button>
+
+            <!-- Menu Button -->
+            <button class="menu-button" aria-label="Abrir menú">
+                <span class="menu-button-line"></span>
+                <span class="menu-button-line"></span>
+                <span class="menu-button-line"></span>
+            </button>
+
+            <!-- Navigation Menu -->
+            <nav class="nav-menu" aria-label="Navegación principal">
+                <div class="nav-menu-overlay"></div>
+                <div class="nav-menu-content glass-card">
+                    <ul class="nav-menu-list">
+                        <!-- About Me Entry -->
+                        <li>
+                            <a
+                                href="#profile"
+                                class="nav-menu-item"
+                                data-target="profile-section"
+                            >
+                                <div class="nav-item-content">
+                                    <span class="nav-item-title"
+                                        >🪄 About Me</span
+                                    >
+                                </div>
+                            </a>
+                        </li>
+                        <!-- Project Entries will be dynamically added by JavaScript -->
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Main Content -->
+            <main class="portfolio-main">
+                <!-- Profile Section -->
+                <section
+                    id="profile-section"
+                    class="profile-section glass-card"
+                >
+                    <div class="profile-picture">
+                        <img
+                            src="assets/profile.webp"
+                            alt="Bryan Morales"
+                            class="profile-img"
+                        />
+                    </div>
+
+                    <div class="profile-info">
+                        <h1 class="profile-name">Bryan Morales 🪄</h1>
+                        <p class="profile-description">
+                            Hi 👋🏻 I'm an AI Engineering Student and a Freelance
+                            Developer from 📍 México, deeply passionate about
+                            <span class="personal-badge">Full-Stack</span>
+                            Development and
+                            <span class="personal-badge">UX/UI Design</span> ✨
+                        </p>
+                        <!-- Languages (Static proficiency) -->
+                        <div class="languages-container glass-container">
+                            <section class="languages" aria-label="Languages">
+                                <div class="language-item">
+                                    <div class="language-label">
+                                        <span class="language-key"
+                                            >💬 Spanish&emsp;</span
+                                        >
+                                        <span class="language-value"
+                                            >Native</span
+                                        >
+                                    </div>
+                                    <div
+                                        class="lang-progress"
+                                        role="progressbar"
+                                        aria-label="Spanish proficiency"
+                                        aria-valuemin="0"
+                                        aria-valuemax="100"
+                                        aria-valuenow="100"
+                                        aria-valuetext="Native"
+                                    >
+                                        <div
+                                            class="lang-progress-fill"
+                                            style="width: 100%"
+                                        ></div>
+                                    </div>
+                                </div>
+
+                                <div class="language-item">
+                                    <div class="language-label">
+                                        <span class="language-key"
+                                            >💬 English&emsp;</span
+                                        >
+                                        <span class="language-value"
+                                            >Medium | Advanced</span
+                                        >
+                                    </div>
+                                    <div
+                                        class="lang-progress"
+                                        role="progressbar"
+                                        aria-label="English proficiency"
+                                        aria-valuemin="0"
+                                        aria-valuemax="100"
+                                        aria-valuenow="80"
+                                        aria-valuetext="Medium | Advanced"
+                                    >
+                                        <div
+                                            class="lang-progress-fill"
+                                            style="width: 80%"
+                                        ></div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                    <!-- Contact Buttons -->
+                    <div class="contact-buttons">
+                        <div class="contact-item">
+                            <button
+                                class="contact-btn glass-bubble"
+                                aria-label="Email"
+                                data-href="mailto:bryan.a.morales@outlook.com"
+                            >
+                                <img
+                                    src="assets/icons/mail.svg"
+                                    alt="Email"
+                                    width="30"
+                                    height="30"
+                                />
+                            </button>
+                            <div
+                                class="contact-label language-label"
+                                aria-hidden="true"
+                            >
+                                <span class="language-key">♥️ Contact Me</span
+                                ><br />
+                                <span>bryan.a.morales</span><br /><span
+                                    >@outlook.com</span
+                                >
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <button
+                                class="contact-btn glass-bubble"
+                                aria-label="CV"
+                                disabled
+                                title="CV próximamente disponible"
+                            >
+                                <img
+                                    src="assets/icons/cv.svg"
+                                    alt="CV"
+                                    width="30"
+                                    height="30"
+                                />
+                            </button>
+                            <div
+                                class="contact-label language-label"
+                                aria-hidden="true"
+                            >
+                                <span class="language-key">♥️ Download</span
+                                ><br />
+                                <span>Resume</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Social Media -->
+                    <div class="social-media glass-container">
+                        <div class="social-lines">
+                            <button
+                                class="social-btn glass-button"
+                                aria-label="GitHub"
+                                data-url="https://github.com/IHyperLight"
+                            >
+                                <img
+                                    src="assets/icons/github.svg"
+                                    alt="GitHub"
+                                    width="30"
+                                    height="30"
+                                />
+                            </button>
+                            <button
+                                class="social-btn glass-button"
+                                aria-label="LinkedIn"
+                                data-url="https://www.linkedin.com/in/bryan-alexander-morales-roblero-080214381/"
+                            >
+                                <img
+                                    src="assets/icons/linkedin.svg"
+                                    alt="LinkedIn"
+                                    width="30"
+                                    height="30"
+                                />
+                            </button>
+                            <button
+                                class="social-btn glass-button"
+                                aria-label="Discord"
+                                data-url="https://discord.com/users/bryan.a.morales"
+                            >
+                                <img
+                                    src="assets/icons/discord.svg"
+                                    alt="Discord"
+                                    width="30"
+                                    height="30"
+                                />
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Skills Title -->
+                    <h3 class="skills-title">⚡ Technologies I Use</h3>
+
+                    <!-- Skills Section (tags responsivos con ícono + nombre) -->
+                    <section
+                        class="skills-section glass-container"
+                        aria-label="Skills"
+                    >
+                        <div class="skills-lines">
+                            <span class="tech-tag" data-tech="javascript"
+                                ><img
+                                    src="assets/tech/javascript.svg"
+                                    alt="JavaScript"
+                                    width="18"
+                                    height="18"
+                                />&nbsp;JavaScript</span
+                            >
+                            <span class="tech-tag" data-tech="html"
+                                ><img
+                                    src="assets/tech/html.svg"
+                                    alt="HTML"
+                                    width="18"
+                                    height="18"
+                                />&nbsp;HTML</span
+                            >
+                            <span class="tech-tag" data-tech="css"
+                                ><img
+                                    src="assets/tech/css.svg"
+                                    alt="CSS"
+                                    width="18"
+                                    height="18"
+                                />&nbsp;CSS</span
+                            >
+                            <span class="tech-tag" data-tech="react"
+                                ><img
+                                    src="assets/tech/react.svg"
+                                    alt="React"
+                                    width="18"
+                                    height="18"
+                                />&nbsp;React</span
+                            >
+                            <span class="tech-tag" data-tech="nodejs"
+                                ><img
+                                    src="assets/tech/nodejs.svg"
+                                    alt="Node.js"
+                                    width="18"
+                                    height="18"
+                                />&nbsp;Node.js</span
+                            >
+                            <span class="tech-tag" data-tech="express"
+                                ><img
+                                    src="assets/tech/expressjs.svg"
+                                    alt="Express.js"
+                                    width="18"
+                                    height="18"
+                                />&nbsp;Express</span
+                            >
+                            <span class="tech-tag" data-tech="python"
+                                ><img
+                                    src="assets/tech/python.svg"
+                                    alt="Python"
+                                    width="18"
+                                    height="18"
+                                />&nbsp;Python</span
+                            >
+                            <span class="tech-tag" data-tech="java"
+                                ><img
+                                    src="assets/tech/java.svg"
+                                    alt="Java"
+                                    width="18"
+                                    height="18"
+                                />&nbsp;Java</span
+                            >
+                            <span class="tech-tag" data-tech="postgresql"
+                                ><img
+                                    src="assets/tech/postgresql.svg"
+                                    alt="PostgreSQL"
+                                    width="18"
+                                    height="18"
+                                />&nbsp;PostgreSQL</span
+                            >
+                            <span class="tech-tag" data-tech="pgadmin"
+                                ><img
+                                    src="assets/tech/pgadmin.svg"
+                                    alt="pgAdmin"
+                                    width="18"
+                                    height="18"
+                                />&nbsp;pgAdmin</span
+                            >
+                            <span class="tech-tag" data-tech="mysql"
+                                ><img
+                                    src="assets/tech/mysql.svg"
+                                    alt="MySQL"
+                                    width="18"
+                                    height="18"
+                                />&nbsp;MySQL</span
+                            >
+                            <span class="tech-tag" data-tech="mongodb"
+                                ><img
+                                    src="assets/tech/mongodb.svg"
+                                    alt="MongoDB"
+                                    width="18"
+                                    height="18"
+                                />&nbsp;MongoDB</span
+                            >
+                            <span class="tech-tag" data-tech="docker"
+                                ><img
+                                    src="assets/tech/docker.svg"
+                                    alt="Docker"
+                                    width="18"
+                                    height="18"
+                                />&nbsp;Docker</span
+                            >
+                            <span class="tech-tag" data-tech="git"
+                                ><img
+                                    src="assets/tech/git.svg"
+                                    alt="Git"
+                                    width="18"
+                                    height="18"
+                                />&nbsp;Git</span
+                            >
+                            <span class="tech-tag" data-tech="github"
+                                ><img
+                                    src="assets/tech/github.svg"
+                                    alt="GitHub"
+                                    width="18"
+                                    height="18"
+                                />&nbsp;GitHub</span
+                            >
+                            <span class="tech-tag" data-tech="bootstrap"
+                                ><img
+                                    src="assets/tech/bootstrap.svg"
+                                    alt="Bootstrap"
+                                    width="18"
+                                    height="18"
+                                />&nbsp;Bootstrap</span
+                            >
+                            <span class="tech-tag" data-tech="sass"
+                                ><img
+                                    src="assets/tech/sass.svg"
+                                    alt="Sass"
+                                    width="18"
+                                    height="18"
+                                />&nbsp;Sass</span
+                            >
+                            <span class="tech-tag" data-tech="postman"
+                                ><img
+                                    src="assets/tech/postman.svg"
+                                    alt="Postman"
+                                    width="18"
+                                    height="18"
+                                />&nbsp;Postman</span
+                            >
+                            <span class="tech-tag" data-tech="vscode"
+                                ><img
+                                    src="assets/tech/vscode.svg"
+                                    alt="VS Code"
+                                    width="18"
+                                    height="18"
+                                />&nbsp;VS Code</span
+                            >
+                            <span class="tech-tag" data-tech="linux"
+                                ><img
+                                    src="assets/tech/linux.svg"
+                                    alt="Linux"
+                                    width="18"
+                                    height="18"
+                                />&nbsp;Linux</span
+                            >
+                            <span class="tech-tag" data-tech="windows"
+                                ><img
+                                    src="assets/tech/windows.svg"
+                                    alt="Windows"
+                                    width="18"
+                                    height="18"
+                                />&nbsp;Windows</span
+                            >
+                            <span class="tech-tag" data-tech="androidstudio"
+                                ><img
+                                    src="assets/tech/androidstudio.svg"
+                                    alt="Android Studio"
+                                    width="18"
+                                    height="18"
+                                />&nbsp;Android Studio</span
+                            >
+                            <span class="tech-tag" data-tech="apache"
+                                ><img
+                                    src="assets/tech/apache.svg"
+                                    alt="Apache"
+                                    width="18"
+                                    height="18"
+                                />&nbsp;Apache</span
+                            >
+                            <span class="tech-tag" data-tech="aws"
+                                ><img
+                                    src="assets/tech/aws.svg"
+                                    alt="AWS"
+                                    width="18"
+                                    height="18"
+                                />&nbsp;AWS</span
+                            >
+                            <span class="tech-tag" data-tech="django"
+                                ><img
+                                    src="assets/tech/django.svg"
+                                    alt="Django"
+                                    width="18"
+                                    height="18"
+                                />&nbsp;Django</span
+                            >
+                            <span class="tech-tag" data-tech="electron"
+                                ><img
+                                    src="assets/tech/electron.svg"
+                                    alt="Electron"
+                                    width="18"
+                                    height="18"
+                                />&nbsp;Electron</span
+                            >
+                            <span class="tech-tag" data-tech="eslint"
+                                ><img
+                                    src="assets/tech/eslint.svg"
+                                    alt="ESLint"
+                                    width="18"
+                                    height="18"
+                                />&nbsp;ESLint</span
+                            >
+                            <span class="tech-tag" data-tech="figma"
+                                ><img
+                                    src="assets/tech/figma.svg"
+                                    alt="Figma"
+                                    width="18"
+                                    height="18"
+                                />&nbsp;Figma</span
+                            >
+                            <span class="tech-tag" data-tech="flask"
+                                ><img
+                                    src="assets/tech/flask.svg"
+                                    alt="Flask"
+                                    width="18"
+                                    height="18"
+                                />&nbsp;Flask</span
+                            >
+                            <span class="tech-tag" data-tech="flutter"
+                                ><img
+                                    src="assets/tech/flutter.svg"
+                                    alt="Flutter"
+                                    width="18"
+                                    height="18"
+                                />&nbsp;Flutter</span
+                            >
+                            <span class="tech-tag" data-tech="npm"
+                                ><img
+                                    src="assets/tech/npm.svg"
+                                    alt="npm"
+                                    width="18"
+                                    height="18"
+                                />&nbsp;npm</span
+                            >
+                            <span class="tech-tag" data-tech="numpy"
+                                ><img
+                                    src="assets/tech/numpy.svg"
+                                    alt="NumPy"
+                                    width="18"
+                                    height="18"
+                                />&nbsp;NumPy</span
+                            >
+                            <span class="tech-tag" data-tech="render"
+                                ><img
+                                    src="assets/tech/render.svg"
+                                    alt="Render"
+                                    width="18"
+                                    height="18"
+                                />&nbsp;Render</span
+                            >
+                            <span class="tech-tag" data-tech="spring"
+                                ><img
+                                    src="assets/tech/spring.svg"
+                                    alt="Spring"
+                                    width="18"
+                                    height="18"
+                                />&nbsp;Spring</span
+                            >
+                            <span class="tech-tag" data-tech="sqlite"
+                                ><img
+                                    src="assets/tech/sqlite.svg"
+                                    alt="SQLite"
+                                    width="18"
+                                    height="18"
+                                />&nbsp;SQLite</span
+                            >
+                            <span class="tech-tag" data-tech="cplusplus"
+                                ><img
+                                    src="assets/tech/cplusplus.svg"
+                                    alt="C++"
+                                    width="18"
+                                    height="18"
+                                />&nbsp;C++</span
+                            >
+                            <span class="tech-tag" data-tech="jsx"
+                                ><img
+                                    src="assets/tech/jsx.svg"
+                                    alt="JSX"
+                                    width="18"
+                                    height="18"
+                                />&nbsp;JSX</span
+                            >
+                        </div>
+                    </section>
+
+                    <!-- Certificates Section -->
+                    <section class="certificates-section">
+                        <div
+                            class="certificate-item glass-pill"
+                            role="button"
+                            tabindex="0"
+                        >
+                            <div class="certificate-logo aws-logo-composite">
+                                <img
+                                    src="assets/icons/medal.svg"
+                                    alt="Medal"
+                                    width="30"
+                                    height="30"
+                                />
+                                <img
+                                    src="assets/icons/aws.svg"
+                                    alt="AWS"
+                                    width="30"
+                                    height="30"
+                                />
+                            </div>
+                            <div class="certificate-text">
+                                <span
+                                    >AWS Academy Graduate - AWS Academy Cloud
+                                    Foundations</span
+                                >
+                            </div>
+                            <button
+                                class="external-link"
+                                aria-label="External link"
+                                data-url="https://www.credly.com/badges/b4d4815f-123c-46da-915d-578d8fb47efc/print"
+                            >
+                                <img
+                                    src="assets/icons/external.svg"
+                                    alt="External"
+                                    width="16"
+                                    height="16"
+                                />
+                            </button>
+                        </div>
+
+                        <div
+                            class="certificate-item glass-pill"
+                            role="button"
+                            tabindex="0"
+                        >
+                            <div class="certificate-logo aws-logo-composite">
+                                <img
+                                    src="assets/icons/medal.svg"
+                                    alt="Medal"
+                                    width="30"
+                                    height="30"
+                                />
+                                <img
+                                    src="assets/icons/aws.svg"
+                                    alt="AWS"
+                                    width="30"
+                                    height="30"
+                                />
+                            </div>
+                            <div class="certificate-text">
+                                <span
+                                    >AWS Academy Graduate - AWS Academy Cloud
+                                    Operations</span
+                                >
+                            </div>
+                            <button
+                                class="external-link"
+                                aria-label="External link"
+                                data-url="https://www.credly.com/badges/815d6a30-2132-4c58-a52f-d6b3a18ff041/print"
+                            >
+                                <img
+                                    src="assets/icons/external.svg"
+                                    alt="External"
+                                    width="16"
+                                    height="16"
+                                />
+                            </button>
+                        </div>
+
+                        <div
+                            class="certificate-item glass-pill"
+                            role="button"
+                            tabindex="0"
+                        >
+                            <div class="certificate-logo aws-logo-composite">
+                                <img
+                                    src="assets/icons/medal.svg"
+                                    alt="Medal"
+                                    width="30"
+                                    height="30"
+                                />
+                                <img
+                                    src="assets/icons/google.svg"
+                                    alt="Google"
+                                    width="30"
+                                    height="30"
+                                />
+                            </div>
+                            <div class="certificate-text">
+                                <span>Curso de Desarrollo de Apps Móviles</span>
+                            </div>
+                            <button
+                                class="external-link"
+                                aria-label="External link"
+                                data-url="https://skillshop.exceedlms.com/student/award/5qyTSF5MqjSC3aqb8oXqX78f"
+                            >
+                                <img
+                                    src="assets/icons/external.svg"
+                                    alt="External"
+                                    width="16"
+                                    height="16"
+                                />
+                            </button>
+                        </div>
+                    </section>
+                </section>
+
+                <!-- Projects Section -->
+                <section class="projects-section">
+                    <!-- Project 1: Keeptive -->
+                    <article
+                        id="project-keeptive"
+                        class="project-item glass-card scroll-pending"
+                        style="opacity: 0; transform: translateY(30px)"
+                        data-project-title="🟢 Keeptive"
+                        data-project-category="Full-Stack"
+                        data-project-description="Auto Clicker & Discreet Window Interaction Tool"
+                    >
+                        <!-- Project Media Carousel -->
+                        <div class="project-media">
+                            <div
+                                class="carousel"
+                                role="region"
+                                aria-roledescription="carousel"
+                                aria-label="Galería del proyecto Keeptive"
+                                tabindex="0"
+                            >
+                                <div class="carousel-viewport">
+                                    <div class="carousel-track">
+                                        <div class="carousel-slide is-active">
+                                            <img
+                                                src="assets/projects/keeptive/keeptive-1.webp"
+                                            />
+                                        </div>
+                                        <div class="carousel-slide">
+                                            <img
+                                                src="assets/projects/keeptive/keeptive-2.webp"
+                                            />
+                                        </div>
+                                        <div class="carousel-slide">
+                                            <img
+                                                src="assets/projects/keeptive/keeptive-3.webp"
+                                            />
+                                        </div>
+                                        <div class="carousel-slide">
+                                            <img
+                                                src="assets/projects/keeptive/keeptive-4.webp"
+                                            />
+                                        </div>
+                                        <div class="carousel-slide">
+                                            <img
+                                                src="assets/projects/keeptive/keeptive-5.webp"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Carousel Controls -->
+                        <div
+                            class="carousel-controls"
+                            aria-label="Controles del carrusel"
+                        >
+                            <div class="carousel-controls-top">
+                                <button
+                                    class="carousel-btn prev"
+                                    aria-label="Anterior"
+                                ></button>
+                                <div class="carousel-center">
+                                    <div
+                                        class="carousel-indicators"
+                                        role="tablist"
+                                        aria-label="Paginación de imágenes"
+                                    >
+                                        <button
+                                            class="carousel-dot is-active"
+                                            role="tab"
+                                            aria-selected="true"
+                                            aria-label="Ir a imagen 1"
+                                        ></button>
+                                        <button
+                                            class="carousel-dot"
+                                            role="tab"
+                                            aria-label="Ir a imagen 2"
+                                        ></button>
+                                        <button
+                                            class="carousel-dot"
+                                            role="tab"
+                                            aria-label="Ir a imagen 3"
+                                        ></button>
+                                        <button
+                                            class="carousel-dot"
+                                            role="tab"
+                                            aria-label="Ir a imagen 4"
+                                        ></button>
+                                        <button
+                                            class="carousel-dot"
+                                            role="tab"
+                                            aria-label="Ir a imagen 5"
+                                        ></button>
+                                    </div>
+                                    <div
+                                        class="carousel-progress"
+                                        aria-hidden="true"
+                                    >
+                                        <div
+                                            class="carousel-progress-fill"
+                                        ></div>
+                                    </div>
+                                </div>
+                                <button
+                                    class="carousel-btn next"
+                                    aria-label="Siguiente"
+                                ></button>
+                            </div>
+                        </div>
+                        <!-- Project Header -->
+                        <div class="project-header">
+                            <div class="project-title">
+                                <h2>🟢 Keeptive</h2>
+                            </div>
+                        </div>
+
+                        <!-- Project Meta -->
+                        <div class="project-meta">
+                            <button
+                                class="project-icon glass-button"
+                                aria-label="Tipo de proyecto: Código"
+                            >
+                                <img
+                                    src="assets/icons/code.svg"
+                                    alt="Project icon"
+                                    width="26"
+                                    height="26"
+                                />
+                            </button>
+                            <p class="project-category">
+                                <strong>Full-Stack</strong>
+                                <span class="separator">·</span>
+                                Auto Clicker & Discreet Window Interaction Tool
+                            </p>
+                        </div>
+
+                        <!-- Tech Stack -->
+                        <div class="tech-stack">
+                            <div class="tech-row">
+                                <span class="tech-tag">🐍 Python</span>
+                                <span class="tech-tag">⚛️ Electron</span>
+                                <span class="tech-tag">🖼️ HTML</span>
+                                <span class="tech-tag">🎨 CSS</span>
+                                <span class="tech-tag">🪟 Windows</span>
+                                <span class="tech-tag">⚙️ Automation</span>
+                                <span class="tech-tag">🖥️ Desktop App</span>
+                            </div>
+                        </div>
+
+                        <!-- Project Description -->
+                        <div class="project-description glass-container">
+                            <div class="description-content">
+                                <p>
+                                    ✅ <span class="bold-text">Overview</span>
+                                    <br /><br />
+                                    📌 Keeptive is a Windows automation tool
+                                    built with Electron and Python, designed to
+                                    keep windows active by simulating user
+                                    interactions such as clicks, movements, key
+                                    presses, and passive signals, all discreetly
+                                    and without interrupting your workflow.
+                                    <br /><br />
+                                    📌 The application can handle multiple
+                                    windows simultaneously, manage their states
+                                    (minimized or restored) to ensure proper
+                                    interaction, and offers system-wide
+                                    activation to keep your entire PC awake for
+                                    as long as needed.
+                                    <br /><br />
+                                    📌 Advanced features include customizable
+                                    toggle shortcuts for instant start/stop
+                                    control, system tray integration for
+                                    background operation, auto-pause when
+                                    windows are in foreground, precise location
+                                    picking for click/movement actions,
+                                    configurable intervals and durations, and
+                                    the ability to combine multiple activation
+                                    modes simultaneously for maximum
+                                    flexibility.
+                                    <br /><br />
+                                    🩷 <span class="bold-text">Features</span>
+                                    <br /><br />
+                                    ⚡
+                                    <span class="bold-text"
+                                        >Multiple Activation Modes:</span
+                                    >
+                                    Four powerful modes that can work
+                                    independently or simultaneously. Click
+                                    (simulates mouse clicks), Move (simulates
+                                    mouse movement), Passive (sends activation
+                                    signals), and Key Press (simulates keyboard
+                                    input). Combine multiple modes for enhanced
+                                    effectiveness. <br /><br />
+                                    🎯
+                                    <span class="bold-text"
+                                        >System-Wide & Window Specific
+                                        Targeting:</span
+                                    >
+                                    Choose between targeting specific windows or
+                                    keeping your entire system awake with
+                                    system-wide mode. Search and select from all
+                                    open windows with icon previews for easy
+                                    identification.
+                                    <br /><br />
+                                    ⌨️
+                                    <span class="bold-text"
+                                        >Global Toggle Shortcuts:</span
+                                    >
+                                    Configure custom keyboard shortcuts (F1-F12
+                                    directly, or Ctrl+ combinations) to
+                                    start/stop activation instantly from
+                                    anywhere, even when the app is minimized to
+                                    tray. Supports multiple shortcuts
+                                    simultaneously. <br /><br />
+                                    🔔
+                                    <span class="bold-text"
+                                        >System Tray Integration:</span
+                                    >
+                                    Minimize to system tray to keep the app
+                                    running discreetly in the background. Quick
+                                    access menu shows activation status with
+                                    visual indicators (ON/OFF) and provides
+                                    instant control without opening the main
+                                    window. <br /><br />
+                                    🚥
+                                    <span class="bold-text"
+                                        >Intelligent Window Management:</span
+                                    >
+                                    Automatically handles minimized windows by
+                                    restoring them for interaction and
+                                    repositioning them in the background without
+                                    disrupting your workflow. Smart state
+                                    management ensures seamless operation.
+                                    <br /><br />
+                                    👀
+                                    <span class="bold-text"
+                                        >Auto Pause on Focus:</span
+                                    >
+                                    Optional pause functionality that
+                                    automatically stops activation when the
+                                    target window is already in the foreground,
+                                    preventing unnecessary interactions and
+                                    saving resources. <br /><br />
+                                    📍
+                                    <span class="bold-text"
+                                        >Precision Location Picker:</span
+                                    >
+                                    Interactive crosshair tool to select exact
+                                    screen coordinates for click and movement
+                                    modes. When disabled, defaults to window
+                                    center or current cursor position
+                                    (system-wide mode). <br /><br />
+                                    ⏱️
+                                    <span class="bold-text"
+                                        >Flexible Timing Controls:</span
+                                    >
+                                    Fully customizable intervals (in seconds)
+                                    between actions, optional duration limits
+                                    (in minutes) or run indefinitely, and
+                                    adjustable hold time (in milliseconds) for
+                                    mouse button presses in system-wide mode.
+                                </p>
+                            </div>
+                            <div class="scroll-indicator">
+                                <div class="scroll-track">
+                                    <div class="scroll-thumb"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project Link -->
+                        <div class="project-buttons">
+                            <div
+                                class="project-link glass-pill"
+                                role="link"
+                                tabindex="0"
+                                data-url="https://github.com/IHyperLight/Keeptive"
+                            >
+                                <img
+                                    src="assets/icons/github.svg"
+                                    alt="GitHub"
+                                    width="30"
+                                    height="30"
+                                />
+                                <span>Code On GitHub</span>
+                                <img
+                                    src="assets/icons/external.svg"
+                                    alt="External"
+                                    width="16"
+                                    height="16"
+                                />
+                            </div>
+
+                            <div
+                                class="project-link glass-pill download-btn"
+                                role="button"
+                                tabindex="0"
+                                data-download="https://github.com/IHyperLight/Keeptive/releases/tag/v1.2.0"
+                            >
+                                <img
+                                    src="assets/icons/down.svg"
+                                    alt="Download"
+                                    width="28"
+                                    height="28"
+                                />
+                                <span>Download Now</span>
+                                <img
+                                    src="assets/icons/external.svg"
+                                    alt="External"
+                                    width="16"
+                                    height="16"
+                                />
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 2: Genetic Algorithm -->
+                    <article
+                        id="project-genetic-algorithm"
+                        class="project-item glass-card scroll-pending"
+                        style="opacity: 0; transform: translateY(30px)"
+                        data-project-title="🧬 Genetic Algorithm"
+                        data-project-category="Full-Stack"
+                        data-project-description="GA for Nutritional Diet Optimization"
+                    >
+                        <!-- Project Media Carousel -->
+                        <div class="project-media">
+                            <div
+                                class="carousel"
+                                role="region"
+                                aria-roledescription="carousel"
+                                aria-label="Galería del proyecto Keeptive Pro"
+                                tabindex="0"
+                            >
+                                <div class="carousel-viewport">
+                                    <div class="carousel-track">
+                                        <div class="carousel-slide is-active">
+                                            <img
+                                                src="assets/projects/genetic-algorithm/genetic-algorithm-1.webp"
+                                            />
+                                        </div>
+                                        <div class="carousel-slide">
+                                            <img
+                                                src="assets/projects/genetic-algorithm/genetic-algorithm-2.webp"
+                                            />
+                                        </div>
+                                        <div class="carousel-slide">
+                                            <img
+                                                src="assets/projects/genetic-algorithm/genetic-algorithm-3.webp"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Carousel Controls -->
+                        <div
+                            class="carousel-controls"
+                            aria-label="Controles del carrusel"
+                        >
+                            <div class="carousel-controls-top">
+                                <button
+                                    class="carousel-btn prev"
+                                    aria-label="Anterior"
+                                ></button>
+                                <div class="carousel-center">
+                                    <div
+                                        class="carousel-indicators"
+                                        role="tablist"
+                                        aria-label="Paginación de imágenes"
+                                    >
+                                        <button
+                                            class="carousel-dot is-active"
+                                            role="tab"
+                                            aria-selected="true"
+                                            aria-label="Ir a imagen 1"
+                                        ></button>
+                                        <button
+                                            class="carousel-dot"
+                                            role="tab"
+                                            aria-label="Ir a imagen 2"
+                                        ></button>
+                                        <button
+                                            class="carousel-dot"
+                                            role="tab"
+                                            aria-label="Ir a imagen 3"
+                                        ></button>
+                                    </div>
+                                    <div
+                                        class="carousel-progress"
+                                        aria-hidden="true"
+                                    >
+                                        <div
+                                            class="carousel-progress-fill"
+                                        ></div>
+                                    </div>
+                                </div>
+                                <button
+                                    class="carousel-btn next"
+                                    aria-label="Siguiente"
+                                ></button>
+                            </div>
+                        </div>
+                        <!-- Project Header -->
+                        <div class="project-header">
+                            <div class="project-title">
+                                <h2>🧬 Genetic Algorithm</h2>
+                            </div>
+                        </div>
+
+                        <!-- Project Meta -->
+                        <div class="project-meta">
+                            <button
+                                class="project-icon glass-button"
+                                aria-label="Tipo de proyecto: Código"
+                            >
+                                <img
+                                    src="assets/icons/code.svg"
+                                    alt="Project icon"
+                                    width="26"
+                                    height="26"
+                                />
+                            </button>
+                            <p class="project-category">
+                                <strong>Full-Stack</strong>
+                                <span class="separator">·</span>
+                                GA for Nutritional Diet Optimization
+                            </p>
+                        </div>
+
+                        <!-- Tech Stack -->
+                        <div class="tech-stack">
+                            <div class="tech-row">
+                                <span class="tech-tag">🐍 Python</span>
+                                <span class="tech-tag">🍷 Flask</span>
+                                <span class="tech-tag">🖼️ HTML</span>
+                                <span class="tech-tag">🎨 CSS</span>
+                                <span class="tech-tag">✨ AI</span>
+                                <span class="tech-tag">🧬 GA</span>
+                                <span class="tech-tag">📊 Graphs</span>
+                                <span class="tech-tag">🌐 Web App</span>
+                                <span class="tech-tag">📱 Responsive</span>
+                            </div>
+                        </div>
+
+                        <!-- Project Description -->
+                        <div class="project-description glass-container">
+                            <div class="description-content">
+                                <p>
+                                    🥗 <span class="bold-text">Overview</span
+                                    ><br /><br />
+                                    📌 This project implements a Genetic
+                                    Algorithm for Nutritional Diet Optimization
+                                    using Flask as the web framework to provide
+                                    an interactive interface.
+                                    <br /><br />
+                                    📌 Users can upload a food dataset in Excel
+                                    format and specify daily nutritional
+                                    requirements (energy, proteins, fats,
+                                    vitamins, and minerals).
+                                    <br /><br />
+                                    📌 The genetic algorithm generates an
+                                    optimal diet by selecting food combinations
+                                    and quantities that best satisfy the
+                                    specified requirements while minimizing
+                                    deviations.
+                                    <br /><br />
+                                    📌 The application includes configurable
+                                    algorithm parameters (population size,
+                                    generations, crossover and mutation
+                                    probabilities), result visualization with
+                                    fitness evolution graphs, and a responsive
+                                    web interface with dark mode support.
+                                    <br /><br />
+                                    📌 The project ships pre-configured with a
+                                    default food dataset, making it immediately
+                                    usable without requiring an uploaded file.
+                                    <br /><br />
+                                    🩷 <span class="bold-text">Features</span>
+                                    <br /><br />
+                                    ⚡
+                                    <span class="bold-text"
+                                        >Genetic Algorithm Optimization:</span
+                                    >
+                                    Uses GA to explore food combinations and
+                                    quantities to meet nutritional targets while
+                                    minimizing deviation from requirements.
+                                    <br /><br />
+                                    🎯
+                                    <span class="bold-text"
+                                        >Excel Food Dataset Upload:</span
+                                    >
+                                    Accepts user-provided food datasets in Excel
+                                    format for customizable food options and
+                                    nutrition data. <br /><br />
+                                    📍
+                                    <span class="bold-text"
+                                        >User Nutritional Requirements:</span
+                                    >
+                                    Input fields for daily targets: energy,
+                                    proteins, fats, vitamins, and minerals.
+                                    <br /><br />
+                                    🔧
+                                    <span class="bold-text"
+                                        >Configurable GA Parameters:</span
+                                    >
+                                    Adjust population size, number of
+                                    generations, crossover probability, and
+                                    mutation probability to tune the
+                                    optimization. <br /><br />
+                                    📈
+                                    <span class="bold-text"
+                                        >Result Visualization:</span
+                                    >
+                                    Fitness evolution graphs show how solutions
+                                    improve across generations and present final
+                                    diet recommendations. <br /><br />
+                                    🖥️
+                                    <span class="bold-text"
+                                        >Flask Web Interface:</span
+                                    >
+                                    Interactive, responsive UI that works across
+                                    devices and includes dark mode for
+                                    comfortable use. <br /><br />
+                                    📂
+                                    <span class="bold-text"
+                                        >Default Dataset Included:</span
+                                    >
+                                    Comes with a ready-to-use food dataset so
+                                    the app is usable immediately without
+                                    uploads.
+                                </p>
+                            </div>
+                            <div class="scroll-indicator">
+                                <div class="scroll-track">
+                                    <div class="scroll-thumb"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project Link -->
+                        <div class="project-buttons">
+                            <div
+                                class="project-link glass-pill"
+                                role="link"
+                                tabindex="0"
+                                data-url="https://github.com/IHyperLight/Genetic-Algorithm"
+                            >
+                                <img
+                                    src="assets/icons/github.svg"
+                                    alt="GitHub"
+                                    width="30"
+                                    height="30"
+                                />
+                                <span>Code On GitHub</span>
+                                <img
+                                    src="assets/icons/external.svg"
+                                    alt="External"
+                                    width="16"
+                                    height="16"
+                                />
+                            </div>
+
+                            <div
+                                class="project-link glass-pill download-btn"
+                                role="button"
+                                tabindex="0"
+                                data-download="https://genetic-algorithm.onrender.com"
+                            >
+                                <img
+                                    src="assets/icons/try.svg"
+                                    alt="Download"
+                                    width="28"
+                                    height="28"
+                                />
+                                <span>View Now</span>
+                                <img
+                                    src="assets/icons/external.svg"
+                                    alt="External"
+                                    width="16"
+                                    height="16"
+                                />
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 3: RESTful API -->
+                    <article
+                        id="project-restful-api"
+                        class="project-item glass-card scroll-pending"
+                        style="opacity: 0; transform: translateY(30px)"
+                        data-project-title="🌐 RESTful API"
+                        data-project-category="Full-Stack"
+                        data-project-description="RESTful User Management API"
+                    >
+                        <!-- Project Media Carousel -->
+                        <div class="project-media">
+                            <div
+                                class="carousel"
+                                role="region"
+                                aria-roledescription="carousel"
+                                aria-label="Galería del proyecto Keeptive Cloud"
+                                tabindex="0"
+                            >
+                                <div class="carousel-viewport">
+                                    <div class="carousel-track">
+                                        <div class="carousel-slide is-active">
+                                            <img
+                                                src="assets/projects/api-restful/api-restful-1.webp"
+                                            />
+                                        </div>
+                                        <div class="carousel-slide">
+                                            <img
+                                                src="assets/projects/api-restful/api-restful-2.webp"
+                                            />
+                                        </div>
+                                        <div class="carousel-slide">
+                                            <img
+                                                src="assets/projects/api-restful/api-restful-3.webp"
+                                            />
+                                        </div>
+                                        <div class="carousel-slide">
+                                            <img
+                                                src="assets/projects/api-restful/api-restful-4.webp"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Carousel Controls -->
+                        <div
+                            class="carousel-controls"
+                            aria-label="Controles del carrusel"
+                        >
+                            <div class="carousel-controls-top">
+                                <button
+                                    class="carousel-btn prev"
+                                    aria-label="Anterior"
+                                ></button>
+                                <div class="carousel-center">
+                                    <div
+                                        class="carousel-indicators"
+                                        role="tablist"
+                                        aria-label="Paginación de imágenes"
+                                    >
+                                        <button
+                                            class="carousel-dot is-active"
+                                            role="tab"
+                                            aria-selected="true"
+                                            aria-label="Ir a imagen 1"
+                                        ></button>
+                                        <button
+                                            class="carousel-dot"
+                                            role="tab"
+                                            aria-label="Ir a imagen 2"
+                                        ></button>
+                                        <button
+                                            class="carousel-dot"
+                                            role="tab"
+                                            aria-label="Ir a imagen 3"
+                                        ></button>
+                                        <button
+                                            class="carousel-dot"
+                                            role="tab"
+                                            aria-label="Ir a imagen 4"
+                                        ></button>
+                                    </div>
+                                    <div
+                                        class="carousel-progress"
+                                        aria-hidden="true"
+                                    >
+                                        <div
+                                            class="carousel-progress-fill"
+                                        ></div>
+                                    </div>
+                                </div>
+                                <button
+                                    class="carousel-btn next"
+                                    aria-label="Siguiente"
+                                ></button>
+                            </div>
+                        </div>
+                        <!-- Project Header -->
+                        <div class="project-header">
+                            <div class="project-title">
+                                <h2>🌐 RESTful API</h2>
+                            </div>
+                        </div>
+
+                        <!-- Project Meta -->
+                        <div class="project-meta">
+                            <button
+                                class="project-icon glass-button"
+                                aria-label="Tipo de proyecto: Código"
+                            >
+                                <img
+                                    src="assets/icons/code.svg"
+                                    alt="Project icon"
+                                    width="26"
+                                    height="26"
+                                />
+                            </button>
+                            <p class="project-category">
+                                <strong>Full-Stack</strong>
+                                <span class="separator">·</span>
+                                RESTful User Management API
+                            </p>
+                        </div>
+
+                        <!-- Tech Stack -->
+                        <div class="tech-stack">
+                            <div class="tech-row">
+                                <span class="tech-tag">🐍 Python</span>
+                                <span class="tech-tag">🐢 Django</span>
+                                <span class="tech-tag">⚛️ React</span>
+                                <span class="tech-tag">📜 JavaScript</span>
+                                <span class="tech-tag">✖️ JSX</span>
+                                <span class="tech-tag">🌐 RESTful</span>
+                                <span class="tech-tag">🛠️ API</span>
+                                <span class="tech-tag">💾 SQLite</span>
+                                <span class="tech-tag">🖼️ HTML</span>
+                                <span class="tech-tag">🎨 CSS</span>
+                                <span class="tech-tag">🌐 Web App</span>
+                                <span class="tech-tag">📱 Responsive</span>
+                            </div>
+                        </div>
+
+                        <!-- Project Description -->
+                        <div class="project-description glass-container">
+                            <div class="description-content">
+                                <p>
+                                    ⚙️ <span class="bold-text">Overview</span>
+                                    <br /><br />
+                                    📌 This is a full-stack RESTful API
+                                    application built with Django REST Framework
+                                    for the backend and React.js for the
+                                    frontend.
+                                    <br /><br />
+                                    📌 The project implements a complete user
+                                    authentication and profile management system
+                                    featuring user registration, login
+                                    functionality, and JWT token-based
+                                    authentication.
+                                    <br /><br />
+                                    📌 The backend utilizes SQLite as the
+                                    database for simplicity and portability,
+                                    while the frontend provides a responsive and
+                                    intuitive user interface for seamless
+                                    interaction.
+                                    <br /><br />
+                                    📌 The application follows REST
+                                    architectural principles with proper HTTP
+                                    methods, JSON data exchange, and stateless
+                                    communication between client and server.
+                                    <br /><br />
+                                    📌 It is designed to be easily deployable on
+                                    cloud platforms like Render, with dynamic
+                                    API URL configuration for both development
+                                    and production environments.
+                                    <br /><br />
+                                    🩷 <span class="bold-text">Features</span>
+                                    <br /><br />
+                                    ⚙️
+                                    <span class="bold-text"
+                                        >Full-Stack Architecture:</span
+                                    >
+                                    Built with Django REST Framework for the
+                                    backend and React.js for the frontend.
+                                    <br /><br />
+                                    🔐
+                                    <span class="bold-text"
+                                        >User Authentication:</span
+                                    >
+                                    Complete system featuring user registration,
+                                    login functionality, and JWT token-based
+                                    authentication. <br /><br />
+                                    👤
+                                    <span class="bold-text"
+                                        >Profile Management:</span
+                                    >
+                                    Comprehensive profile management
+                                    capabilities including image uploads.
+                                    <br /><br />
+                                    📡
+                                    <span class="bold-text"
+                                        >REST Principles:</span
+                                    >
+                                    Follows REST architectural principles with
+                                    proper HTTP methods, JSON data exchange, and
+                                    stateless communication. <br /><br />
+                                    🚀
+                                    <span class="bold-text"
+                                        >Cloud Deployment:</span
+                                    >
+                                    Designed to be easily deployable on cloud
+                                    platforms like Render with dynamic API URL
+                                    configuration. <br /><br />
+                                    📱
+                                    <span class="bold-text"
+                                        >Responsive Interface:</span
+                                    >
+                                    Provides a responsive and intuitive user
+                                    interface for seamless interaction with API
+                                    endpoints.
+                                </p>
+                            </div>
+                            <div class="scroll-indicator">
+                                <div class="scroll-track">
+                                    <div class="scroll-thumb"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project Link -->
+                        <div class="project-buttons">
+                            <div
+                                class="project-link glass-pill"
+                                role="link"
+                                tabindex="0"
+                                data-url="https://github.com/IHyperLight/API-RESTful"
+                            >
+                                <img
+                                    src="assets/icons/github.svg"
+                                    alt="GitHub"
+                                    width="30"
+                                    height="30"
+                                />
+                                <span>Code On GitHub</span>
+                                <img
+                                    src="assets/icons/external.svg"
+                                    alt="External"
+                                    width="16"
+                                    height="16"
+                                />
+                            </div>
+
+                            <div
+                                class="project-link glass-pill download-btn"
+                                role="button"
+                                tabindex="0"
+                                data-download="https://api-restful-1-aul3.onrender.com"
+                            >
+                                <img
+                                    src="assets/icons/try.svg"
+                                    alt="Download"
+                                    width="28"
+                                    height="28"
+                                />
+                                <span>View Now</span>
+                                <img
+                                    src="assets/icons/external.svg"
+                                    alt="External"
+                                    width="16"
+                                    height="16"
+                                />
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 4: Deterministic Finite Automaton -->
+                    <article
+                        id="project-dfa"
+                        class="project-item glass-card scroll-pending"
+                        style="opacity: 0; transform: translateY(30px)"
+                        data-project-title="🔀 Deterministic Finite Automaton"
+                        data-project-category="Full-Stack"
+                        data-project-description="HTTPS URL Extractor Using DFA"
+                    >
+                        <!-- Project Media Carousel -->
+                        <div class="project-media">
+                            <div
+                                class="carousel"
+                                role="region"
+                                aria-roledescription="carousel"
+                                aria-label="Galería del proyecto Keeptive Cloud"
+                                tabindex="0"
+                            >
+                                <div class="carousel-viewport">
+                                    <div class="carousel-track">
+                                        <div class="carousel-slide is-active">
+                                            <img
+                                                src="assets/projects/deterministic-finite-automaton/deterministic-finite-automaton-1.webp"
+                                            />
+                                        </div>
+                                        <div class="carousel-slide">
+                                            <img
+                                                src="assets/projects/deterministic-finite-automaton/deterministic-finite-automaton-2.webp"
+                                            />
+                                        </div>
+                                        <div class="carousel-slide">
+                                            <img
+                                                src="assets/projects/deterministic-finite-automaton/deterministic-finite-automaton-3.webp"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Carousel Controls -->
+                        <div
+                            class="carousel-controls"
+                            aria-label="Controles del carrusel"
+                        >
+                            <div class="carousel-controls-top">
+                                <button
+                                    class="carousel-btn prev"
+                                    aria-label="Anterior"
+                                ></button>
+                                <div class="carousel-center">
+                                    <div
+                                        class="carousel-indicators"
+                                        role="tablist"
+                                        aria-label="Paginación de imágenes"
+                                    >
+                                        <button
+                                            class="carousel-dot is-active"
+                                            role="tab"
+                                            aria-selected="true"
+                                            aria-label="Ir a imagen 1"
+                                        ></button>
+                                        <button
+                                            class="carousel-dot"
+                                            role="tab"
+                                            aria-label="Ir a imagen 2"
+                                        ></button>
+                                        <button
+                                            class="carousel-dot"
+                                            role="tab"
+                                            aria-label="Ir a imagen 3"
+                                        ></button>
+                                    </div>
+                                    <div
+                                        class="carousel-progress"
+                                        aria-hidden="true"
+                                    >
+                                        <div
+                                            class="carousel-progress-fill"
+                                        ></div>
+                                    </div>
+                                </div>
+                                <button
+                                    class="carousel-btn next"
+                                    aria-label="Siguiente"
+                                ></button>
+                            </div>
+                        </div>
+                        <!-- Project Header -->
+                        <div class="project-header">
+                            <div class="project-title">
+                                <h2>🔀 Deterministic Finite Automaton</h2>
+                            </div>
+                        </div>
+
+                        <!-- Project Meta -->
+                        <div class="project-meta">
+                            <button
+                                class="project-icon glass-button"
+                                aria-label="Tipo de proyecto: Código"
+                            >
+                                <img
+                                    src="assets/icons/code.svg"
+                                    alt="Project icon"
+                                    width="26"
+                                    height="26"
+                                />
+                            </button>
+                            <p class="project-category">
+                                <strong>Full-Stack</strong>
+                                <span class="separator">·</span>
+                                HTTPS URL Extractor Using DFA
+                            </p>
+                        </div>
+
+                        <!-- Tech Stack -->
+                        <div class="tech-stack">
+                            <div class="tech-row">
+                                <span class="tech-tag">🐍 Python</span>
+                                <span class="tech-tag">🍷 Flask</span>
+                                <span class="tech-tag">🖼️ HTML</span>
+                                <span class="tech-tag">🎨 CSS</span>
+                                <span class="tech-tag">🔀 DFA</span>
+                                <span class="tech-tag">🕸️ Web Scraping</span>
+                                <span class="tech-tag">🌐 Web App</span>
+                                <span class="tech-tag">📱 Responsive</span>
+                            </div>
+                        </div>
+
+                        <!-- Project Description -->
+                        <div class="project-description glass-container">
+                            <div class="description-content">
+                                <p>
+                                    🤖 <span class="bold-text">Overview</span>
+                                    <br /><br />
+                                    📌 This is a web application that
+                                    demonstrates the practical implementation of
+                                    automata theory in computer science.
+                                    <br /><br />
+                                    📌 The project features a deterministic
+                                    finite automaton (DFA) designed to parse and
+                                    extract secure HTTPS external links from web
+                                    pages.
+                                    <br /><br />
+                                    📌 Built with Flask and Python, the
+                                    application takes a URL as input, fetches
+                                    the webpage content, and uses a custom-built
+                                    finite state machine to identify and
+                                    validate HTTPS URLs while filtering out
+                                    internal links.
+                                    <br /><br />
+                                    📌 The automaton processes each character of
+                                    the HTML content through defined states and
+                                    transitions, showcasing how theoretical
+                                    computer science concepts can be applied to
+                                    real-world web scraping and URL validation
+                                    tasks.
+                                    <br /><br />
+                                    📌 This educational tool combines web
+                                    development with formal language theory,
+                                    making it an excellent example of how
+                                    automata can be used for pattern recognition
+                                    and text processing in modern applications.
+                                    <br /><br />
+                                    🩷 <span class="bold-text">Features</span>
+                                    <br /><br />
+                                    🌐
+                                    <span class="bold-text"
+                                        >Automata Implementation:</span
+                                    >
+                                    Demonstrates the practical implementation of
+                                    automata theory in computer science.
+                                    <br /><br />
+                                    🔄
+                                    <span class="bold-text"
+                                        >DFA Link Extraction:</span
+                                    >
+                                    Features a deterministic finite automaton
+                                    (DFA) designed to parse and extract secure
+                                    HTTPS external links. <br /><br />
+                                    ⚙️
+                                    <span class="bold-text"
+                                        >Custom State Machine:</span
+                                    >
+                                    Uses a custom-built finite state machine to
+                                    identify and validate HTTPS URLs while
+                                    filtering out internal links. <br /><br />
+                                    🔤
+                                    <span class="bold-text"
+                                        >Character Processing:</span
+                                    >
+                                    Processes each character of the HTML content
+                                    through defined states and transitions.
+                                    <br /><br />
+                                    🎓
+                                    <span class="bold-text"
+                                        >Educational Tool:</span
+                                    >
+                                    Combines web development with formal
+                                    language theory for pattern recognition and
+                                    text processing.
+                                </p>
+                            </div>
+                            <div class="scroll-indicator">
+                                <div class="scroll-track">
+                                    <div class="scroll-thumb"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project Link -->
+                        <div class="project-buttons">
+                            <div
+                                class="project-link glass-pill"
+                                role="link"
+                                tabindex="0"
+                                data-url="https://github.com/IHyperLight/Automata-finito-determinista"
+                            >
+                                <img
+                                    src="assets/icons/github.svg"
+                                    alt="GitHub"
+                                    width="30"
+                                    height="30"
+                                />
+                                <span>Code On GitHub</span>
+                                <img
+                                    src="assets/icons/external.svg"
+                                    alt="External"
+                                    width="16"
+                                    height="16"
+                                />
+                            </div>
+
+                            <div
+                                class="project-link glass-pill download-btn"
+                                role="button"
+                                tabindex="0"
+                                data-download="https://automata-finito-determinista.onrender.com"
+                            >
+                                <img
+                                    src="assets/icons/try.svg"
+                                    alt="Download"
+                                    width="28"
+                                    height="28"
+                                />
+                                <span>View Now</span>
+                                <img
+                                    src="assets/icons/external.svg"
+                                    alt="External"
+                                    width="16"
+                                    height="16"
+                                />
+                            </div>
+                        </div>
+                    </article>
+
+                    <article
+                        id="project-analyzer"
+                        class="project-item glass-card scroll-pending"
+                        style="opacity: 0; transform: translateY(30px)"
+                        data-project-title="📚 Lexical, Syntactic & Semantic Analyzer"
+                        data-project-category="Full-Stack"
+                        data-project-description="SQL Statement Analyzer With Lexer, Parser And Semantic Checker"
+                    >
+                        <!-- Project Media Carousel -->
+                        <div class="project-media">
+                            <div
+                                class="carousel"
+                                role="region"
+                                aria-roledescription="carousel"
+                                aria-label="Galería del proyecto Lexical, Syntactic & Semantic Analyzer"
+                                tabindex="0"
+                            >
+                                <div class="carousel-viewport">
+                                    <div class="carousel-track">
+                                        <div class="carousel-slide is-active">
+                                            <img
+                                                src="assets/projects/lexical-syntactic-and-semantic-analyzer/lexical-syntactic-and-semantic-analyzer-1.webp"
+                                            />
+                                        </div>
+                                        <div class="carousel-slide">
+                                            <img
+                                                src="assets/projects/lexical-syntactic-and-semantic-analyzer/lexical-syntactic-and-semantic-analyzer-2.webp"
+                                            />
+                                        </div>
+                                        <div class="carousel-slide">
+                                            <img
+                                                src="assets/projects/lexical-syntactic-and-semantic-analyzer/lexical-syntactic-and-semantic-analyzer-3.webp"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Carousel Controls -->
+                        <div
+                            class="carousel-controls"
+                            aria-label="Controles del carrusel"
+                        >
+                            <div class="carousel-controls-top">
+                                <button
+                                    class="carousel-btn prev"
+                                    aria-label="Anterior"
+                                ></button>
+                                <div class="carousel-center">
+                                    <div
+                                        class="carousel-indicators"
+                                        role="tablist"
+                                        aria-label="Paginación de imágenes"
+                                    >
+                                        <button
+                                            class="carousel-dot is-active"
+                                            role="tab"
+                                            aria-selected="true"
+                                            aria-label="Ir a imagen 1"
+                                        ></button>
+                                        <button
+                                            class="carousel-dot"
+                                            role="tab"
+                                            aria-label="Ir a imagen 2"
+                                        ></button>
+                                        <button
+                                            class="carousel-dot"
+                                            role="tab"
+                                            aria-label="Ir a imagen 3"
+                                        ></button>
+                                    </div>
+                                    <div
+                                        class="carousel-progress"
+                                        aria-hidden="true"
+                                    >
+                                        <div
+                                            class="carousel-progress-fill"
+                                        ></div>
+                                    </div>
+                                </div>
+                                <button
+                                    class="carousel-btn next"
+                                    aria-label="Siguiente"
+                                ></button>
+                            </div>
+                        </div>
+                        <!-- Project Header -->
+                        <div class="project-header">
+                            <div class="project-title">
+                                <h2>
+                                    📚 Lexical, Syntactic & Semantic Analyzer
+                                </h2>
+                            </div>
+                        </div>
+
+                        <!-- Project Meta -->
+                        <div class="project-meta">
+                            <button
+                                class="project-icon glass-button"
+                                aria-label="Tipo de proyecto: Código"
+                            >
+                                <img
+                                    src="assets/icons/code.svg"
+                                    alt="Project icon"
+                                    width="26"
+                                    height="26"
+                                />
+                            </button>
+                            <p class="project-category">
+                                <strong>Full-Stack</strong>
+                                <span class="separator">·</span>
+                                SQL Statement Analyzer With Lexer, Parser And
+                                Semantic Checker
+                            </p>
+                        </div>
+
+                        <!-- Tech Stack -->
+                        <div class="tech-stack">
+                            <div class="tech-row">
+                                <span class="tech-tag">🐍 Python</span>
+                                <span class="tech-tag">🍷 Flask</span>
+                                <span class="tech-tag">🖼️ HTML</span>
+                                <span class="tech-tag">🎨 CSS</span>
+                                <span class="tech-tag">💾 SQLite</span>
+                                <span class="tech-tag">💻 Compiler Design</span>
+                                <span class="tech-tag">🔍 Lexical</span>
+                                <span class="tech-tag">🌳 Syntax Parser</span>
+                                <span class="tech-tag">🧠 Semantic</span>
+                                <span class="tech-tag">🌐 Web App</span>
+                                <span class="tech-tag">📱 Responsive</span>
+                            </div>
+                        </div>
+
+                        <!-- Project Description -->
+                        <div class="project-description glass-container">
+                            <div class="description-content">
+                                <p>
+                                    🧠 <span class="bold-text">Overview</span>
+                                    <br /><br />
+                                    📌 This is a web application built with
+                                    Flask that implements a comprehensive SQL
+                                    analyzer featuring lexical, syntactic, and
+                                    semantic analysis capabilities.
+                                    <br /><br />
+                                    📌 The project uses PLY (Python Lex-Yacc) to
+                                    tokenize and parse SQL statements including
+                                    CREATE DATABASE, USE, CREATE TABLE, INSERT
+                                    INTO, UPDATE, and DELETE commands.
+                                    <br /><br />
+                                    📌 It provides real-time feedback on query
+                                    validation through three independent
+                                    analyzers that can be tested individually or
+                                    in sequence. The application uses SQLite as
+                                    its backend database engine and features a
+                                    modern, responsive UI with dark mode
+                                    support.
+                                    <br /><br />
+                                    📌 Users can write SQL statements directly
+                                    in dedicated text areas for each analyzer
+                                    type and instantly see detailed results
+                                    including token lists, abstract syntax trees
+                                    (AST), and semantic validation messages.
+                                    <br /><br />
+                                    📌 The semantic analyzer verifies database
+                                    and table existence, validates SQL statement
+                                    structure, and executes valid queries
+                                    against the SQLite database, making it an
+                                    excellent tool for learning SQL syntax and
+                                    understanding compiler design concepts.
+                                    <br /><br />
+                                    🩷 <span class="bold-text">Features</span>
+                                    <br /><br />
+                                    🔍
+                                    <span class="bold-text"
+                                        >Comprehensive Analysis:</span
+                                    >
+                                    Implements a SQL analyzer featuring lexical,
+                                    syntactic, and semantic analysis
+                                    capabilities built with Flask. <br /><br />
+                                    🧰
+                                    <span class="bold-text"
+                                        >PLY Integration:</span
+                                    >
+                                    Uses Python Lex-Yacc to tokenize and parse
+                                    SQL statements including CREATE, INSERT,
+                                    UPDATE, and DELETE commands. <br /><br />
+                                    ⚡
+                                    <span class="bold-text"
+                                        >Real-time Validation:</span
+                                    >
+                                    Provides feedback through three independent
+                                    analyzers that can be tested individually or
+                                    in sequence. <br /><br />
+                                    📜
+                                    <span class="bold-text"
+                                        >Detailed Results:</span
+                                    >
+                                    Instantly displays detailed results
+                                    including token lists, abstract syntax trees
+                                    (AST), and semantic validation messages.
+                                    <br /><br />
+                                    ▶️
+                                    <span class="bold-text"
+                                        >Semantic Execution:</span
+                                    >
+                                    Verifies database existence, validates
+                                    structure, and executes valid queries
+                                    against the SQLite backend. <br /><br />
+                                    🖥️
+                                    <span class="bold-text"
+                                        >Modern Interface:</span
+                                    >
+                                    Features a responsive UI with dark mode
+                                    support and dedicated text areas for writing
+                                    SQL statements.
+                                </p>
+                            </div>
+                            <div class="scroll-indicator">
+                                <div class="scroll-track">
+                                    <div class="scroll-thumb"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project Link -->
+                        <div class="project-buttons">
+                            <div
+                                class="project-link glass-pill"
+                                role="link"
+                                tabindex="0"
+                                data-url="https://github.com/IHyperLight/Analizador-lexico-sintactico-y-semantico"
+                            >
+                                <img
+                                    src="assets/icons/github.svg"
+                                    alt="GitHub"
+                                    width="30"
+                                    height="30"
+                                />
+                                <span>Code On GitHub</span>
+                                <img
+                                    src="assets/icons/external.svg"
+                                    alt="External"
+                                    width="16"
+                                    height="16"
+                                />
+                            </div>
+
+                            <div
+                                class="project-link glass-pill download-btn"
+                                role="button"
+                                tabindex="0"
+                                data-download="https://analizador-lexico-sintactico-y-semantico.onrender.com"
+                            >
+                                <img
+                                    src="assets/icons/try.svg"
+                                    alt="Download"
+                                    width="28"
+                                    height="28"
+                                />
+                                <span>View Now</span>
+                                <img
+                                    src="assets/icons/external.svg"
+                                    alt="External"
+                                    width="16"
+                                    height="16"
+                                />
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 7: Disney+ Redesign -->
+                    <article
+                        id="project-disney-redesign"
+                        class="project-item glass-card scroll-pending"
+                        style="opacity: 0; transform: translateY(30px)"
+                        data-project-title="🏰 Disney+ Redesign"
+                        data-project-category="UI/UX Design"
+                        data-project-description="Modern Streaming Platform Interface"
+                    >
+                        <!-- Project Media Carousel -->
+                        <div class="project-media">
+                            <div
+                                class="carousel"
+                                role="region"
+                                aria-roledescription="carousel"
+                                aria-label="Galería del proyecto Disney+ Redesign"
+                                tabindex="0"
+                            >
+                                <div class="carousel-viewport">
+                                    <div class="carousel-track">
+                                        <div class="carousel-slide is-active">
+                                            <img
+                                                src="assets/projects/disney+redesign/disney+redesign-1.webp"
+                                            />
+                                        </div>
+                                        <div class="carousel-slide">
+                                            <img
+                                                src="assets/projects/disney+redesign/disney+redesign-2.webp"
+                                            />
+                                        </div>
+                                        <div class="carousel-slide">
+                                            <img
+                                                src="assets/projects/disney+redesign/disney+redesign-3.webp"
+                                            />
+                                        </div>
+                                        <div class="carousel-slide">
+                                            <img
+                                                src="assets/projects/disney+redesign/disney+redesign-4.webp"
+                                            />
+                                        </div>
+                                        <div class="carousel-slide">
+                                            <img
+                                                src="assets/projects/disney+redesign/disney+redesign-5.webp"
+                                            />
+                                        </div>
+                                        <div class="carousel-slide">
+                                            <img
+                                                src="assets/projects/disney+redesign/disney+redesign-6.webp"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Carousel Controls -->
+                        <div
+                            class="carousel-controls"
+                            aria-label="Controles del carrusel"
+                        >
+                            <div class="carousel-controls-top">
+                                <button
+                                    class="carousel-btn prev"
+                                    aria-label="Anterior"
+                                ></button>
+                                <div class="carousel-center">
+                                    <div
+                                        class="carousel-indicators"
+                                        role="tablist"
+                                        aria-label="Paginación de imágenes"
+                                    >
+                                        <button
+                                            class="carousel-dot is-active"
+                                            role="tab"
+                                            aria-selected="true"
+                                            aria-label="Ir a imagen 1"
+                                        ></button>
+                                        <button
+                                            class="carousel-dot"
+                                            role="tab"
+                                            aria-label="Ir a imagen 2"
+                                        ></button>
+                                        <button
+                                            class="carousel-dot"
+                                            role="tab"
+                                            aria-label="Ir a imagen 3"
+                                        ></button>
+                                        <button
+                                            class="carousel-dot"
+                                            role="tab"
+                                            aria-label="Ir a imagen 4"
+                                        ></button>
+                                        <button
+                                            class="carousel-dot"
+                                            role="tab"
+                                            aria-label="Ir a imagen 5"
+                                        ></button>
+                                        <button
+                                            class="carousel-dot"
+                                            role="tab"
+                                            aria-label="Ir a imagen 6"
+                                        ></button>
+                                    </div>
+                                    <div
+                                        class="carousel-progress"
+                                        aria-hidden="true"
+                                    >
+                                        <div
+                                            class="carousel-progress-fill"
+                                        ></div>
+                                    </div>
+                                </div>
+                                <button
+                                    class="carousel-btn next"
+                                    aria-label="Siguiente"
+                                ></button>
+                            </div>
+                        </div>
+
+                        <!-- Project Header -->
+                        <div class="project-header">
+                            <div class="project-title">
+                                <h2>🏰 Disney+ Redesign</h2>
+                            </div>
+                        </div>
+
+                        <!-- Project Meta -->
+                        <div class="project-meta">
+                            <button
+                                class="project-icon glass-button"
+                                aria-label="Tipo de proyecto: Diseño"
+                            >
+                                <img
+                                    src="assets/icons/design.svg"
+                                    alt="Project icon"
+                                    width="26"
+                                    height="26"
+                                />
+                            </button>
+                            <p class="project-category">
+                                <strong>UI/UX Design</strong>
+                                <span class="separator">·</span>
+                                Modern Streaming Platform Interface
+                            </p>
+                        </div>
+
+                        <!-- Tech Stack -->
+                        <div class="tech-stack">
+                            <div class="tech-row">
+                                <span class="tech-tag">🎨 Figma</span>
+                                <span class="tech-tag">🖌️ UI Design</span>
+                                <span class="tech-tag">💡 UX Research</span>
+                                <span class="tech-tag">🎬 Streaming</span>
+                                <span class="tech-tag">👽 Modern</span>
+                                <span class="tech-tag">🌈 Visual Design</span>
+                                <span class="tech-tag">🛜 Web Design</span>
+                            </div>
+                        </div>
+
+                        <!-- Project Description -->
+                        <div class="project-description glass-container">
+                            <div class="description-content">
+                                <p>
+                                    🎬 <span class="bold-text">Overview</span>
+                                    <br /><br />
+                                    📌 This Disney+ Redesign is a comprehensive
+                                    UI/UX project that reimagines the streaming
+                                    platform with a modern and intuitive
+                                    interface.
+                                    <br /><br />
+                                    📌 The design focuses on improving user
+                                    experience through better content discovery
+                                    and enhanced navigation.
+                                    <br /><br />
+                                    🩷 <span class="bold-text">Features</span>
+                                    <br /><br />
+                                    🧩
+                                    <span class="bold-text"
+                                        >UI/UX Project:</span
+                                    >
+                                    A comprehensive project that reimagines the
+                                    streaming platform. <br /><br />
+                                    🕶️
+                                    <span class="bold-text"
+                                        >Modern Interface:</span
+                                    >
+                                    Features a modern and intuitive interface
+                                    design. <br /><br />
+                                    💡
+                                    <span class="bold-text"
+                                        >User Experience:</span
+                                    >
+                                    Focuses on improving user experience across
+                                    the platform. <br /><br />
+                                    🎬
+                                    <span class="bold-text"
+                                        >Content Discovery:</span
+                                    >
+                                    Facilitates better content discovery for
+                                    users. <br /><br />
+                                    🧭
+                                    <span class="bold-text"
+                                        >Enhanced Navigation:</span
+                                    >
+                                    Provides enhanced navigation capabilities.
+                                </p>
+                            </div>
+                            <div class="scroll-indicator">
+                                <div class="scroll-track">
+                                    <div class="scroll-thumb"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project Link -->
+                        <div class="project-buttons">
+                            <div
+                                class="project-link glass-pill figma-button"
+                                role="link"
+                                tabindex="0"
+                                data-url="https://www.figma.com/design/encRskXxrZFCrhvmTt19vw/Historias-de-usuario---Disney--?node-id=0-1&t=1kkwgKps9x38P1qE-1"
+                            >
+                                <img
+                                    src="assets/icons/figma.svg"
+                                    alt="Figma"
+                                    width="30"
+                                    height="30"
+                                />
+                                <span>Design On Figma</span>
+                                <img
+                                    src="assets/icons/external.svg"
+                                    alt="External"
+                                    width="16"
+                                    height="16"
+                                    class="figma-external-icon"
+                                />
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 8: Qualitor -->
+                    <article
+                        id="project-qualitor"
+                        class="project-item glass-card scroll-pending"
+                        style="opacity: 0; transform: translateY(30px)"
+                        data-project-title="🎯 QualiTor"
+                        data-project-category="UI/UX Design"
+                        data-project-description="MoProSoft-Based System for Creating Software Quality Manuals"
+                    >
+                        <!-- Project Media Carousel -->
+                        <div class="project-media">
+                            <div
+                                class="carousel"
+                                role="region"
+                                aria-roledescription="carousel"
+                                aria-label="Galería del proyecto Qualitor"
+                                tabindex="0"
+                            >
+                                <div class="carousel-viewport">
+                                    <div class="carousel-track">
+                                        <div class="carousel-slide is-active">
+                                            <img
+                                                src="assets/projects/qualitor/qualitor-1.webp"
+                                            />
+                                        </div>
+                                        <div class="carousel-slide">
+                                            <img
+                                                src="assets/projects/qualitor/qualitor-2.webp"
+                                            />
+                                        </div>
+                                        <div class="carousel-slide">
+                                            <img
+                                                src="assets/projects/qualitor/qualitor-3.webp"
+                                            />
+                                        </div>
+                                        <div class="carousel-slide">
+                                            <img
+                                                src="assets/projects/qualitor/qualitor-4.webp"
+                                            />
+                                        </div>
+                                        <div class="carousel-slide">
+                                            <img
+                                                src="assets/projects/qualitor/qualitor-5.webp"
+                                            />
+                                        </div>
+                                        <div class="carousel-slide">
+                                            <img
+                                                src="assets/projects/qualitor/qualitor-6.webp"
+                                            />
+                                        </div>
+                                        <div class="carousel-slide">
+                                            <img
+                                                src="assets/projects/qualitor/qualitor-7.webp"
+                                            />
+                                        </div>
+                                        <div class="carousel-slide">
+                                            <img
+                                                src="assets/projects/qualitor/qualitor-8.webp"
+                                            />
+                                        </div>
+                                        <div class="carousel-slide">
+                                            <img
+                                                src="assets/projects/qualitor/qualitor-9.webp"
+                                            />
+                                        </div>
+                                        <div class="carousel-slide">
+                                            <img
+                                                src="assets/projects/qualitor/qualitor-10.webp"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Carousel Controls -->
+                        <div
+                            class="carousel-controls"
+                            aria-label="Controles del carrusel"
+                        >
+                            <div class="carousel-controls-top">
+                                <button
+                                    class="carousel-btn prev"
+                                    aria-label="Anterior"
+                                ></button>
+                                <div class="carousel-center">
+                                    <div
+                                        class="carousel-indicators"
+                                        role="tablist"
+                                        aria-label="Paginación de imágenes"
+                                    >
+                                        <button
+                                            class="carousel-dot is-active"
+                                            role="tab"
+                                            aria-selected="true"
+                                            aria-label="Ir a imagen 1"
+                                        ></button>
+                                        <button
+                                            class="carousel-dot"
+                                            role="tab"
+                                            aria-label="Ir a imagen 2"
+                                        ></button>
+                                        <button
+                                            class="carousel-dot"
+                                            role="tab"
+                                            aria-label="Ir a imagen 3"
+                                        ></button>
+                                        <button
+                                            class="carousel-dot"
+                                            role="tab"
+                                            aria-label="Ir a imagen 4"
+                                        ></button>
+                                        <button
+                                            class="carousel-dot"
+                                            role="tab"
+                                            aria-label="Ir a imagen 5"
+                                        ></button>
+                                        <button
+                                            class="carousel-dot"
+                                            role="tab"
+                                            aria-label="Ir a imagen 6"
+                                        ></button>
+                                        <button
+                                            class="carousel-dot"
+                                            role="tab"
+                                            aria-label="Ir a imagen 7"
+                                        ></button>
+                                        <button
+                                            class="carousel-dot"
+                                            role="tab"
+                                            aria-label="Ir a imagen 8"
+                                        ></button>
+                                        <button
+                                            class="carousel-dot"
+                                            role="tab"
+                                            aria-label="Ir a imagen 9"
+                                        ></button>
+                                        <button
+                                            class="carousel-dot"
+                                            role="tab"
+                                            aria-label="Ir a imagen 10"
+                                        ></button>
+                                    </div>
+                                    <div
+                                        class="carousel-progress"
+                                        aria-hidden="true"
+                                    >
+                                        <div
+                                            class="carousel-progress-fill"
+                                        ></div>
+                                    </div>
+                                </div>
+                                <button
+                                    class="carousel-btn next"
+                                    aria-label="Siguiente"
+                                ></button>
+                            </div>
+                        </div>
+
+                        <!-- Project Header -->
+                        <div class="project-header">
+                            <div class="project-title">
+                                <h2>🎯 QualiTor</h2>
+                            </div>
+                        </div>
+
+                        <!-- Project Meta -->
+                        <div class="project-meta">
+                            <button
+                                class="project-icon glass-button"
+                                aria-label="Tipo de proyecto: Diseño"
+                            >
+                                <img
+                                    src="assets/icons/design.svg"
+                                    alt="Project icon"
+                                    width="26"
+                                    height="26"
+                                />
+                            </button>
+                            <p class="project-category">
+                                <strong>UI/UX Design</strong>
+                                <span class="separator">·</span>
+                                MoProSoft-Based System for Creating Software
+                                Quality Manuals
+                            </p>
+                        </div>
+
+                        <!-- Tech Stack -->
+                        <div class="tech-stack">
+                            <div class="tech-row">
+                                <span class="tech-tag">🎨 Figma</span>
+                                <span class="tech-tag">🖌️ UI Design</span>
+                                <span class="tech-tag">💡 UX Research</span>
+                                <span class="tech-tag">📊 Dashboard</span>
+                                <span class="tech-tag">🏛️ MoProSoft</span>
+                                <span class="tech-tag">🏃 Scrum</span>
+                                <span class="tech-tag">🎯 Quality Control</span>
+                            </div>
+                        </div>
+
+                        <!-- Project Description -->
+                        <div class="project-description glass-container">
+                            <div class="description-content">
+                                <p>
+                                    🏛️ <span class="bold-text">Overview</span>
+                                    <br /><br />
+                                    📌 QualiTor is a software design project
+                                    focused on creating quality manuals based on
+                                    the MoProSoft model.
+                                    <br /><br />
+                                    📌 The design emphasizes structured
+                                    templates, process mapping, and clear
+                                    documentation workflows.
+                                    <br /><br />
+                                    🩷 <span class="bold-text">Features</span>
+                                    <br /><br />
+                                    💻
+                                    <span class="bold-text"
+                                        >Software Design:</span
+                                    >
+                                    A software design project focused on
+                                    creating quality manuals. <br /><br />
+                                    🧩
+                                    <span class="bold-text"
+                                        >MoProSoft Model:</span
+                                    >
+                                    Based on the MoProSoft model for quality
+                                    manual creation. <br /><br />
+                                    🗂️
+                                    <span class="bold-text"
+                                        >Structured Templates:</span
+                                    >
+                                    Emphasizes the use of structured templates
+                                    for organization. <br /><br />
+                                    🔄
+                                    <span class="bold-text"
+                                        >Process Mapping:</span
+                                    >
+                                    Includes process mapping capabilities for
+                                    visualizing workflows. <br /><br />
+                                    📝
+                                    <span class="bold-text"
+                                        >Documentation Workflows:</span
+                                    >
+                                    Ensures clear and efficient documentation
+                                    workflows.
+                                </p>
+                            </div>
+                            <div class="scroll-indicator">
+                                <div class="scroll-track">
+                                    <div class="scroll-thumb"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project Link -->
+                        <div class="project-buttons">
+                            <div
+                                class="project-link glass-pill figma-button"
+                                role="link"
+                                tabindex="0"
+                                data-url="https://www.figma.com/design/pK6OYwzLAz0drb9CA6XS3W/Qualitor?node-id=197-34&t=EgcDhzAAeJCU15vH-1"
+                            >
+                                <img
+                                    src="assets/icons/figma.svg"
+                                    alt="Figma"
+                                    width="30"
+                                    height="30"
+                                />
+                                <span>Design On Figma</span>
+                                <img
+                                    src="assets/icons/external.svg"
+                                    alt="External"
+                                    width="16"
+                                    height="16"
+                                    class="figma-external-icon"
+                                />
+                            </div>
+                        </div>
+                    </article>
+                </section>
+            </main>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+</html>
