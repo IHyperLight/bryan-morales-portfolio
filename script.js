@@ -372,6 +372,7 @@ function initializeSingleCarousel(projectContainer) {
     let pausedByFullscreen = false; // true cuando el modal de pantalla completa pausa el carrusel
     let shouldAutoStart = false; // iniciar autoplay al entrar en viewport o al inicializar
     let isInViewport = false; // estado actual de intersección
+    let wasManuallyPausedBeforeFullscreen = false; // recordar si el usuario pausó antes de abrir fullscreen
     // Handler para sincronizar con el fin de la transición de la barra
     let progressEndHandler = null;
 
@@ -848,12 +849,14 @@ function initializeSingleCarousel(projectContainer) {
         if (!validateState()) return;
 
         try {
+            // Recordar si el usuario había pausado manualmente ANTES de abrir fullscreen
+            wasManuallyPausedBeforeFullscreen = paused;
             pausedByFullscreen = true;
 
             // Si aún no se ha inicializado, marcar para iniciar luego y simular pausa
             if (!initialized) {
                 paused = true;
-                shouldAutoStart = true;
+                shouldAutoStart = !wasManuallyPausedBeforeFullscreen;
                 return;
             }
 
@@ -869,6 +872,14 @@ function initializeSingleCarousel(projectContainer) {
 
         try {
             pausedByFullscreen = false;
+
+            // Si el usuario había pausado manualmente antes del fullscreen, respetar ese estado
+            if (wasManuallyPausedBeforeFullscreen) {
+                paused = true;
+                shouldAutoStart = false;
+                wasManuallyPausedBeforeFullscreen = false;
+                return;
+            }
 
             // Si está en viewport e inicializado, reanudar inmediatamente
             if (initialized && isInViewport) {
@@ -1134,6 +1145,30 @@ function initializeSingleCarousel(projectContainer) {
         next,
         prev,
         setActive,
+
+        // State getters
+        isPaused: () => paused,
+        isViewportPaused: () => viewportPaused,
+
+        // Toggle pause for manual control (user-initiated)
+        // Este toggle es independiente del estado de viewport
+        togglePause: () => {
+            if (!validateState()) return paused;
+
+            if (paused) {
+                // Usuario quiere reanudar
+                paused = false;
+                // Solo iniciar autoplay si está en viewport y no hay otras pausas activas
+                if (!viewportPaused && !pausedByFullscreen && initialized) {
+                    startAuto();
+                }
+                return false; // Now playing (o listo para reproducir cuando entre al viewport)
+            } else {
+                // Usuario quiere pausar
+                pauseAutoplay();
+                return true; // Now paused
+            }
+        },
 
         // New viewport-aware functions
         initialize,
@@ -2549,16 +2584,70 @@ function initializeFullscreenModal() {
     modal._keyHandler = modalKeyHandler;
     document.addEventListener("keydown", modalKeyHandler);
 
-    // Agregar botones de pantalla completa a los carousels inmediatamente
+    // Agregar botones de control a los carousels inmediatamente
     const carousels = document.querySelectorAll(".project-media");
     carousels.forEach((carousel) => {
-        // Verificar si ya tiene botón
+        // Verificar si ya tiene botones
         if (carousel.querySelector(".carousel-fullscreen-btn")) return;
 
         const slides = carousel.querySelectorAll(".carousel-slide img");
         if (slides.length === 0) return;
 
-        // Crear botón de pantalla completa
+        // ========================================
+        // BOTÓN DE PAUSA/PLAY
+        // ========================================
+        const pauseBtn = document.createElement("button");
+        pauseBtn.className = "carousel-pause-btn";
+        pauseBtn.setAttribute("aria-label", "Pausar carrusel");
+        pauseBtn.setAttribute("data-playing", "true");
+
+        // SVG de Play (inicialmente oculto porque está reproduciendo)
+        const playSvg = `<svg class="play-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 5.14v14.72a1 1 0 001.5.86l11-7.36a1 1 0 000-1.72l-11-7.36a1 1 0 00-1.5.86z" fill="currentColor"/>
+        </svg>`;
+
+        // SVG de Pause (visible porque está reproduciendo)
+        const pauseSvg = `<svg class="pause-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="6" y="4" width="4" height="16" rx="1" fill="currentColor"/>
+            <rect x="14" y="4" width="4" height="16" rx="1" fill="currentColor"/>
+        </svg>`;
+
+        pauseBtn.innerHTML = pauseSvg + playSvg;
+
+        // Función para actualizar el estado visual del botón
+        const updatePauseButtonState = (isPaused) => {
+            pauseBtn.setAttribute("data-playing", isPaused ? "false" : "true");
+            pauseBtn.setAttribute(
+                "aria-label",
+                isPaused ? "Reanudar carrusel" : "Pausar carrusel"
+            );
+        };
+
+        // Event listener para toggle pause/play
+        pauseBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const media = carousel;
+            const carouselState = media._carouselState;
+
+            if (
+                carouselState &&
+                typeof carouselState.togglePause === "function"
+            ) {
+                const nowPaused = carouselState.togglePause();
+                updatePauseButtonState(nowPaused);
+            }
+        });
+
+        // Almacenar referencia para sincronización externa
+        carousel._pauseBtn = pauseBtn;
+        carousel._updatePauseButtonState = updatePauseButtonState;
+
+        // Añadir directamente al .project-media para posicionamiento absoluto sobre la imagen
+        carousel.appendChild(pauseBtn);
+
+        // ========================================
+        // BOTÓN DE PANTALLA COMPLETA
+        // ========================================
         const fullscreenBtn = document.createElement("button");
         fullscreenBtn.className = "carousel-fullscreen-btn";
         fullscreenBtn.setAttribute("aria-label", "Ver en pantalla completa");
@@ -2568,13 +2657,8 @@ function initializeFullscreenModal() {
             </svg>
         `;
 
-        // Obtener el contenedor de controles y agregarlo
-        const controlsContainer = carousel.parentElement.querySelector(
-            ".carousel-controls .carousel-controls-top"
-        );
-        if (controlsContainer) {
-            controlsContainer.appendChild(fullscreenBtn);
-        }
+        // Añadir directamente al .project-media para posicionamiento absoluto sobre la imagen
+        carousel.appendChild(fullscreenBtn);
 
         // Event listener para abrir modal
         fullscreenBtn.addEventListener("click", () => {
@@ -2649,12 +2733,18 @@ function initializeThemeToggle() {
     // Remover clase de carga inicial del HTML
     document.documentElement.classList.remove("obsidian-theme-loading");
 
-    // Cargar tema guardado
+    // Cargar tema guardado (por defecto: obsidian/oscuro)
     const savedTheme = localStorage.getItem(THEME_KEY);
-    if (savedTheme === "obsidian") {
+
+    // Si es primera visita (no hay tema guardado) o el tema guardado es obsidian
+    if (savedTheme === null || savedTheme === "obsidian") {
         document.body.classList.add("obsidian-theme");
         if (bgVideo) {
             bgVideo.pause();
+        }
+        // Guardar el tema por defecto si es primera visita
+        if (savedTheme === null) {
+            localStorage.setItem(THEME_KEY, "obsidian");
         }
     }
 
@@ -2714,6 +2804,7 @@ const spotlightEffect = (() => {
     let rafId = null;
     let initialized = false;
     let themeObserver = null;
+    let isTouchDevice = false;
 
     // Función para crear el overlay del spotlight
     function createSpotlightOverlay(container) {
@@ -2752,9 +2843,9 @@ const spotlightEffect = (() => {
         }
     }
 
-    // Manejar movimiento del mouse
+    // Manejar movimiento del mouse (solo mouse, no touch)
     function handleMouseMove(e) {
-        if (!isObsidianTheme) return;
+        if (!isObsidianTheme || isTouchDevice) return;
 
         // Cancelar frame anterior
         if (rafId) {
@@ -2809,10 +2900,24 @@ const spotlightEffect = (() => {
         });
     }
 
+    // Detectar si es dispositivo táctil
+    function detectTouchDevice() {
+        isTouchDevice =
+            "ontouchstart" in window ||
+            navigator.maxTouchPoints > 0 ||
+            window.matchMedia("(pointer: coarse)").matches;
+    }
+
     // Inicializar el efecto
     function initialize() {
         if (initialized) return;
         initialized = true;
+
+        // Detectar dispositivo táctil primero
+        detectTouchDevice();
+
+        // No inicializar en dispositivos táctiles
+        if (isTouchDevice) return;
 
         // Inicializar contenedores una sola vez (contenido estático)
         updateContainers();

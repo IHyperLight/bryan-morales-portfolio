@@ -572,9 +572,7 @@ body.obsidian-theme .theme-icon-light {
     padding: clamp(24px, 5vw, 40px);
     transform: translateY(30px) scale(0.95);
     transition: transform var(--transition-medium);
-    background: rgba(15, 15, 15, 0.7);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    background: var(--glass-bg);
 }
 
 .nav-menu.active .nav-menu-content {
@@ -651,10 +649,8 @@ body.obsidian-theme .theme-icon-light {
     display: block;
     padding: clamp(16px, 3vw, 20px) clamp(18px, 3.5vw, 24px);
     border-radius: var(--button-radius-lg);
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: var(--glass-bg);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     text-decoration: none;
     color: var(--text-primary);
     transition: all var(--transition-fast);
@@ -681,7 +677,7 @@ body.obsidian-theme .theme-icon-light {
 }
 
 .nav-menu-item:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--hover-tint);
     border-color: rgba(255, 255, 255, 0.15);
     transform: translateX(4px);
 }
@@ -895,8 +891,6 @@ body.menu-open {
     color: var(--text-primary);
     cursor: var(--cursor-pointer);
     transition: all var(--transition-medium), padding var(--transition-smooth);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
 }
 
 .glass-bubble:hover {
@@ -908,8 +902,6 @@ body.menu-open {
     padding: var(--glass-container-padding);
     border-radius: var(--button-radius-lg);
     background: var(--glass-bg);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
 }
 
 .glass-button {
@@ -926,8 +918,6 @@ body.menu-open {
     justify-content: center;
     transition: all var(--transition-medium), width var(--transition-smooth),
         height var(--transition-smooth);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
     /* Performance optimizations */
     will-change: var(--will-change-transform);
     transform: var(--gpu-layer);
@@ -944,8 +934,6 @@ body.menu-open {
     padding: clamp(12px, 3.5vw, 16px) clamp(20px, 5vw, 26px);
     border-radius: var(--radius-full);
     background: var(--glass-bg);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
 }
 
 /* Override border-radius para botones de proyecto: rectángulos con bordes redondeados en lugar de cápsulas */
@@ -1072,8 +1060,6 @@ body.menu-open {
     justify-content: center;
     transition: all var(--transition-medium), width var(--transition-smooth),
         height var(--transition-smooth);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
 }
 
 .profile-img {
@@ -1298,8 +1284,6 @@ body.menu-open {
     justify-content: center;
     transition: all var(--transition-medium), height var(--transition-smooth),
         padding var(--transition-smooth);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
 }
 
 .skills-lines {
@@ -2026,6 +2010,7 @@ body.menu-open {
 /* Media full-bleed 16:9 (encaja a los bordes de la tarjeta con margen de 1px) */
 .project-media {
     grid-area: image;
+    position: relative; /* Contexto de posicionamiento para botones de control */
     /* expandir a los bordes laterales de la glass-card con margen de 1px en cada lado */
     margin-left: calc(-1 * clamp(26px, 5.5vw, 46px) + 1px);
     margin-right: calc(-1 * clamp(26px, 5.5vw, 46px) + 1px);
@@ -2300,6 +2285,70 @@ body.menu-open {
 .carousel-fullscreen-btn svg {
     width: 26px; /* Tamaño exacto solicitado */
     height: 26px;
+}
+
+/* Botón de pausa/reproducir del carrusel */
+.carousel-pause-btn {
+    position: absolute;
+    top: 16px; /* Alineado con el botón fullscreen */
+    right: 54px; /* Posicionado a la izquierda del botón fullscreen (16px + 26px + 12px gap) */
+    width: 26px;
+    height: 26px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.6));
+    z-index: 10; /* Mismo z-index que fullscreen btn */
+    transition: color var(--transition-fast), transform var(--transition-medium);
+    /* Performance optimizations */
+    will-change: var(--will-change-transform);
+    transform: var(--gpu-layer);
+    contain: layout style;
+    backface-visibility: var(--backface-hidden);
+}
+
+.carousel-pause-btn:hover {
+    color: #fff;
+    transform: var(--transform-scale-hover);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.7));
+}
+
+.carousel-pause-btn:active {
+    transform: scale(0.93);
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.6));
+}
+
+.carousel-pause-btn:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: var(--outline-offset);
+}
+
+/* El icono SVG debe ocupar todo el botón */
+.carousel-pause-btn svg {
+    width: 22px;
+    height: 22px;
+}
+
+/* Mostrar/ocultar iconos según estado */
+.carousel-pause-btn[data-playing="true"] .play-icon {
+    display: none;
+}
+
+.carousel-pause-btn[data-playing="true"] .pause-icon {
+    display: block;
+}
+
+.carousel-pause-btn[data-playing="false"] .play-icon {
+    display: block;
+}
+
+.carousel-pause-btn[data-playing="false"] .pause-icon {
+    display: none;
 }
 
 /* Fullscreen modal */
@@ -2792,12 +2841,12 @@ body.menu-open {
 }
 
 /* Estilo específico para tags de proyectos: efecto glass */
+/* Unificado con el resto de elementos glass del proyecto */
 .tech-stack .tech-tag {
     background: var(--glass-bg);
-    box-shadow: inset 0 0 0 1px var(--glass-border);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: none;
     color: var(--text-primary);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
 }
 
 /* Efecto hover para las etiquetas de tecnología */
@@ -2807,8 +2856,10 @@ body.menu-open {
 }
 
 /* Hover específico para tags de proyectos */
+/* Unificado con el resto de elementos glass del proyecto */
 .tech-stack .tech-tag:hover {
     background: var(--hover-tint);
+    border-color: rgba(255, 255, 255, 0.15);
     color: var(--text-primary);
 }
 
@@ -3374,7 +3425,6 @@ button:focus-visible {
     .glass-bubble,
     .glass-container {
         background: rgba(208, 208, 208, 0.1);
-        backdrop-filter: none;
     }
 }
 
@@ -3613,8 +3663,6 @@ body.obsidian-theme .tech-stack .tech-tag {
     background: linear-gradient(135deg, #2d2d2d 0%, #3a3a3a 100%);
     border: 1px solid rgba(255, 255, 255, 0.08);
     box-shadow: none;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
 }
 
 body.obsidian-theme .tech-stack .tech-tag:hover {
@@ -3830,17 +3878,18 @@ body.obsidian-theme .spotlight-overlay::after {
 
     background: radial-gradient(
         380px circle at var(--spotlight-x) var(--spotlight-y),
-        rgba(150, 150, 150, 0.4) 0%,
-        rgba(125, 125, 125, 0.3) 20%,
-        rgba(100, 100, 100, 0.2) 40%,
-        rgba(75, 75, 75, 0.1) 55%,
+        rgba(180, 180, 180, 0.4) 0%,
+        rgba(150, 150, 150, 0.3) 20%,
+        rgba(115, 115, 115, 0.2) 40%,
+        rgba(85, 85, 85, 0.1) 60%,
+        rgba(50, 50, 50, 0.05) 80%,
         transparent 65%
     );
 
-    -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.35' numOctaves='4' seed='25'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='3' intercept='-0.55'/%3E%3CfeFuncG type='linear' slope='3' intercept='-0.55'/%3E%3CfeFuncB type='linear' slope='3' intercept='-0.55'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.35' numOctaves='4' seed='25'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='3' intercept='-0.55'/%3E%3CfeFuncG type='linear' slope='3' intercept='-0.55'/%3E%3CfeFuncB type='linear' slope='3' intercept='-0.55'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    -webkit-mask-size: 50px 50px;
-    mask-size: 50px 50px;
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='6' seed='25'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='8' intercept='-1.5'/%3E%3CfeFuncG type='linear' slope='8' intercept='-1.5'/%3E%3CfeFuncB type='linear' slope='8' intercept='-1.5'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='6' seed='25'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='8' intercept='-1.5'/%3E%3CfeFuncG type='linear' slope='8' intercept='-1.5'/%3E%3CfeFuncB type='linear' slope='8' intercept='-1.5'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    -webkit-mask-size: 256px 256px;
+    mask-size: 256px 256px;
 }
 
 body.obsidian-theme
