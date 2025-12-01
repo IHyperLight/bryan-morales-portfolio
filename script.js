@@ -2700,14 +2700,20 @@ function initializeThemeToggle() {
 // Efecto de iluminación que sigue al cursor
 // con textura granulada revelada
 // ========================================
-function initializeSpotlightEffect() {
-    // Selectores de contenedores que tendrán el efecto
-    const spotlightSelectors = [".glass-card", ".glass-container"];
+const spotlightEffect = (() => {
+    // Selectores de contenedores PRINCIPALES que tendrán el efecto
+    // Solo tarjetas grandes, no elementos internos ni menús
+    const spotlightSelectors = [
+        ".profile-section.glass-card",
+        ".project-item.glass-card",
+    ];
 
-    // Cachear elementos para mejor rendimiento
+    // Estado del efecto
     let spotlightContainers = [];
     let isObsidianTheme = false;
     let rafId = null;
+    let initialized = false;
+    let themeObserver = null;
 
     // Función para crear el overlay del spotlight
     function createSpotlightOverlay(container) {
@@ -2716,13 +2722,14 @@ function initializeSpotlightEffect() {
 
         const overlay = document.createElement("div");
         overlay.className = "spotlight-overlay";
-        container.appendChild(overlay);
+        // Insertar como PRIMER hijo para que quede detrás de todo el contenido
+        container.insertBefore(overlay, container.firstChild);
     }
 
-    // Función para actualizar la lista de contenedores
+    // Función para actualizar la lista de contenedores (solo al inicio)
     function updateContainers() {
-        spotlightContainers = document.querySelectorAll(
-            spotlightSelectors.join(", ")
+        spotlightContainers = Array.from(
+            document.querySelectorAll(spotlightSelectors.join(", "))
         );
 
         // Agregar clase y overlay para contenedores con spotlight
@@ -2752,9 +2759,11 @@ function initializeSpotlightEffect() {
         // Cancelar frame anterior
         if (rafId) {
             cancelAnimationFrame(rafId);
+            rafId = null;
         }
 
         rafId = requestAnimationFrame(() => {
+            rafId = null; // Reset después de ejecutar
             spotlightContainers.forEach((container) => {
                 const rect = container.getBoundingClientRect();
 
@@ -2800,35 +2809,82 @@ function initializeSpotlightEffect() {
         });
     }
 
-    // Inicializar
-    updateContainers();
-    checkTheme();
+    // Inicializar el efecto
+    function initialize() {
+        if (initialized) return;
+        initialized = true;
 
-    // Event listeners
-    document.addEventListener("mousemove", handleMouseMove, { passive: true });
-    document.addEventListener("mouseleave", handleMouseLeave);
-
-    // Observar cambios de tema
-    const observer = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-            if (mutation.attributeName === "class") {
-                checkTheme();
-            }
-        });
-    });
-
-    observer.observe(document.body, {
-        attributes: true,
-        attributeFilter: ["class"],
-    });
-
-    // Re-escanear contenedores cuando cambie el DOM (para contenido dinámico)
-    const domObserver = new MutationObserver(() => {
+        // Inicializar contenedores una sola vez (contenido estático)
         updateContainers();
-    });
+        checkTheme();
 
-    domObserver.observe(document.body, {
-        childList: true,
-        subtree: true,
+        // Event listeners con referencias para cleanup
+        document.addEventListener("mousemove", handleMouseMove, {
+            passive: true,
+        });
+        document.addEventListener("mouseleave", handleMouseLeave);
+
+        // Observar solo cambios de tema (más eficiente que observar todo el DOM)
+        themeObserver = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.attributeName === "class") {
+                    checkTheme();
+                }
+            });
+        });
+
+        themeObserver.observe(document.body, {
+            attributes: true,
+            attributeFilter: ["class"],
+        });
+    }
+
+    // Cleanup para prevenir memory leaks
+    function cleanup() {
+        if (!initialized) return;
+
+        // Cancelar RAF pendiente
+        if (rafId) {
+            cancelAnimationFrame(rafId);
+            rafId = null;
+        }
+
+        // Desconectar observer
+        if (themeObserver) {
+            themeObserver.disconnect();
+            themeObserver = null;
+        }
+
+        // Remover event listeners
+        document.removeEventListener("mousemove", handleMouseMove);
+        document.removeEventListener("mouseleave", handleMouseLeave);
+
+        // Limpiar clases de contenedores
+        spotlightContainers.forEach((container) => {
+            container.classList.remove(
+                "spotlight-active",
+                "spotlight-container"
+            );
+            container.style.removeProperty("--spotlight-opacity");
+            container.style.removeProperty("--spotlight-x");
+            container.style.removeProperty("--spotlight-y");
+            // Remover overlay
+            const overlay = container.querySelector(".spotlight-overlay");
+            if (overlay) overlay.remove();
+        });
+
+        spotlightContainers = [];
+        initialized = false;
+    }
+
+    return { initialize, cleanup };
+})();
+
+function initializeSpotlightEffect() {
+    spotlightEffect.initialize();
+
+    // Registrar cleanup en beforeunload
+    window.addEventListener("beforeunload", spotlightEffect.cleanup, {
+        once: true,
     });
 }
